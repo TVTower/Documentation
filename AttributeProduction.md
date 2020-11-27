@@ -1,7 +1,15 @@
+#TODOs
+
+* Abgleich mit den Vorschlägen und Hinweisen aus https://github.com/TVTower/TVTower/issues/130
+
 # Brainstorming produktionsrelevante Attribute
 
 Ziel dieses Dokuments ist, die Attribute festzulegen, die für die Ermittlung der Qualität einer Produktion benötigt werden.
 Ausgangspunkt der Überlegungen ist das Problem, dass die aktuellen Darstellerattribute allgemein zu gering sind und die Tendenz besteht, die Darstellerattribute komplett zu ignorieren und allein auf die Erfahrung zu setzen, da diese eine übermäßige Bedeutung an der Qualität der Produktion zu haben scheint.
+
+Es handelt sich um eine Diskussionsgrundlage.
+Anpassungen und Erläuterungen, die sich aus Antworten und Kommentaren von Ronny Otto ergeben haben, sind mit (RO) markiert.
+Es handelt sich dabei nicht um wörtliche Zitate.
 
 ## involvierte Entitäten
 
@@ -17,6 +25,7 @@ Folgende Entitäten haben grundsätzlich einen Einfluss
 
 * Typ (int/float/...)
 * Wertebereich (von, bis)
+* global oder berufs-/genreabhängig
 * änderbar (ja/nein)
 ** wenn ja wodurch
 ** ggf. Minimalwert, Maximalwert
@@ -42,55 +51,73 @@ existierende Attribute:
 * Charisma
 * Aussehen
 * Bekanntheit
-* Scandalizing(?)
+* Scandalizing
 
 Kraft, Humor, Charisma, Aussehen sind für mich aktuell genre-/berufsunabhängige Eigenschaften.
 Wenn jemand als Schauspieler Charisma hat, hat er das auch als Regisseur oder Moderator.
-Bekanntheit ist für die "Qualität" der Produktion direkt nicht wichtig, hat aber auf die "Zuschauerresonanz" des Ergebnisses einen Einfluss.
+ 
+Bekanntheit (im Gegensatz zur Popularität): Welcher Anteil der Bevölkerung kennt die Person? (RO)
 
-Aus meiner Sicht die kritischen Attribute sind Fertigkeit und Erfahrung.
-Diese beiden hat man nämlich nicht global, sondern immer in Bezug auf etwas.
-Auch sind sie in Realität nicht *komplett* unabhängig voneinander.
-Wiederholung von Tätigkeit steigert typischerweise Erfahrung und Fertigkeit.
-Oder aber die Erfahrung bleibt mit steigendem Alter, aber die Fertigkeit nimmt wieder ab (fehlende Übung, körperliche Einschränkung).
+Scandalizing ist ein Maß dafür, wie wahrscheinlich Skandale um die Person sind.
+Das betrifft Klatsch-Nachrichten aber auch Reibereien während einer Produktion (Streit, Produktion dauert länger, schlechtere Qualität wegen unzufriedenem Team).
+Das Attribut ist aktuell noch nicht in Benutzung. (RO)
 
-Umso wichtiger ist also die Frage, genau welche Bedeutung/Interpretation diese beiden für TVTower bekommen sollen.
+Aus meiner Sicht die kritischsten Attribute sind Fertigkeit und Erfahrung.
+Ihre Bedeutung und ihr Einfluss muss möglichst genau festgelegt werden
 
-An sich müssten Erfahrung und Fertigkeit vom Genre und vom Beruf abhängen.
-Es dürften also keine globalen Werte sein (es ist nicht realistisch, dass jemand der 50 mal Nebendarsteller aber nie Regisseur war, dadurch ein besserer Regisseur ist als jemand, der "erst" 5 mal Regie geführt hat).
+Fertigkeit ist die allgemeine Fähigkeit, sich anzupassen und Neues aufzuschnappen (RO).
+In dieser Interpretation kann auch die Fertigkeit als eine genre-/berufsunabhängige Eigenschaft eingeordnet werden.
 
-Diese Abhängigkeit komplett abzubilden dürfte aber viel zu aufwändig sein.
-Eine Möglichkeit wäre meiner Ansicht nach, Erfahrung als Eigenschaft zu interpretieren, wie oft jemand schon an einer Produktion teilgenommen hat und wie leicht es ihm fällt, seine sonstigen Fähigkeiten einzubringen.
+Die Erfahrung ist ein Maß dafür, wie häufig eine Aufgabe ausgeübt wurde - wie gut jemand im Training ist.
+Sie sollte damit berufsabhängig und in gewissem Rahmen auch genreabhängig sein (und sich aus den Jobs/Produktionen der Person berechnen).
+Erfahrung als Nebendarsteller erhöht auch die Erfahrung als Hauptdarsteller (nur viel, viel weniger als andersrum).
+Es wäre auch nicht realistisch, dass jemand der 50 mal Nebendarsteller aber nie Regisseur war, dadurch ein besserer Regisseur ist als jemand, der "erst" 5 mal Regie geführt hat.
+TODO: Matrix erstellen
+
 (Für TVT würde ich nicht der Argumentation folgen, dass ein erfahrener Schauspieler jede Rolle übernehmen kann.
 Das mag in der Realität zu einem bestimmten Grad korrekt sein, würde aber für das Spiel bedeuten, dass die Attribute Kraft/Humor/Aussehen etc. komplett irrelevant sind, da sie immer komplett durch Erfahrung kompensiert werden können.)
-Zusammengefasst: die Erfahrung ist ein "Faktor", der beeinflusst welcher Anteil der eigenen Eigenschaften (Kraft, Humor, ...) einfließt.
 
-Die Fertigkeit wiederum ist ein Maß, wie gut jemand den aktuellen Job grundsätzlich umsetzen kann (Regisseur, Moderator, ...).
-Je öfter man einen Job gemacht hat, desto größer ist die Fertigkeit (zwischen min und max).
-Wenn die schon gemachten Jobs gespeichert sind, könnte die Fertigkeit aus der Anzahl abgeleitet werden (da es ja keine einfache globale Eigenschaft wäre, sondern eine Map Job-Typ->Fertigkeit)
+Die Erfahrung könnte ein Multiplikator für die restlichen Eigenschaften (Kraft, Humor) sein. Komplett ohne Erfahrung wirken sie einfach, mit steigender Erfahrung können sie aber umso effizienter eingesetzt werden (platt gesprochen Eigenschaft + XP*Eigenschaft).
+
+Fertigkeit (auch) als Lernfähigkeit zu interpretieren, führt zu dem Schluss, dass mit höherer Fertigkeit schneller Erfahrung gesammelt werden kann.
+Wichtig wird hier, den genauen Zusammenhang zwischen Fertigkeit, Erfahrung, Qualität des Programms und der Steigerung der Erfahrung nach Abschluss einer Produktion festzulegen.
 
 ## Attributanforderungen
 
-Ein Genre definiert fix, wie wichtig jede Eigenschaft ist.
+### Genre
+
+Ein Genre definiert fix, wie wichtig jede Eigenschaft ist, und zwar für jede Eigenschaft zwischen 0 und 100.
 Bei Genre-Kombination könnte ein gewichteter Durchschnitt gebildet werden (z.B. Hauptgenre 70%, Zweitgenre 30%).
 
 Genre    |Kraft|Humor|Charisma|Aussehen
 ---------|-----|-----|--------|--------
-Komödie  |   10|   60|      10|      20
-Drama    |   20|   20|      60|      20
+Komödie  |   20|  100|      50|      80
+Drama    |   20|   60|      90|      60
 ...
 (in einer der XML-Konfigurationen?)
 
-Damit es nicht zu langweilig ist, definiert das Drehbuch basierend auf diesen Basiswerten eigene Anforderungen (Modifkationen in gewissem Rahmen - die eine Komödie braucht mehr Aussehen, die andere mehr Kraft?).
-Ggf. vom Drehbuch sogar Anforderungen pro zu besetzender Rolle vergeben.
-So könnte z.B. ein Sidekick-Nebendarsteller (deutlich mehr Humor als eigentlich vom Genre gefordert) im Drehbuch vorkommen, oder ein besonders schöner Nebendarsteller nötig sein.
+### Job
 
 Die Jobs selbst haben, wie Du vorgeschlagen hast auch ihre Sonderforderungen.
-Regisseur besonders viel Charisma, Moderator Charisma und Aussehen...
+Regisseur besonders viel Charisma und Aussehen egal, Moderator Charisma und Aussehen, Gast Scandalizing-Bonud...
 
-Je nach Beruf ist auch die Gewichtung von Fertigkeit/Erfahrung unterschiedlich (es ist schlimmer, wenn ein Regisseur keine Ferigkeit/Erfahrung hat als ein Nebendarsteller).
+Je nach Beruf ist auch die Gewichtung von Erfahrung unterschiedlich. Es ist schlimmer, wenn ein Regisseur keine Erfahrung hat als ein Nebendarsteller).
+Wichtig ist aber auch, es darf nicht dazu führen, dass man mit ausschließlich Erfahrung die besten Ergebnisse erziehlt.
 
-Beim "Klonen" eines Scripttemplates (oder Umschreiben eines Drehbuchs, wenn es das mal geben sollte), werden die drehbuchspezifischen Anpassungen neu gewürfelt.
+### Drehbuchanforderungen
+
+Angenommen es gäbe gar keine Zufallseinflüsse, könnte die optimale Besetzung aus Genre und Job abgeleitet werden, da die Faktoren, mit denen die Eigenschaften eingehen immer gleich sind.
+Um das aufzubrechen, kann ein Drehbuch diese Basisanforderungen modifizieren (beim erzeugen/klonen/umschreiben/des Drehbuchs gewürfelt), ggf. sogar pro zu besetzender Rolle.
+Die eine Komödie braucht mehr Aussehen, die andere mehr Kraft...
+So könnte z.B. ein Sidekick-Nebendarsteller (deutlich mehr Humor als eigentlich vom Genre gefordert) im Drehbuch vorkommen, oder ein besonders schöner Nebendarsteller nötig sein.
+
+Die Visualisierung dieser Spezialanforderungen könnte meiner Ansicht nach sogar schon mit aktuellen Mitteln erfolgen (wenn es überhaupt gemacht werden sollte).
+Bei der Personenauswahl werden ja jetzt schon relevante Attribute hervorgehoben.
+Das kann verallgemeinert werden.
+Wenn die Attributanforderung für die Besetzung einen bestimmten Wert überschreiten, werden sie hervorgehoben (wenn sie nicht hervorgehoben werden, heißt es aber nicht, dass sie gar nicht in die Wertung eingehen).
+
+Diese Drehbuchanforderungen sind abwärtskompatibel implementierbar.
+(Anpassung=0 für alle Genre- und Job-Anforderungen).
 
 ## Zufallseinflüsse
 
@@ -122,6 +149,7 @@ Basiswert pro Genre für
 * Kraft
 * Charisma
 * Aussehen
+* Fertigkeit
 
 TODO vollständige Tabelle
 
@@ -134,7 +162,7 @@ Oder die Werte stehen fest im Code.
 Markierung besonders relevanter oder irrelevanter Eigenschaften?
 Aussehen, Charisma für Moderator/Reporter wichtig
 Charisma für Regisseur wichtig, Aussehen unwichtig
-Gast Bekanntheit wichtig
+Gast Bekanntheit, (Scandalizing) wichtig...
 
 Ob hier was zu persistieren ist, oder das im Code fest eingebaut werden kann, ist mir nicht klar.
 
@@ -144,35 +172,25 @@ Pro zu besetzender "Rolle" Anforderung pro Attribut(, die sich aus Genre/Job erg
 D.h. bei der Berechnung werden dann ausschließlich die Drehbuchwerte verwendet.
 Die Anforderungen werden beim "Schreiben" des Drehbuchs (zusammen mit Potential ...) festgelegt.
 
+(abwärtskompatibel implementiertbar - Modifikation überall 0)
+
 ## Person
 
 ### Erfahrung
 
-"globaler" Wert, steigt mit Anzahl der Produktionen, verbessert die genre-/jobspezifischen Eigenschaften
-(Schauspieler mit Humor ist gut, Schauspieler mit Humor und Erfahrung ist noch besser)
-unabhängig von Job und Genre 
+* berechnet aus Produktionen, an denen die Person teilgenommen hat
+* kann bei Nichtbesetzung auch wieder sinken
+* job-/genreabhängig
+* "Multiplikator" für die geforderten Eigenschaften
 
-### Fertigkeit
+### Basis-Attribute
 
-Min- und Max-Wert fest.
-
-Basisfertigkeit vorhanden, steigt mit der Anzahl der bereits durchgeführten Jobs vom aktuellen Typ auf einen Maximalwert.
-Bei längeren Pausen kann die Fertigkeit auch wieder sinken
-
-### Bekanntheit
-
-kein Einfluss auf Qualität, aber auf Zuschauerzahl.
-
-### Scandalizing
-
-noch keine Vorstellung wofür (Trash, Shows, für Gäste/Musiker wichtig?), eher globales Attribut
-
-### "Genre"-Attribute
-
+* Fertigkeit
 * Kraft
 * Aussehen
 * Charisma
 * Humor
+* (Scandalizing)
 
 Änderbar mit Min- und Max-Wert.
 Aktueller Wert wird für Qualitätsermittlung herangezogen.
