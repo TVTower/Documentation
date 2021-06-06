@@ -1,0 +1,1 @@
+Creation of the [German documentation](../xtext_de/main.md) and its translation is in progress.

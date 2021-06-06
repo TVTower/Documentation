@@ -11,3 +11,8 @@ Zur Kenntlichmachung koennen die Dokumente ja mit `_de` oder `_en` ge-suffixt we
 
 In Verzeichnis `database_de` befindet sich die deutsche Beschreibung des aktuellen Formats für die TVTower-Datenbank.
 Im Startdokument [main.md](database_de/main.md) sind für alle Elemente relevante Informationen zusammengetragen, Verweise auf Teildokumente erleichtern die Navigation.
+
+## Datenbank-Editor
+
+Im Verzeichnis `database_editor` wird die Dokumentation (ggf. verschiedener) Editoren abgelegt.
+* [Dokumentation Xtext-Editor](database_editor/xtext_de/main.md)
