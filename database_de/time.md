@@ -7,44 +7,56 @@ Dabei definierte die erste Zahl die Art der Zeitberechnung und welche Bedeutung 
 Wenn nicht alle erwarteten Werte angegeben werden, werden die fehlenden hinteren Werte mit Standardwerten belegt.
 (Definition in game.world.worldtime.bmx, Methode CalcTime_Auto)
 
+Typischerweise beziehen sich die folgenden Möglichkeiten zur Zeitdefinition auf die Spielzeit, d.h. das Jahr und den Spieltag, die im Spiel sichtbar sind sowie die Zeit, die im Spiel vergeht.
+"In 5 Stunden" bedeutet also in etwa nach 5 Sendeblöcken.
+Lediglich die Typen 4 und 5, die sich auf vollständige Datumsdefinitionen (Jahr, Monat, Tag) beziehen, werden leicht anders interpretiert.
+Da ein Spieljahr typischerweise nicht 365 Spieltage hat, wird ein reales Jahr auf die verfügbaren Spieltage aufgeteilt und ein definiertes Datum wird auf den entsprechenden Spieltag abgebildet.
+
 ### Zeittyp 0
 
 Keine weiteren Werte - "Sofort".
 
 ### Zeityp 1
 
-Zwei weitere Werte a und b - "in 'a' bis 'b' Stunden. Beispiel
-`time="1,3,7"` in 3 bis 7 Stunden
+Zwei weitere Werte a und b - "in 'a' bis 'b' Stunden.
+Beispiel `time="1,3,7"` in 3 bis 7 Stunden
 
 ### Zeittyp 2
 
-Vier weitere Werte a,b,c und d - "in 'a' bis 'b' Tagen zwischen c:00 und d:00 Uhr". Beispiel `time="2,1,2,13,19` - in ein bis zwei Tagen zwisch 13 und 19 Uhr.
+Vier weitere Werte a, b, c und d - "in 'a' bis 'b' Tagen zwischen c:00 und d:00 Uhr".
+Beispiel `time="2,1,2,13,19` - in ein bis zwei Tagen zwisch 13 und 19 Uhr.
 
 ### Zeittyp 3
 
-Drei weitere Werte a,b,c - "am nächsten Wochentag a zwischen b:00 und c:00 Uhr". Montag=1, Sonntag =7. Beispiel `time="3,5,12,14"` - am nächsten Freitag zwischen 12 und 14 Uhr.
+Drei weitere Werte a, b, c - "am nächsten Wochentag a zwischen b:00 und c:00 Uhr". Montag=1, Sonntag =7.
+Beispiel `time="3,5,12,14"` - am nächsten Freitag zwischen 12 und 14 Uhr.
 
 ### Zeittyp 4
 
-Fünf weitere Werte y,m,d,h,i - exaktes Datum Jahr y, Monat m, Tag, d, Stunde h, Minute i. Beispiel `time="4,1990,11,13,7,21"` - 13.11.1990 um 7:21 Uhr.
+Drei weitere Werte y, m, d - "exaktes Datum Jahr y, Monat m, Tag, d".
+Beispiel `time="4,1990,11,13"` - Spieltag, auf den der 13.11.1990 fällt.
 
-Wenn das Jahr kleiner als 1000 ist, wird es nicht als Jahreszahl sondern als relative Angabe ("in y Jahren") interpretiert: `time="4,2,12,24,18,0"` - in zwei Jahren am 24.12. um 18 Uhr.
+Wenn das Jahr kleiner als 1000 ist, wird es nicht als Jahreszahl sondern als relative Angabe ("in y Jahren") interpretiert: `time="4,2,12,24"` - Spieltag in zwei Jahren, auf den der 24.12. fällt.
 
 ### Zeittyp 5
 
-Zehn weitere Werte y1,y2,m1,m2,d1,d2,h1,h2,i1,i2 zwischen zwei exakten Daten (Variablenbenennung analog Zeittyp4). Beispiel `time=5,1990,1993,3,5,12,17,11,13,26,29` - Zwischen 12.3.1990 11:26 Uhr und 17.5.1993 13:29 Uhr.
+Sechs weitere Werte y1, y2, m1, m2, d1, d2 - zwischen zwei exakten Daten (Variablenbenennung analog Zeittyp 4).
+Beispiel `time="5,1990,1993,3,5,12,17"` - zwischen den Spieltage, auf die der 12.3.1990 unde der 17.5.1993 fallen.
 
 ### Zeittyp 6
 
-Vier weitere Werte y,D,h,m - "im Jahr y am Spieltag D um h:m Uhr". Beispiel `time="6,1993,4,13,38"` - Am vierten Spieltag 1993 um 13:38 Uhr.
+Vier weitere Werte y, D, h, m - "im Jahr y am Spieltag D um h:m Uhr".
+Beispiel `time="6,1993,4,13,38"` - am vierten Spieltag 1993 um 13:38 Uhr.
 
 ### Zeittyp 7
 
-Acht weitere Werte y1,y2,D1,D2,h1,h2,m1,m2 zwischen zwei Zeiten analog Zeittyp 6. Beispiel `time="7,1993,1993,3,5,12,8,6,22"` - Im Jahr 1993 zwischen Spieltag 3 12:06 Uhr und Spieltag 5 8:22 Uhr.
+Acht weitere Werte y1, y2, D1, D2, h1, h2, m1, m2 - zwischen zwei Zeiten analog Zeittyp 6.
+Beispiel `time="7,1993,1993,3,5,12,8,6,22"` - im Jahr 1993 zwischen Spieltag 3 12:06 Uhr und Spieltag 5 8:22 Uhr.
 
 ### Zeittyp 8
 
-Fünf weitere Werte d,h1,h2,m1,m2 - an einem Arbeitstag (Mo-Fr) mindestens d Tag ab jetzt zwischen h1:m1 Uhr und h2:m2 Uhr. Beispiel `time="8,2,11,13,30,45` - Falls heute Dienstag ist Donnerstag zwischen 11:30 Uhr und 13:45 Uhr, falls heute Freitag ist dann Dienstag zwischen diesen Zeiten.
+Fünf weitere Werte d, h1, h2, m1, m2 - "an einem Arbeitstag (Mo-Fr) mindestens d Tag ab jetzt zwischen h1:m1 Uhr und h2:m2 Uhr".
+Beispiel `time="8,2,11,13,30,45` - falls heute Dienstag ist am Donnerstag zwischen 11:30 Uhr und 13:45 Uhr, falls heute Freitag ist dann Dienstag zwischen diesen Zeiten.
 
 ## Verfügbarkeit
 
