@@ -18,25 +18,26 @@ Keine weiteren Werte - "Sofort".
 
 ### Zeityp 1
 
-Zwei weitere Werte a und b - "in 'a' bis 'b' Stunden.
-Beispiel `time="1,3,7"` in 3 bis 7 Stunden
+Zwei weitere Werte a und b - "in 'a',..., oder 'b' Stunden.
+Beispiel `time="1,3,7"` in 3, 4, 5, 6 oder 7 Stunden
 
 ### Zeittyp 2
 
 Vier weitere Werte a, b, c und d - "in 'a' bis 'b' Tagen zwischen c:00 und d:00 Uhr".
-Beispiel `time="2,1,2,13,19` - in ein bis zwei Tagen zwisch 13 und 19 Uhr.
+Beispiel `time="2,1,2,13,19"` - in ein bis zwei Tagen zwisch 13 und 19 Uhr.
 
 ### Zeittyp 3
 
-Drei weitere Werte a, b, c - "am nächsten Wochentag a zwischen b:00 und c:00 Uhr". Montag=1, Sonntag =7.
-Beispiel `time="3,5,12,14"` - am nächsten Freitag zwischen 12 und 14 Uhr.
+Drei weitere Werte a, b, c - "am nächsten Wochentag a zwischen b:00 und c:00 Uhr". Montag=0, Sonntag=6.
+Beispiel `time="3,5,12,14"` - am nächsten Samstag zwischen 12 und 14 Uhr.
 
 ### Zeittyp 4
 
 Drei weitere Werte y, m, d - "exaktes Datum Jahr y, Monat m, Tag, d".
 Beispiel `time="4,1990,11,13"` - Spieltag, auf den der 13.11.1990 fällt.
 
-Wenn das Jahr kleiner als 1000 ist, wird es nicht als Jahreszahl sondern als relative Angabe ("in y Jahren") interpretiert: `time="4,2,12,24"` - Spieltag in zwei Jahren, auf den der 24.12. fällt.
+Wenn das Jahr kleiner als 1000 ist, wird es nicht als Jahreszahl sondern als relative Angabe ("aktuelles Jahr + y") interpretiert: `time="4,2,12,24"` - Spieltag in zwei Jahren, auf den der 24.12. fällt.
+Achtung: bei Jahr=0 kann der berechnete Zeitpunkt also auch in der Vergangenheit liegen (früheres Datum im aktuellen Jahr).
 
 ### Zeittyp 5
 
@@ -56,7 +57,7 @@ Beispiel `time="7,1993,1993,3,5,12,8,6,22"` - im Jahr 1993 zwischen Spieltag 3 1
 ### Zeittyp 8
 
 Fünf weitere Werte d, h1, h2, m1, m2 - "an einem Arbeitstag (Mo-Fr) mindestens d Tag ab jetzt zwischen h1:m1 Uhr und h2:m2 Uhr".
-Beispiel `time="8,2,11,13,30,45` - falls heute Dienstag ist am Donnerstag zwischen 11:30 Uhr und 13:45 Uhr, falls heute Freitag ist dann Dienstag zwischen diesen Zeiten.
+Beispiel `time="8,2,11,13,30,45"` - falls heute Dienstag ist am Donnerstag zwischen 11:30 Uhr und 13:45 Uhr, falls heute Freitag ist dann Dienstag zwischen diesen Zeiten.
 
 ## Verfügbarkeit
 

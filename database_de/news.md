@@ -37,7 +37,7 @@ Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgescheh
 
 ## Kindelemente von news
 
-Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sindvollerweise zu definieren, Variablen [variables](main.md#Variablen) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
+Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sindvollerweise zu definieren, Variablen [variables](main.md#Variablen) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
 
 ### Daten (data)
 
@@ -50,10 +50,14 @@ Standardelemente für Titel [title](main.md#title), Beschreibung [description](m
 | happen_time | optional | Nachricht muss zur definierten [Zeit](time.md#Zeitattribute) erscheinen |
 | min_subscription_level | optional | Abolevel (1,2,3), ab dem die Nachricht verfügbar ist |
 | keywords | optional | Schlüsselbegriffe, die durch die KI für die Erkennung von Nachrichten von Nachrichten verwendet werden kann |
-| fictional | informativ| [Standardeigenschaft](main.md#fictional) |
+| available | optional |  Wahrheitswert - ist die Nachricht verfügbar |
+| fictional | informativ | [Standardeigenschaft](main.md#fictional) |
 
 Anstelle von `quality` können auch `quality_min`, `quality_max` und `quality_slope` definiert werden.
 Dadurch erhält die Nachricht eine zufällige Qualität im Bereich zwischen min und max (siehe auch [Drehbuchwerte](scripts.md#zufalls-werte-für-das-drehbuch-und-ergebnis)).
+
+Die Eigenschaft `available` ist im Zusammenhang mit dem Effekttyp `modifyNewsAvailability` interessant.
+Man kann einen Nachrichtenstrang initial deaktiviert anlegen und ihn dann durch eine andere Nachricht aktivieren.
 
 Im Gegensatz zur Verfügbarkeit (`availability`), die steuert, wann eine Nachricht erscheinen könnte, wird die Veröffentlichung durch `happen_time` erzwungen; ist aber nur für Erstnachrichten sinnvoll, da Nachfolgenachrichten durch die im Effekt definierte Zeit gesteuert werden können.
 
@@ -130,6 +134,13 @@ Es wird die Beliebtheit des angegebenen Genres angepasst.
 
 * `<effect trigger="happen" type="modifyMovieGenrePopularity" genre="13" valueMin="0.5" valueMax="2.0" />`- die Beliebtheit von Monumentalfilmen wird unabhängig von der Ausstrahlung der Nachricht um einen Wert zwischen 0.5 und 2 angepasst.
 * `<effect trigger="broadcastFirstTime" type="modifyMovieGenrePopularity" genre="3" valueMin="0.2" valueMax="0.7" />`- die Beliebtheit von Trickfilmen wird bei der ersten Ausstrahlung der Nachricht um einen Wert zwischen 0.2 und 0.7 angepasst.
+
+#### `type="modifyNewsAvailability"`
+
+Es wird der Verfügbarkeitsstatus einer Nachricht angepasst.
+
+* `<effect trigger="happen" type="modifyNewsAvailability" enable="1" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der ID "ronny-news-drucktaste-1" wird auf Ja gesetzt.
+* `<effect trigger="happen" type="modifyNewsAvailability" enable="0" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der ID "ronny-news-drucktaste-1" wird auf Nein gesetzt.
 
 ### Zielgruppenattraktivität (targetgroupattractivity)
 
