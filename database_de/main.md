@@ -364,9 +364,9 @@ Dafür addiert man die Werte auf.
 | 2048 | unsichtbar | nicht im Programmplaner angezeigt |
 | 4096 | RE-Live | Livesendung später nochmal ausgestrahlt |
 
-`flags="12"` würde eine Kult-Kultursendung beschreiben.
-
 (Quellcode: `TVTProgrammeDataFlag`)
+
+`flags="12"` würde eine Kult-Kultursendung beschreiben.
 
 ### Lizenztyp
 
@@ -403,7 +403,40 @@ Dafür addiert man die Werte auf.
 | 16 | Aktualität wird bei Rückgabe an Händler wieder auf Maximum gesetzt |
 | 32 | nach Rückgabe an Händler kann das Programm nicht wieder erworben werden |
 
+(Quellcode: `TVTProgrammeLicenceFlag`)
+
 `licence_flags="37"` wäre eine initial handelbare Lizenz, die aber nach Erreichen der maximalen Ausstrahlungsanzahl automatisch ohne Rückgeld an den Händler zurückgeht und dann nicht wieder erworben werden kann.
+
+### Ausstrahlungsflags
+
+Die Ausstrahlungsflags sind ein Flagwert, d.h. in einer Zahl können mehrere Werte kodiert werden.
+Dafür addiert man die Werte auf.
+
+| Wert | Bedeutung |
+| ---- | --------- |
+| 0 | unbekannt |
+| 1 | Material einer dritten Partei |
+| 2 | nicht steuerbar |
+| 4 | Erstausstrahlung  |
+| 8 | besondere Erstausstrahlung |
+| 16 | Erstausstrahlung erfolgt |
+| 32 | besondere Erstausstrahlung erfolgt |
+| 64 | nicht verfügbar |
+| 128 | Preis verstecken |
+| 256 | hat beschränkte Ausstrahlungshäufigkeit |
+| **512** | immmer Live |
+| 1024 | Schwierigkeitslevel wird ignoriert |
+| **2048** | von Betty ignoriert |
+| 4096 | von Erfolgen ignoriert |
+| 8192 | exlusiv für einen Spieler |
+| 16384 | Live-Zeitpunkt ist fest |
+| **32768** | Begrenzung der Ausstrahlungszeit beibehalten |
+
+(Quellcode: `TVTBroadcastMaterialSourceFlag`)
+
+Die meisten Ausstrahlungsflags sind nur programmintern sinnvoll verwendbar.
+Einige sind aber auch für die Definition in der Datenbank interessant.
+Eine Begrenzung der Ausstrahlungszeit (time-slot) gilt standardmäßig nur für die Erstausstrahlung. Soll die Beschränkung immer gelten, muss Flag 32768 gesetzt werden.
 
 ### Geschlecht
 

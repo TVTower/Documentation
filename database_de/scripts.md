@@ -110,15 +110,16 @@ Beispiele:
 | flags_optional | optional | zufällig verwendete [Programmflags](main.md#Programmflags) |
 | scriptflags | optional | Flags für diese Vorlage (ScriptFlags siehe unten) |
 | production_licence_flags | optional | [Lizenzflags](main.md#Lizenzflags) |
-| production_broadcast_flags | optional | aus BMaterialSourceFlag ? |
+| production_broadcast_flags | optional | [Ausstrahlungsflags](main.md#Ausstrahlungsflags) |
 | production_broadcast_limit| optional | wie oft darf die Sendung ausgestrahlt werden |
 | production_limit | optional | wieviele Folgen können produziert werden (z.B. Show ohne spezifizierte Folgen) |
 | live_date | optional | [Zeit](time.md#Zeitattribute) der Ausstrahlung für Livesendungen |
-| broadcast_time_slot_start | optional | zu welcher Stunde kann die Ausstrahlung beginnen |
-| broadcast_time_slot_end | optional | späteste Stunde für den letzten Block |
+| broadcast_time_slot_start | optional | Frühester Start des ersen Blocks |
+| broadcast_time_slot_end | optional | Spätestes Ende des letzten Blocks |
 
 Hier dürften `flags` und `flags_optional` für den Einfluss auf das Endergebnis am wichtigsten sein.
 Produziert man eine Livesendung, werden auch die Schalter für Ausstrahlungszeiten und -häufigkeit wichtig.
+In Kombination mit Live-Sendungen oder Ausstrahlungszeitbeschränkungen werden auch die Ausstrahlungsflags interessant.
 
 ### Ziel- und Lobbygruppen (groups)
 
