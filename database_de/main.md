@@ -423,7 +423,7 @@ Dafür addiert man die Werte auf.
 | 32 | besondere Erstausstrahlung erfolgt |
 | 64 | nicht verfügbar |
 | 128 | Preis verstecken |
-| 256 | hat beschränkte Ausstrahlungshäufigkeit |
+| **256** | beschränkte Ausstrahlungshäufigkeit aktiviert |
 | **512** | immmer Live |
 | 1024 | Schwierigkeitslevel wird ignoriert |
 | **2048** | von Betty ignoriert |
@@ -431,12 +431,15 @@ Dafür addiert man die Werte auf.
 | 8192 | exlusiv für einen Spieler |
 | 16384 | Live-Zeitpunkt ist fest |
 | **32768** | Begrenzung der Ausstrahlungszeit beibehalten |
+| **65536** | Begrenzung der Ausstrahlungszeit aktiviert |
 
 (Quellcode: `TVTBroadcastMaterialSourceFlag`)
 
 Die meisten Ausstrahlungsflags sind nur programmintern sinnvoll verwendbar.
 Einige sind aber auch für die Definition in der Datenbank interessant.
-Eine Begrenzung der Ausstrahlungszeit (time-slot) gilt standardmäßig nur für die Erstausstrahlung. Soll die Beschränkung immer gelten, muss Flag 32768 gesetzt werden.
+Soll die Begrenzung der Ausstrahlungszeit (time-slot) berücksichtigt werden, muss auch das Flag 65536 gesetzt sein.
+Standardmäßig gilt diese Begrenzung nur für die Erstausstrahlung.
+Soll sie auch für Folgeausstrahlungen gelten, muss zusätzlich Flag 32768 gesetzt sein.
 
 ### Geschlecht
 

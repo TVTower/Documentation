@@ -106,14 +106,15 @@ Beispiel: `<ratings critics="45" speed="30" outcome="40" />`
 | broadcast_time_slot_end | optional | Spätestes Ende des letzten Blocks |
 | broadcast_limit | optional | Anzahl der möglichen Ausstrahlungen |
 | broadcast_flags | optional | [Ausstrahlungsflags](main.md#Ausstrahlungsflags) |
+| licence_broadcast_limit | optional | Anzahl der möglichen Ausstrahlungen (nur für diese Lizenz) |
+| licence_broadcast_flags | optional | [Ausstrahlungsflags](main.md#Ausstrahlungsflags) (nur für diese Lizenz) |
 
 `country` und `maingenre` sind Pflicht für "Hauptprogramme", für Serienfolgen werden die Werte des Elternelements übernommen.
 `year` sollte angegeben werden.
 Wenn man allerdings zum Spielstart relative Jahre oder genauere Daten angeben möchte, kann man `year` weglassen und den `releaseTime`-Knoten verwenden.
-In Kombination mit Live-Programmen oder Einschränkung der Ausstrahlungszeit können die Ausstrahlungsflags interessant werden.
+In Kombination mit Live-Programmen, Einschränkung der Ausstrahlungszeit oder -häufigkeit sind die Ausstrahlungsflags interessant oder sogar notwendig.
 
-Im Code werden noch die folgenden Eigenschaften eingelesen, kommen aktuell in der Datenbank aber nicht vor:
-`available`, `data_broadcast_limit` (Limit für alle mit diesen Programmdaten), `licence_broadcast_limit` (Limit für diese Lizenz). Die spezifische Definition der Ausstrahlungsflags via `data_broadcast_flags`, `licence_broadcast_flags` ist vorgesehen aber nicht 100% unterstützt.
+Im Code wird noch `available` eingelesen, kommt aktuell in der Datenbank aber nicht vor.
 
 ### Veröffentlichung (releaseTime)
 

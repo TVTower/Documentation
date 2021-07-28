@@ -118,8 +118,8 @@ Beispiele:
 | broadcast_time_slot_end | optional | Spätestes Ende des letzten Blocks |
 
 Hier dürften `flags` und `flags_optional` für den Einfluss auf das Endergebnis am wichtigsten sein.
-Produziert man eine Livesendung, werden auch die Schalter für Ausstrahlungszeiten und -häufigkeit wichtig.
-In Kombination mit Live-Sendungen oder Ausstrahlungszeitbeschränkungen werden auch die Ausstrahlungsflags interessant.
+Produziert man eine Livesendung, sollte aktiell immer das live_date definiert werden.
+Beschränkt man die Ausstrahlungszeit, muss das entsprechende Ausstrahlungsflag gesetzt werden.
 
 ### Ziel- und Lobbygruppen (groups)
 
@@ -133,7 +133,6 @@ Für die folgenden Eigenschaften ist eine solche Definition möglich.
 
 | Name | Beschreibung |
 | ---- | ------------ |
-| episodes | Anzahl der Folgen |
 | blocks | Länge des Programms in Stunden |
 | price | Preis des Drehbuchs |
 | potential | Potential des Drehbuchs |
@@ -142,6 +141,9 @@ Für die folgenden Eigenschaften ist eine solche Definition möglich.
 | outcome | kommerzieller Erfolg |
 | studio_size | Größe des benötigten Studios |
 | production_time | Basisdrehzeit in Minuten |
+| episodes | Anzahl der Folgen bei Serien |
+
+`episodes` wird aktuell nicht ausgewertet.
 
 Beispiele:
 
@@ -274,6 +276,5 @@ Mit einem Preis von 95.000-99.000 pro Folge ist das Drehbuch nicht gerade preisw
 
 ### Generell
 
-* Datenbank um Vorschläge aus https://www.gamezworld.de/phpforum/viewtopic.php?id=13893 erweitern
 * im Code werden in script-data noch `keywords`, `live_time`, `production_time_mod` eingelesen; (nicht in DB verwendet, noch nicht in Grammatik)
-* etwas unklar, warum scriptflags in DB nicht verwendet und es dennoch funktioniert (z.B. production_limits zurücksetzen)
+* episodes-Anzahl auswerten (Serie ohne children definieren und Episodenanzahl angeben)
