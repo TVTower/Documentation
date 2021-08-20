@@ -15,6 +15,9 @@ Mit den vorgeschlagenen Änderungen lässt sich das ohne das Flag umsetzen:
 
 Damit wäre das Programm bei jeder Ausstrahlung live (und niemand könnte es den anderen dauerhaft wegnehmen)
 
+**Ronny:** Hmm denke damit koennte ich klarkommen. Fuer Programme die bspweise 5x live auggestrahlt werden koennen, wuerde es dann entsprechend statt der Ausstrahlungsanzahl 5 Episoden geben muessen. Vorteil: "Serien" (bzw Dinge mit Episoden) sollen (es ist angedacht und glaube noch nicht umgesetzt) vom "Serieneffekt" profitieren (also "treues Fan-Gefolge"). Nachteil: fuer TED am Morgen gibt es dann keine Fan-Basis :-)
+
+
 # Live-Time/Live-Date
 
 **Ronny:** Live-Time war dafuer angedacht, nur eine Uhrzeit zu definieren ("18 Uhr") aber dies wurde ja mit der Moeglichkeit der Sendezeitbeschraenkung theoretisch obsolet. Allerdings ist fuer Drehbuecher mit "Zufalls-Blockanzahl" die Live-Ausstrahlungszeit (Uhrzeit, nicht "Tag") nun nicht mehr genau definierbar.
@@ -26,6 +29,9 @@ Andererseits ließe sich das relativ leicht mit vorhandenen Mitteln implementier
 * Datenbank setzt variable Blockgröße und **nur** Start-Slot 20 Uhr
 * beim Erstellen des Scripts wird konkrete Blockzahl festgelegt; wenn Start-Slot vorhanden, aber End-Slot fehlt, wird dieser anhand der Blockzahl gesetzt.
 
+**Ronny:** Gute Idee. Alternativ kann auch mit "wenn start = ende und start <> -1" gearbeitet werden. Kommt wohl drauf an, was "verstaendlicher" in der Interpretation durch den Nutzer ist. Reine "Formsache".
+
+
 # Live-Date bei Drehbucherstellung festlegen
 
 **Ronny:** Das sollte immer nur fuer Drittparteienereignisse gelten. Ein Drehbuch ist ja erstmal nur eine Art "Ablaufplan". Wann nun die grosse Show der Volksmusikanten tatsaechlich "aufgezeichnet" (ich meine Live ausgestrahlt :D) wird, ist ja von den Sendern relativ frei definierbar. Raketenstarts und Live-Band-Aid-Uebertragungen hingegen haben feste "Termine". Hier waere aber auch weniger von einem "Drehbuch" zu sprechen als von einem "Uebertragungskonzept" (bzw gleich innewohnend die "Lizenz" um eben ein Konzert uebertragen zu koennen).
@@ -35,6 +41,8 @@ Live-date definiert = Drittparteiereignis mit "festem" Termin.
 Ohne live-date ist es eine "Eigenproduktion" die, wann immer sie ausgestrahlt wird, live ist.
 Ich würde für diese Unterscheidung aber eben kein neues Konzept einführen (Liveübertragungsrecht).
 Für den Spieler ist es einfach ein Drehbuch mit einem festen Live-Ausstrahlungstermin.
+
+**Ronny:** Ich wollte auch kein neues Konzept einfuehren - ich wollte nur beschreiben, was "gedanklich" bei dererlei Ereignissen dahintersteckt. Die Frage bleibt aber fuer mich aber noch, wie ich dann "MeinTV - Samstag Nacht" oder "Sonntagsbrunch" produzieren koennte. Der reine "timeslot" kann zwar ein Uhrzeitfenster vorgeben, aber keinen "Tag". Dies war ja gedanklich ueber das dann fixierte "live_date" geplant. Vielleicht sollte man neben den timeSlots noch einen "allowedDaysCode" einfuehren (Tag 1-7, 8 = nur Wochenende, 9 = nur werktags, 10 ...). Allerdings waere es schoener, wenn es "ohne" die Einfuehrung eines neuen Felds moeglich waere.
 
 # Live-Date Morningshow
 
@@ -48,6 +56,9 @@ Macht man zwei Vorproduktionen unmittelbar hintereinander, ist der Live-Zeitpunk
 Daher der vereinfachende Vorschlag: Production-Limit>1 -> kein Live-Datum möglich
 (Ausstrahlungszeiteinschränkung ausreichend)
 
+**Ronny:**
+OK.
+
 # Film - broadcast_slot
 
 **Ronny:** Hmm man koennte theoretisch Filme fuer bestimmte Tage verbieten (Das Leben des Brian - an Pfingsten/Ostern). Aber das ist ein exotisches Beispiel. Genauso wie Speziallizenzen bei denen man Indy immer 23 Uhr auf Schatzjagd schicken muesste
@@ -58,6 +69,9 @@ Das würde ich auch nicht wollen.
 
 Speziallizenzen (Superfilme zu Schnäppchenpreis mit beschränkter Ausstrahlungshäufigkeit und Ausstrahlungszeit) hatte ich auch im Hinterkopf.
 Ich finde, die sollten aber nicht in der Datenbank hinterlegt werden *müssen*, sondern vom Programm immer mal wieder automatisch generiert werden!
+
+**Ronny:**
+Ja die sollten normalerweise nicht in der DB hinterlegt werden. Vor allem, da die DB ja eigentlich "ProgrammeData" definiert und nicht "ProgrammeLicence".
 
 # Feature - production_limit
 
@@ -76,3 +90,6 @@ Zu bedenken ist ja auch, dass bei production_limit kein Header angelegt wird.
 Alle Sendungen tauchen also einzeln auf.
 Das macht bei vielen Sendungen auch keinen Spaß.
 Persönlich würde ich production_limit daher auch immer im Zusammenhang mit broadcast_limit sehen.
+
+**Ronny:**
+Stimmt, wenn daraus keine "Serie" wird sondern Einzelelemente, dann macht das wirklich weniger Sinn.
