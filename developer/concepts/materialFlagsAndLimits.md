@@ -35,6 +35,8 @@ Soweit ich sehen kann, wird das Flag aktuell nirgends in der Datenbank verwendet
 
 Der ursprüngliche Gedanke für das Flag war vielleicht die Definition eines **Programms** wie "Ted am Morgen" - eine Live-Shows die man mehrfach ausstrahlen können soll.
 Für Sendungen, die immer wieder live verfügbar sein sollen, müssten meiner Ansicht nach aber eher Drehbücher mit production_limit größer 1 verwendet werden, wobei jede einzelne Sendung dann einmal live ist!
+Alternativ kann das Programm auch ein Ausstrahlungslimit von 1 haben, welches bei der Rückgabe an den Händler auf 0 zurückgesetzt wird (Flag bereits vorhanden).
+Auch dann wäre jede erneute Ausstrahlung Live.
 
 Mein Vorschlag (an diesem Punkt der Überlegungen) ist daher, die Bedeutung des Flags zu ändern: (Always)Live bei der Erstausstrahlung, egal wann diese stattfindet.
 
@@ -46,6 +48,9 @@ Es stellt somit kein Problem mehr dar, eine selbstproduzierte Show irgendwann li
 Für die Definition des Live-Zeitpunkts für ein Drehbuch sollte live_date ausreichen.
 Die verfügbaren Typen erlauben auch Zeitpunkte und Zeiträume inklusive Uhrzeit anzugeben.
 Sollten gewünschte Definitionsmöglichkeiten fehlen, steht ein Review der Typen ohnehin an.
+
+Will man ausschließlich die Ausstrahlungszeit (bei Drehbüchern) festlegen, kann die Definition der `broadcast_slot`s verwendet werden.
+Soll die Startzeit auch bei variabler Blockanzahl festgenagelt werden, kann die Implementierung so angepasst werden, dass eine noch nicht definierte Endzeit automatisch aufgrund der Blockanzahl und des definierten Start-Blocks ergänzt wird.
 
 Für Programme lässt sich, wenn ich es richtig sehe, aktuell der Live-Zeitpunkt gar nicht festlegen.
 (TODO prüfen Release-Zeitpunkt + Live-Flag)
@@ -148,10 +153,12 @@ Für Live-Drehbücher
 | **Film**          | sinnvoll einsetzbar | Beispiel/Kommentar |
 | ----------------- | ------------------- | ------------------ |
 | live              | nein                |                    |
-| broadcast_slot    | eher nein           | (FSK?), ich sehe kein sinnvolles Beispiel|
-| broadcast_limit   | ja                  | Ausnahmefall (preiswerte Lizenz Einmalausstrahlung) |
+| broadcast_slot    | eher nein           | ggf. Speziallizenz |
+| broadcast_limit   | ja                  | Speziallizenz      |
 | production_limit  | nein (unterbinden)  | Fortsetzung/Remake mit neuem Drehbuch |
 | episodes/children | nein                | ggf. Gegenargument Herr der Ringe/Starwars? |
+
+Mit Speziallizenzen sind hier "Schnäppchen"-Lizenzen für Blockbuster gemeint, die aber Ausstrahlungsbeschränkungen haben.
 
 
 | **Serie**         | sinnvoll einsetzbar | Beispiel/Kommentar |
