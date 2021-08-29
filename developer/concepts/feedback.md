@@ -17,6 +17,8 @@ Damit wäre das Programm bei jeder Ausstrahlung live (und niemand könnte es den
 
 **Ronny:** Hmm denke damit koennte ich klarkommen. Fuer Programme die bspweise 5x live auggestrahlt werden koennen, wuerde es dann entsprechend statt der Ausstrahlungsanzahl 5 Episoden geben muessen. Vorteil: "Serien" (bzw Dinge mit Episoden) sollen (es ist angedacht und glaube noch nicht umgesetzt) vom "Serieneffekt" profitieren (also "treues Fan-Gefolge"). Nachteil: fuer TED am Morgen gibt es dann keine Fan-Basis :-)
 
+**Alex:** Beispiele entsprechend aufgeführt
+
 
 # Live-Time/Live-Date
 
@@ -31,6 +33,7 @@ Andererseits ließe sich das relativ leicht mit vorhandenen Mitteln implementier
 
 **Ronny:** Gute Idee. Alternativ kann auch mit "wenn start = ende und start <> -1" gearbeitet werden. Kommt wohl drauf an, was "verstaendlicher" in der Interpretation durch den Nutzer ist. Reine "Formsache".
 
+**Alex:** Ich finde start=ende weniger intuitiv! Es stimmt ja nicht, dass Start- und Endezeit übereinstimmen. Nur Startzeit oder nur Endezeit sagen genau das, was man erreichen will und sind auch flexibler (Konzert soll 23 Uhr enden - Schallschutz).
 
 # Live-Date bei Drehbucherstellung festlegen
 
@@ -43,6 +46,14 @@ Ich würde für diese Unterscheidung aber eben kein neues Konzept einführen (Li
 Für den Spieler ist es einfach ein Drehbuch mit einem festen Live-Ausstrahlungstermin.
 
 **Ronny:** Ich wollte auch kein neues Konzept einfuehren - ich wollte nur beschreiben, was "gedanklich" bei dererlei Ereignissen dahintersteckt. Die Frage bleibt aber fuer mich aber noch, wie ich dann "MeinTV - Samstag Nacht" oder "Sonntagsbrunch" produzieren koennte. Der reine "timeslot" kann zwar ein Uhrzeitfenster vorgeben, aber keinen "Tag". Dies war ja gedanklich ueber das dann fixierte "live_date" geplant. Vielleicht sollte man neben den timeSlots noch einen "allowedDaysCode" einfuehren (Tag 1-7, 8 = nur Wochenende, 9 = nur werktags, 10 ...). Allerdings waere es schoener, wenn es "ohne" die Einfuehrung eines neuen Felds moeglich waere.
+
+**Alex:** "Samstag irgendwann zwischen 9 und 12 live" lässt sich nicht definieren, wohl aber "Samstag 10 Uhr" (Typ 3).
+Und meiner Ansicht nach reicht das auch (fast) aus. Für einen konkreten Wochentag ließe sich Typ 3 auch erweitern, um neben "kommender Samstag" auch "übernächster Samstag" zu definieren - wenn der erste Parameter bezüglich "div" und "modulo" 7 ausgewertet wird. Modulo (zwischen 0 und 6) gibt den Wochentag, div die Anzahl der Wochen, die draufgerechnet wird (7=Montag in einer Woche, 15=Dienstag in mindestens 14 Tagen).
+
+Ich würde hier also nicht über ein neues Feld nachdenken, sondern eher über die zusätzlich benötigten Zeit-Definitionen.
+Den Fall "an einem bestimmten Tag, aber die Zeit ist mir egal" würde ich komplett ignorieren wollen.
+Eine strikte Trennung von Live-Zeitpunkt und broadcast-slot macht die Implementierung wesentlich übersichtlicher.
+(Ein möglicher Ausweg hier wäre eine Sonderbehandlung, wenn sich die Live-Zeit und die Slots widersprechen: Livezeit-Definition Samstag 1 Uhr, Slot 20-23 Uhr -> Liveausstrahlung wäre nicht möglich, daher Release-Datum nur für "available ab" verwendet. Allerdings, wäre dann auch eine Ausstrahlung am Folgetag ungewollt live...)
 
 # Live-Date Morningshow
 
