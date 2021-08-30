@@ -35,6 +35,9 @@ Andererseits ließe sich das relativ leicht mit vorhandenen Mitteln implementier
 
 **Alex:** Ich finde start=ende weniger intuitiv! Es stimmt ja nicht, dass Start- und Endezeit übereinstimmen. Nur Startzeit oder nur Endezeit sagen genau das, was man erreichen will und sind auch flexibler (Konzert soll 23 Uhr enden - Schallschutz).
 
+**Ronny:** Mit dem "Schallschutz" hast Du ein gutes Beispiel/Argument gefunden. 
+
+
 # Live-Date bei Drehbucherstellung festlegen
 
 **Ronny:** Das sollte immer nur fuer Drittparteienereignisse gelten. Ein Drehbuch ist ja erstmal nur eine Art "Ablaufplan". Wann nun die grosse Show der Volksmusikanten tatsaechlich "aufgezeichnet" (ich meine Live ausgestrahlt :D) wird, ist ja von den Sendern relativ frei definierbar. Raketenstarts und Live-Band-Aid-Uebertragungen hingegen haben feste "Termine". Hier waere aber auch weniger von einem "Drehbuch" zu sprechen als von einem "Uebertragungskonzept" (bzw gleich innewohnend die "Lizenz" um eben ein Konzert uebertragen zu koennen).
@@ -54,6 +57,12 @@ Ich würde hier also nicht über ein neues Feld nachdenken, sondern eher über d
 Den Fall "an einem bestimmten Tag, aber die Zeit ist mir egal" würde ich komplett ignorieren wollen.
 Eine strikte Trennung von Live-Zeitpunkt und broadcast-slot macht die Implementierung wesentlich übersichtlicher.
 (Ein möglicher Ausweg hier wäre eine Sonderbehandlung, wenn sich die Live-Zeit und die Slots widersprechen: Livezeit-Definition Samstag 1 Uhr, Slot 20-23 Uhr -> Liveausstrahlung wäre nicht möglich, daher Release-Datum nur für "available ab" verwendet. Allerdings, wäre dann auch eine Ausstrahlung am Folgetag ungewollt live...)
+
+**Ronny:**
+> "Samstag irgendwann zwischen 9 und 12 live" lässt sich nicht definieren, wohl aber "Samstag 10 Uhr" (Typ 3).
+
+Aber waere das nicht dann am Ende doch moeglich? "Live" festlegen mit "Wochentag" (Samstag) und per "Ausstrahlungszeitraum" 9-12 Uhr definieren? Wenn "2 Ausstrahlungen", waere die Wiederholung ja dann (wenn nicht anders definiert) ohne den Ausstrahlungszeitraum und nicht mehr live - oder?
+
 
 # Live-Date Morningshow
 
