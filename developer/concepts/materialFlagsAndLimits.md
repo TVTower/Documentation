@@ -14,6 +14,7 @@
 
 * wenn nicht Always-Live wird der Livetermin (damit das Releasedatum) bei Erstellung des Drehbuch aus dem Template unveränderbar festgelegt (Datenblätter für Drehbuch, Konzept und Programm konsistent)
 * Festlegen von Episodenzahl (automatisch erzeugte Kinder) und explizite Definition von Kindern schließt sich gegenseitig aus
+* Kann die Vorproduktion nicht mehr rechtzeitig vor einem festgelegten Live-Termin fertiggestellt werden, muss diese Liveproduktion verfallen.
 
 # Anwendungs- und Testfälle für Livesendungen
 
@@ -92,6 +93,16 @@ Daher erfolgt eine Aufschlüsselung nach
 
 # Gedanken zu Konfigurationsparametern
 
+## Flag Live/AlwaysLive
+
+Wenn Programme mehrfach live ausgestrahlt werden können sollen, muss man genau über Änderungen der Flags nachdenken.
+* Wenn das Live-Flag nach Ausstrahlung gelöscht wird, wird es dann immer bei Rückgabe an den Händler wieder gesetzt?
+* Ändert sich nur das Lizenzflag, damit das Datenflag für das Wiederherstellen herangezogen werden kann?
+
+Der aktuelle Implementierungsansatz lässt die Live-Flags komplett unveränderlich.
+Stattdessen wird die Ausstrahlungshäufigkeit für die Ermittlung des Zustands herangezogen (Flag=Konfiguration, Getter=Zustand).
+Mit dem Reset-Broadcast-Limit-Flag kann dann gesteuert werden, ob die Ausstrahlungszahl bei Rückgabe zurückgesetzt werden soll oder nicht.
+
 ## Flag AlwaysLive
 
 In der "alten" Interpretation bedeutet das gesetzte Flag, dass ein Programm niemals vom Ausstrahlungsstatus `live` in den Status `live_on_tape` übergeht.
@@ -130,6 +141,12 @@ Im Standardfall (für selbst produzierte Shows/Events) sollte die Lizenz dann ve
 (Im Gegenzug könnten die Produktionskosten für einmalig ausstrahlbare Shows geringer als bei einem aufwändigen Film sein.)
 
 Gleichzeitig muss es einen stärkeren Anreiz geben, mehr selbst zu produzieren (großer Bonus für Live/Senderimage steigt; starker Popularitätsverlust der Sendung bei Wiederausstrahlungen, bzw. sofort nur eine Ausstrahlung erlauben; ab einem bestimmten Image steigt es nicht mehr, wenn man keine Eigenproduktionen/Live-Shows sendet).
+
+## Reset Broadcast-Limit
+
+Für Live-Produktionen wird das Reset-Flag interpretiert als: setze die Anzahl der Ausstrahlungen auf 0 zurück.
+Auf diese Weise können Programme aus der Datenbank mehrfach live ausgestrahlt werden (z.B. TED oder andere Showformate).
+Für Drehbücher ist dieses Flag nicht sinnvoll, da Drehbücher ohnehin mehrfach erworben und damit die jeweiligen Programme immer wieder live gesendet werden.
 
 # Zeitpunkt der Berechnung des Live-Termins
 
