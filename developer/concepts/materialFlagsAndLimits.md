@@ -14,7 +14,9 @@
 
 * wenn nicht Always-Live wird der Livetermin (damit das Releasedatum) bei Erstellung des Drehbuch aus dem Template unveränderbar festgelegt (Datenblätter für Drehbuch, Konzept und Programm konsistent)
 * Festlegen von Episodenzahl (automatisch erzeugte Kinder) und explizite Definition von Kindern schließt sich gegenseitig aus
+(ist noch nicht umgesetzt, aktuell gibt es in der Datenbank noch Definitionen, aber dort wird die Episodenzahl ignoriert)
 * Kann die Vorproduktion nicht mehr rechtzeitig vor einem festgelegten Live-Termin fertiggestellt werden, muss diese Liveproduktion verfallen.
+(ist noch nicht umgesetzt)
 
 # Anwendungs- und Testfälle für Livesendungen
 
@@ -28,16 +30,11 @@ z.B. Ariane-Start oder Abschiedskonzert Rolling Bricks
 
 ## mehrfach (live) ausstrahlbare Shows (Programm)
 
-z.B. TED, Sportschau
-
-Da grundsätzlich nur die Erstausstrahlung live sein kann, muss die Live-Ausstrahlung von Folgesendungen anders erreicht werden.
-Eine Ausstrahlungszeitbegrenzung (Samstagabendshow) ist nicht wirklich möglich.
-Hierfür sollten lieber Drehbuchvorlagen verwendet werden.
+Wird nicht umgesetzt.
+Hierfür müssen Drehbuchvorlagen verwendet werden.
 Perspektivisch wäre auch denkbar, den Programme-Producer für die regelmäßige Produktion solcher Programme einzusetzen.
 
-**Variante 1:** Always-Live: ja, Ausstrahlungslimit 1, Lizenzflag 4+8 (Rückgabe bei erreichtem Limit + Ausstrahlungsanzahl zurücksetzen). Da nur einmal ausgestrahlt werden kann, die Anzahl aber wieder zurückgesetzt wird, muss das Programm immer wieder neu erworben werden, ist aber immer Live.
-
-**Variante 2:** Serie mit mehreren Folgen, die jeweils live sind, damit man sofort nicht nur eine sondern mehrere Shows senden kann. Aber auch hier wäre ein Ausstrahlungslimit sinnvoll.
+Eine Live-Serie mit mehreren Einzelfolgen ist (ggf. Always-Live) ist trotzdem nur einmal live ausstrahlbar.
 
 ## "Einzel-Live-Übertragung" (Drehbuch)
 
@@ -58,7 +55,7 @@ z.B. Sportschau, Morgenshow
 
 **Variante 1:** Production-Limit>1, Always-Live ja (sonstige Begrenzungen nach Bedarf); die Show kann mehrfach produziert werden; es gibt mehrere Einzelshows ohne Header
 
-**Variante 2:** Episodes>1, Always-Live ja (sonstige Begrenzungen nach Bedarf); es werden mehrere Show-Folgen (mit eine Serien-Header) produziert
+**Variante 2:** Episodes>1, Always-Live ja (sonstige Begrenzungen nach Bedarf); es werden mehrere Show-Folgen (mit eine Serien-Header) produziert (noch nicht umgesetzt)
 
 **Variante 3:** Kindelemente explizit definieren; in diesem Fall sollte es sogar möglich sein, für jedes Kind einen eigenen festen Live-Termin zu geben
 
