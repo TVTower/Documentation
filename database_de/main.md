@@ -399,7 +399,7 @@ Dafür addiert man die Werte auf.
 | 1 | kann gehandelt werden |
 | 2 | automatischer Verkauf wenn Ausstrahlungslimit erreicht ist |
 | 4 | automatische Entfernung wenn Ausstrahlungslimit erreicht ist  |
-| 8 | Ausstrahlungsanzahl wird bei Rückgabe an Händler zurückgesetzt |
+| 8 | Ausstrahlungsanzahl wird bei Rückgabe an Händler zurückgesetzt (wenn das Limit erreicht ist) |
 | 16 | Aktualität wird bei Rückgabe an Händler wieder auf Maximum gesetzt |
 | 32 | nach Rückgabe an Händler kann das Programm nicht wieder erworben werden |
 
@@ -423,22 +423,20 @@ Dafür addiert man die Werte auf.
 | 32 | besondere Erstausstrahlung erfolgt |
 | 64 | nicht verfügbar |
 | 128 | Preis verstecken |
-| **256** | beschränkte Ausstrahlungshäufigkeit aktiviert |
+| 256 | beschränkte Ausstrahlungshäufigkeit aktiviert |
 | **512** | immmer Live |
 | 1024 | Schwierigkeitslevel wird ignoriert |
 | **2048** | von Betty ignoriert |
 | 4096 | von Erfolgen ignoriert |
 | 8192 | exlusiv für einen Spieler |
-| 16384 | Live-Zeitpunkt ist fest |
+| 16384 | obsolet - (war Live-Zeitpunkt ist fest) |
 | **32768** | Begrenzung der Ausstrahlungszeit beibehalten |
-| **65536** | Begrenzung der Ausstrahlungszeit aktiviert |
 
 (Quellcode: `TVTBroadcastMaterialSourceFlag`)
 
 Die meisten Ausstrahlungsflags sind nur programmintern sinnvoll verwendbar.
 Einige sind aber auch für die Definition in der Datenbank interessant.
-Soll die Begrenzung der Ausstrahlungszeit (time-slot) berücksichtigt werden, muss auch das Flag 65536 gesetzt sein.
-Standardmäßig gilt diese Begrenzung nur für die Erstausstrahlung.
+Standardmäßig gilt die Begrenzung der Ausstrahlungszeit nur für die Erstausstrahlung.
 Soll sie auch für Folgeausstrahlungen gelten, muss zusätzlich Flag 32768 gesetzt sein.
 
 ### Geschlecht
@@ -494,12 +492,13 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | CH | Schweiz |
 | CN | China |
 | CS | CSSR |
-| D | Deutschland | 
+| D | Deutschland |
 | DDR | DDR |
 | DK | Dänemark |
 | E | Spanien |
 | F | Frankreich |
 | GB | Vereinigtes Königreich |
+| GR | Griechenland
 | H | Ungarn |
 | HK | Hongkong |
 | I | Italien |
@@ -508,12 +507,14 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | IRL | Irland |
 | J | Japan |
 | NL | Niederlande |
+| P | Portugal |
 | PL | Polen |
 | RM | Republik Molvanien |
 | ROK | Südkorea |
 | S | Schweden |
 | SCO | Schottland |
 | SU | UDSSR |
+| TR | Türkei |
 | USA | USA |
 | ZA | Südafrika |
 

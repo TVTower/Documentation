@@ -118,8 +118,7 @@ Beispiele:
 | broadcast_time_slot_end | optional | Spätestes Ende des letzten Blocks |
 
 Hier dürften `flags` und `flags_optional` für den Einfluss auf das Endergebnis am wichtigsten sein.
-Produziert man eine Livesendung, sollte aktiell immer das live_date definiert werden.
-Beschränkt man die Ausstrahlungszeit, muss das entsprechende Ausstrahlungsflag gesetzt werden.
+Produziert man eine Livesendung, sollte live_date definiert werden oder das Flag "immer live" gesetzt werden.
 
 ### Ziel- und Lobbygruppen (groups)
 
@@ -195,14 +194,14 @@ Im Hauptknoten `children` kann eine Liste Vorlagen für Folgen ( wieder als `scr
 			<outcome min="30" max="50" slope="40" />
 			<review min="40" max="50" slope="40" />
 			<speed min="45" max="60" slope="50" />
-			<!-- live on next work day 5 - 10:00 - so 5,6,7 as start possible -->
+			<!-- live whenever first broadcastd -->
 			<!-- licence flags: 4 + 32 (REMOVE_ON_REACHING_BROADCASTLIMIT + LICENCEPOOL_REMOVES_TRADEABILITY) -->
-			<data flags="1" broadcast_time_slot_start="5" broadcast_time_slot_end="10" live_date="8,1,5,5" production_time="60" production_limit="4" production_broadcast_limit="1" production_licence_flags="36" />
+			<data flags="1" broadcast_time_slot_start="5" broadcast_time_slot_end="10" production_limit="4" production_broadcast_limit="1" production_broadcast_flags="512" production_licence_flags="36" />
 		</scripttemplate>
 ```
 
 Der interessante Teil an dieser Show (`product`) ist der `data`-Knoten.
-Es handelt sich im eine Liveshow (`flags`), deren Ausstrahlung zwischen 5 Uhr und 10 Uhr stattfinden muss (`broadcast_time_slot_X`), frühestens am Folgetag (`live_date`).
+Es handelt sich im eine Liveshow (`flags`), deren Ausstrahlung zwischen 5 Uhr und 10 Uhr stattfinden muss (`broadcast_time_slot_X`), frühestens am Folgetag (`live_date`), in diesem Zeitraum aber immer live ist (`production_broadcast_flags`).
 Es können vier Sendungen (`production_limit`) produziert werden (ohne explizite Definition von `children`!), aber es darf dann je Sendung nur eine Ausstrahlung geben (`production_broadcast_limit`).
 Danach verschwindet die Show und ist nie wieder verfügbar (`production_licence_flags`).
 
@@ -271,6 +270,10 @@ Die Folgen können abweichende Attribute definieren (`blocks` im Pilotfilm).
 Ansonsten erben sie die Daten des Hauptknotens.
 Die Folgen können unterschiedliche Besetzungen haben (`job reqired="0"`).
 Mit einem Preis von 95.000-99.000 pro Folge ist das Drehbuch nicht gerade preiswert, dafür liegen die Bewertungen auch vergleichsweise hoch.
+
+### Live-Programme
+
+TODO
 
 ## TODOs und Fragen
 

@@ -112,7 +112,7 @@ Beispiel: `<ratings critics="45" speed="30" outcome="40" />`
 `country` und `maingenre` sind Pflicht für "Hauptprogramme", für Serienfolgen werden die Werte des Elternelements übernommen.
 `year` sollte angegeben werden.
 Wenn man allerdings zum Spielstart relative Jahre oder genauere Daten angeben möchte, kann man `year` weglassen und den `releaseTime`-Knoten verwenden.
-In Kombination mit Live-Programmen, Einschränkung der Ausstrahlungszeit oder -häufigkeit sind die Ausstrahlungsflags interessant oder sogar notwendig.
+In Kombination mit Live-Programmen, Einschränkung der Ausstrahlungszeit oder -häufigkeit sind die Ausstrahlungsflags interessant.
 
 Im Code wird noch `available` eingelesen, kommt aktuell in der Datenbank aber nicht vor.
 
@@ -141,6 +141,9 @@ Folgende Eigenschaften werden unterstützt.
 | hour_random_slope |  |
 
 Die relativen Jahresangaben können positiv (ab Startspieljahr) und negativ (vor Startspieljahr) sein. Beispiel `<releaseTime year_relative="-4" year_relative_min="1983" year_relative_max="1995" />` - vier Jahre vor Spielstart aber zwischen 1983 und 1995.
+
+Für Live-Programme, die nicht als "immer live" markiert sind, ist der Releasezeitpunkt auch der Zeitpunkt, zu dem das Programm live ausgestrahlt werden kann.
+Später ist es nur noch eine Aufzeichnung.
 
 ### Effekte
 
@@ -251,6 +254,13 @@ Obwohl Kritiker nicht überzeugt waren und der Film totlangweilig ist, war er ei
 ```
 Diese Fernsehdokumentation wurde ein Jahr vor Spielstart gedreht und spricht vor allem Rentner an.
 Die grundsätzlichen Daten werden für die Serie (lizentyp 3) als ganzes definiert, die Einzelfolgen (children mit typ 2) überschreiben dann nur die gewünschten Werte (insb. Titel und Beschreibung).
+
+### Live-Programm
+
+WICHTIG bei Live muss ein Release-Termin gesetzt sein (Live-Datum oder bei Always-Live der erste Verfügbarkeitstermin).
+Für Live-Serien am besten Always-Live oder für jede Folge ein eigenes Release-Datum (da man sonst nicht alle Folgen live senden kann)
+
+TODO
 
 ## TODOs und Fragen
 
