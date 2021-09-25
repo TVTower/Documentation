@@ -1,23 +1,23 @@
 # zusammengefasste Grundsätze
 
-* Das Always-Live-Flag bedeutet (zukünftig) "Live, wann immer die Erstausstrahlung stattfindet - kein fester Live-Termin"
-* Live kann IMMER nur die Erstausstrahlung sein, jede weitere Ausstrahlung ist (höchstens) live-on-tape
+* Das Always-Live-Flag bedeutet "Live, wann immer die Erstausstrahlung stattfindet - kein fester Live-Termin"
+* Live ist IMMER nur die Erstausstrahlung, jede weitere Ausstrahlung ist (höchstens) live-on-tape
 * eine Sendung hat entweder einen komplett festgelegten Live-Termin (Tag+Uhrzeit) oder ist bei der Erstausstrahlung live, wann immer diese stattfindet
-* es kann nur eine Ausstrahlungszeitbegrenzung geben (entweder nur für die Erstausstrahlung oder für alle Ausstrahlungen); unterschiedliche Zeiten für Erst- und Folgeausstrahlungen gehen nicht
+* es gibt nur eine Ausstrahlungszeitbegrenzung (entweder nur für die Erstausstrahlung oder für alle Ausstrahlungen); unterschiedliche Zeiten für Erst- und Folgeausstrahlungen gehen nicht
 
 ## Programme
 
 * Live-Termin und Ausstrahlungsbeschränkungen (Häufigkeit, Zeitslots) sind komplett voneinander entkoppelt
-* da es kein separates Feld für den Live-Termin gibt, wird das Always-Live-Flag umgewidmet (live, wann immer die Erstausstrahlung stattfindet) oder es wird wie bisher das Release-Datum als Live-Termin verwendet
+* ist das Always-Live-Flag (live, wann immer die Erstausstrahlung stattfindet) nicht gesetzt, wird das Release-Datum als Live-Termin verwendet
 
 ## Drehbuch
 
-* wenn nicht Always-Live wird der Livetermin (damit das Releasedatum) bei Erstellung des Drehbuch aus dem Template unveränderbar festgelegt (Datenblätter für Drehbuch, Konzept und Programm konsistent)
+* wenn nicht Always-Live wird der Livetermin (damit das Releasedatum) bei Erstellung des Drehbuch aus der Drehbuchvorlage unveränderbar festgelegt (Datenblätter für Drehbuch, Konzept und Programm sind damit konsistent)
 * Festlegen von Episodenzahl (automatisch erzeugte Kinder) und explizite Definition von Kindern schließt sich gegenseitig aus
 (ist noch nicht umgesetzt, aktuell gibt es in der Datenbank noch Definitionen, aber dort wird die Episodenzahl ignoriert)
 * Kann die Vorproduktion nicht mehr rechtzeitig vor einem festgelegten Live-Termin fertiggestellt werden, muss diese Liveproduktion verfallen.
 (ist noch nicht umgesetzt)
-* bei definiertem production_limit kann live_date nicht sinnvoll unterstützt werden
+* bei definiertem production_limit kann live_date nicht sinnvoll unterstützt werden; hier sollte das Always-Live-Flag gesetzt werden
 
 # Anwendungs- und Testfälle für Livesendungen
 

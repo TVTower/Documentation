@@ -142,13 +142,21 @@ Für die folgenden Eigenschaften ist eine solche Definition möglich.
 | production_time | Basisdrehzeit in Minuten |
 | episodes | Anzahl der Folgen bei Serien |
 
-`episodes` wird aktuell nicht ausgewertet.
-
 Beispiele:
 
 * `<blocks value="3" />` - das Programm soll dann genau 3 Blöcke (Stunden) lang sein
 * `<speed min="20" max="50" />` - das Programm soll ein Tempo zwischen 20 und 50 haben
 * `<price min="10000" max="20000" slope="20" />` - der Preis soll zwischen 10.000 und 20.000 liegen aber zu billiger tendieren
+
+`episodes` kann in zwei verschiedenen, sich ausschließenden Varianten verwendet werden.
+Eine Definition in der Hauptdrehbuchvorlage schränkt die Anzahl der Folgen ein.
+Man definiert also z.B. 12 mögliche Kindvorlagen und sagt aber, dass nur 5 bis 8 zu einer Serie gehören sollen.
+Die erste Vorlage (für die Pilotfolge) wird dabei nie aussortiert; die Reihenfolge bleibt unverändert.
+Der zweite Anwendungsfall ist die Definition von `episodes` in einer oder mehrerer Kindvorlagen.
+Bei der Erstellung des eigentlichen Drehbuchs werden aus der Kindvorlage dann entsprechend viele Folgen (auch 0 ist erlaubt).
+
+Wenn also nicht immer alle der definierten Folgen erzeugt werden sollen, hat man zwei Möglichkeiten: Einschränkung der Gesamtanzahl im Hauptknoten oder Folgen, die weggelassen werden können, mit `<episodes min="0" max="1" />` konfigurieren.
+
 
 ### Serienfolgen (children)
 
@@ -270,6 +278,7 @@ Die Folgen können abweichende Attribute definieren (`blocks` im Pilotfilm).
 Ansonsten erben sie die Daten des Hauptknotens.
 Die Folgen können unterschiedliche Besetzungen haben (`job reqired="0"`).
 Mit einem Preis von 95.000-99.000 pro Folge ist das Drehbuch nicht gerade preiswert, dafür liegen die Bewertungen auch vergleichsweise hoch.
+Aus den vorhandenen Kindvorlagen (`children`) werden 9 bis 12 für das Drehbuch ausgewählt, wobei die erste Folge immer dabei ist (`episodes`).
 
 ### Live-Programme
 

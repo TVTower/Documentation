@@ -129,6 +129,18 @@ Die aktuell verwendeten Sprachen sind Deutsch (de) und Englisch (en).
 Langfristig muss es dabei aber nicht bleiben.
 Spracheinträge können auch Variablen enthalten - diese werden aber in einem [separaten Abschnitt](main.md#Variablen) beschrieben.
 
+In Drehbuchvorlagen und Nachrichten sind z.B. für Titel und Beschreibung auch Alternativen, d.h. die Auswahl zwischen mehreren Möglichkeiten, sinnvoll einsetzbar.
+Alternativen werden durch `|` ohne Leerzeichen getrennt.
+
+```XML
+<title>
+	<de>Der Held|Der Superheld|Der %ADJEKTIV% Superheld</de>
+	<en>The Hero|The Superhero|The %ADJEKTIV% Superhero</en>
+</title>
+```
+
+Bei der Erstellung des eigentlichen Drehbuchs/der Nachricht wird dann eine der Alternativen ausgewählt.
+
 ### Standardkindelemente
 
 #### title
