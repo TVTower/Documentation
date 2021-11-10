@@ -120,6 +120,13 @@ Beispiele:
 Hier dürften `flags` und `flags_optional` für den Einfluss auf das Endergebnis am wichtigsten sein.
 Produziert man eine Livesendung, sollte live_date definiert werden oder das Flag "immer live" gesetzt werden.
 
+Definiert man bei Serien `flags_optional` im Haupteintrag, werden bei der eigentlichen Drehbucherstellung diese Flags einmal ermittelt und dann für alle Serienfolgen verwendet.
+Bei einem optionalen Live-Flag sind dann also immer alle Folgen live oder keine.
+
+Natürlich kann man `flags_optional` auch im `data`-Knoten eines Einzelfolge (innerhalb von `children`) definieren.
+Der Zufallswert dieser Flags wird dann nur für diese Folge verwendet.
+Damit kann man z.B. erreichen, dass nur eine Folge möglicherweise FSK-18 ist und nicht gleich die gesamte Serie.
+
 ### Ziel- und Lobbygruppen (groups)
 
 Die Definition dieser Gruppen erfolgt genau so wie `groups` in den [Programmen](programmes.md#Ziel--und-Lobbygruppen-groups).
@@ -276,6 +283,10 @@ Es ist eine Dramaserie, kann aber als Untergenre auch eine Familienserie sein.
 Es ist eine Kultserie (`flags`), kann aber auch B-Movie/Trash/Animation sein (`flags_optional`).
 Die Folgen können abweichende Attribute definieren (`blocks` im Pilotfilm).
 Ansonsten erben sie die Daten des Hauptknotens.
+(Eine Sonderstellung nimmt hier `flags_optional` ein.
+Hier erbt die Folge nicht welche Flags optional sein können, sondern tatsächlich den final ermittelten zufälligen Flag-Wert.
+Damit soll erreicht werden, dass die Serie konsistent ist - alle Folgen live oder Trash.
+Möchte man unterschiedliche Werte für die Folgen erreichen, definiert man `flags_optional` für die Einzelfolgen.)
 Die Folgen können unterschiedliche Besetzungen haben (`job reqired="0"`).
 Mit einem Preis von 95.000-99.000 pro Folge ist das Drehbuch nicht gerade preiswert, dafür liegen die Bewertungen auch vergleichsweise hoch.
 Aus den vorhandenen Kindvorlagen (`children`) werden 9 bis 12 für das Drehbuch ausgewählt, wobei die erste Folge immer dabei ist (`episodes`).
