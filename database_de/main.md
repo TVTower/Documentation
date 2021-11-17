@@ -5,6 +5,9 @@ Die Daten sind in einer [XML-Struktur](main.md#allgemeiner-Aufbau-eines-Elements
 Der typische Start in die Erstellung eigener Einträge dürfte darin bestehen, vorhandene Elemente aus dem einem bekannten Spielgeschehen zu suchen, die dem gewünschten Verhalten besonders nahe sind, diese zu kopieren und anzupassen.
 Es empfielt sich, eigene Inhalte in einer neuen Datei im `user`-Unterverzeichnis zu sammeln.
 
+Kurzer Hinweis zu Titeln, Personennamen etc.: diese sind für das Spiel - soweit nicht ohnehin frei erfunden - absichtlich abgeändert, um rechtlichen Problemen aus dem Weg zu gehen.
+Zur Suche, Wiedererkennung und Vermeidung von Dopplungen in der TVTower-Datenbank sind aber zum Teil Filmdatenbank-IDs und Originalnamen hinterlegt.
+
 ## Grundsätzliche Struktur einer TVTower-Datenbankdatei
 
 ```XML
