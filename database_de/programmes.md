@@ -151,15 +151,26 @@ Laut Datenbankauslesecode können auch Programme Effekte haben. Das wird in der 
 
 ### Modifier
 
-Siehe [modifiers](main.md#modifiers).
+Syntax siehe auch [modifiers](main.md#modifiers).
 Mögliche Anpassungen sind
 
 | Name | Bedeutung |
 | -----| --------- |
-| topicality::age| Alterung des Programms |
 | price | Preis (entspricht `price_mod`) |
+| topicality::age | Einfluss Alter auf Max.-Aktualität (0.8 geringer, 1.2 stärker) |
+| topicality::refresh | Erholung nach Ausstrahlung (0.8 langsamer, 1.2 schneller) |
+| topicality::trailerRefresh | Erholung der Programmvorschau nach Ausstrahlung (0.8 langsamer, 1.2 schneller) |
+| topicality::wearoff | Aktualitätsverlust bei Ausstrahlung (0.8 weniger, 1.2 mehr) |
+| topicality::trailerWearoff | Aktualitätsverlust bei Ausstrahlung als Trailer (0.9 weniger, 1.2 mehr) |
+| topicality::firstBroadcastDone | Einfluss Erstausstrahlung auf Max.-Aktualität (Default 0 keiner, 0.1 gering, 1.0 stark) |
+| topicality::notLive | Einfluss "nicht mehr live" auf Max.-Aktualität (0.8 weniger, 1.2 mehr) |
+| topicality::timesBroadcasted | Einfluss Ausstrahlungsanzahl auf Max.-Aktualität (0.8 weniger, 1.2 mehr) |
+| callin::perViewerRevenue | Einnahmen für Call-In-Shows (0.8 weniger, 1.2 mehr) |
 
-Beispiel: `<modifier name="topicality::age" value="1.2" />` - das Programm altert schneller als normal.
+Beispiel: `<modifier name="topicality::age" value="1.6" />` - das Programm altert deutlich schneller als normal.
+
+`topicality::notLive` hat ausschließlich dann einen Einfluss, wenn das Programm überhaupt ein Live-Programm war.
+In diesem Fall ist auch der Default für `topicality::firstBroadcastDone` nicht 0 sondern 1.0, d.h. ein Live-Programm verliert (falls nicht anders konfiguriert) durch die Erstausstrahlung automatisch einen erheblichen Anteil an maximaler Aktualität.
 
 ### Programmkinder (children)
 

@@ -201,6 +201,9 @@ Jeder `modifier` hat dabei einen Namen `name` und einen Wert `value`, die angebe
 </modifiers>
 ```
 
+Die unterstützten Modifier hängen vom Hauptelement ab.
+Zu beachten ist, dass 0 nicht immer "0" als Ergebnis hat, da in der Berechnung Minimalwerte angesetzt sein können.
+
 ### Variablen
 
 #### selbst definierte Variablen
