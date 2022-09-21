@@ -164,6 +164,21 @@ Bei der Erstellung des eigentlichen Drehbuchs werden aus der Kindvorlage dann en
 
 Wenn also nicht immer alle der definierten Folgen erzeugt werden sollen, hat man zwei Möglichkeiten: Einschränkung der Gesamtanzahl im Hauptknoten oder Folgen, die weggelassen werden können, mit `<episodes min="0" max="1" />` konfigurieren.
 
+### Modifier (programme_data_modifiers)
+
+Ab Version 0.7.4 können in Drehbuchvorlagen Modifier für das erstellte Programm hinterlegt werden.
+Im Gegensatz zu den Zufallswerten sind hier keine Bereichsdefinitionen möglich sondern ausschließlich feste Werte.
+
+```XML
+<programme_data_modifiers>
+	<!-- erholt sich nach einer Ausstrahlung langsamer als normal -->
+	<modifier name="topicality::refresh" value="0.5" />
+	<!-- billiger als normal -->
+	<modifier name="price" value="0.7" />
+</programme_data_modifiers>
+```
+
+Die möglichen Modifier sind in den [Programmen](programmes.md#Modifier) zu finden.
 
 ### Serienfolgen (children)
 

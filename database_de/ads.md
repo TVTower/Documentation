@@ -79,6 +79,20 @@ Sofern die Werte nicht als unveränderlich markiert wurden (`fix_price`), wird d
 Deshalb kann auch bei einem hohen `profit`-Wert ein geringerer Erlös pro Spot resultieren als bei einem 
 niedrigen.
 
+### Modifier
+
+Syntax siehe auch [modifiers](main.md#modifiers).
+Mögliche Anpassungen sind
+
+| Name | Bedeutung |
+| -----| --------- |
+| topicality::infomercialRefresh | Erholung nach Ausstrahlung als Infomercial (0.8 langsamer, 1.2 schneller) |
+| topicality::infomercialWearoff | Aktualitätsverlust bach Ausstrahlung als Infomercial (0.8 weniger, 1.2 mehr) |
+
+Beispiel: `<modifier name="infomercialWearoff" value="0.7" />`
+
+Der Einfluss der Modifier (insb. Wearoff) dürfte aber praktisch irrelevant sein, da berechneten Werte durch die geringen Zuschauerzahlen praktisch immer außerhalb der Min-Max-Grenzen liegen.
+
 ## TODOs und Fragen
 
 ### Dokumentation
