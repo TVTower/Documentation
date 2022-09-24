@@ -231,6 +231,43 @@ Die unterschiedlichen Möglichkeiten für die Ersetzung der Variable verden durc
 Im obigen Beispiel könnte das Ergebnis als "Kripo Berlin", "Kripo Bonn", "Kripo Trier" sein; oder der Name der Stadt wir zufällig erzeugt (siehe unten).
 Das Beispiel zeigt, dass Variablendefinition selbst wieder Variablen enthalten können.
 
+Ab Version 0.7.4 wird eine zweite Variablensyntax unterstützt `${VARIABLEN_NAME}`.
+Diese hat den Vorteil, dass Beginn und Ende eindeutig unterscheidbar sind, was verschachtelte Variablen erlaubt `${varpraefix_${variant}}`.
+Hird zunächst die Variante aufgelöst und bestimmt damit, welche "Hauptvariable" Verwendung findet.
+
+```XML
+...
+	<title>
+		<de>${wer_${variant}} und ${pronomen_${variant}} ${adj}${was}</de>
+	</title>
+...
+	<variables>
+		<variant>
+			<de>maennl|weibl</de>
+		</variant>
+		<wer_maennl>
+			<de>Der Anwalt|Der Bäcker|Der König</de>
+		</wer_maennl>
+		<wer_weibl>
+			<de>Die Lehrerin|Die Ärztin|Die Königin</de>
+		</wer_weibl>
+		<pronomen_maennl>
+			<de>seine</de>
+		</pronomen_maennl>
+		<pronomen_weibl>
+			<de>ihre</de>
+		</pronomen_weibl>
+		<adj>
+			<!--erste Alternative leer - also ohne Adjektiv-->
+			<de>|teuren |neusten |früheren </de>
+		</adj>
+		<was>
+			<de>Autos|Liebschaften|Pferde|Probleme</de>
+		</was>
+	</variables>
+...
+```
+
 #### vom Spiel automatisch aufgelöste Variablen
 
 Es gibt Variablennamen und global verfügbare Werte, die von der Spiellogik automatisch aufgelöst werden können.
