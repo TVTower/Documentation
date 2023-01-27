@@ -58,5 +58,5 @@ statt
 
 um knapper schreiben zu können
 
-<var>${.if:${after1995}:Text1:Text2}
+<var>${.if:${after1995}:Text1:Text2}</var>
 ```
