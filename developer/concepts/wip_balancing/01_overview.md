@@ -43,11 +43,12 @@ Aus diesem Grund soll das Gesamtkonstrukt begutachtet werden.
 
 * Film kann nach Erholung sehr oft gesendet werden ohne spürbare Einbußen auf Einschaltquote; wenig Anreiz großen Fundus zu "erneuern"
 * zu wenig Anreiz, im Tagesprogramm gute Sendungen zu bringen - da die Zahl der möglichen Zuschauer so gering ist, spielt der Unterschied zwischen 10 und 30 Prozent Einschaltquote oft keine Rolle für die möglichen Werbeeinnahmen; man verschwendet nur einen guten Film; im Ergebnis sendet man Durchschnittskram in Dauerschleife (da sich die wegen geringer Zuschauerzahl auch schnell erholen)
-* Benachteiligung von "Zielgruppen"-Programm (Gesamteinschaltquote gering - wenig Werbeeinnahmen, Imageverlust), führt zu Vernachlässigung ganzer Genres
+* Benachteiligung von "Zielgruppen"-Programm (Gesamteinschaltquote gering - wenig Werbeeinnahmen, Imageverlust), führt zu Vernachlässigung ganzer Genres (siehe auch https://www.gamezworld.de/phpforum/post.php?tid=362&qid=90100)
 * gleichzeitig zu großer und zu kleiner Einfluss der Aktualität (siehe weiter unten)
 * gefühlt zu wenig Varianz bei der Genre-Popularität - man kann sich darauf verlassen, dass Komödie zur Prime-Time gute Einschaltquoten bringt
 * Eigenproduktionen mit gutem Drehbuch erlauben bei geringen Kosten überdurchschnittliche Einschaltquoten und Verkaufspreise
 * Berechnung Imagegewinn allein nach Reihenfolge (egal ob absolute oder relative Zuschauerzahl) zu naiv (Abstand zum Nächsten; Zielgruppenfilme kommen implizit schlecht weg)
+* Bedeutung Ramschkiste nur in den ersten Tagen
 
 ### Gedanken zum allgemeinen Spielverlauf
 
@@ -59,6 +60,8 @@ Die Schere weniger weit aufgehen zu lassen, verlängert das Spiel, macht es aber
 
 Auch darf man den Frustfaktor nicht vergessen, der sich einstellen kann, wenn es tagelang nicht vorwärts geht.
 Ziel sollte es sein, den Einstieg nicht zu schwer zu machen (weil es Strategien gibt, mit denen man einen guten Start hinlegen kann) und trotzdem Herausforderungen für den weiteren Verlauf zu bieten.
+
+Motto: nicht die ersten 10 Tage schwierig und potentiell frustrierend machen, sondern die nächsten 30 auch interessant zu halten
 
 
 ## Faustregeln (die möglichst immer erfüllt sein sollten)
@@ -80,7 +83,7 @@ Wenn er aber schlecht war, schauen ihn sich wenige nochmal an.
 Wie soll aber das Verhältnis sein, wenn Film A Qualtität 80 und maximale Aktualität 30 hat, Film B aber Qualität 30 und maximale Aktualität 80 (beide einmal ausgestrahlt)?
 Vielleicht sollte hier die Sendezeit eine Rolle spielen - Aktualität zur Prime-Time wichtiger, gute Filme bringen aber tagsüber bessere Quoten.
 
-## mögliche (Sofort) Maßnahmen
+## mögliche (Sofort-) Maßnahmen
 
 * erste Ausstrahlung verursacht grundsätzlich Verlust der Maximalaktualität
 * höherer Einfluss der Ausstrahlungshäufigkeit auf die Einschaltquote (je häufiger desto niedriger) - insb. zur Primetime!!
@@ -88,3 +91,12 @@ Vielleicht sollte hier die Sendezeit eine Rolle spielen - Aktualität zur Prime-
 * höherer Einfluss der Ausstrahlungshäufigkeit auf die maximale Aktualität (je häufiger desto niedriger)
 * höherer Einfluss einer Genrepopularität auf die Einschaltquote - diese sinkt bei der Ausstrahlung einer Sendung (egal welcher Sender) und erholt sich dann wieder
 * stärkerer Einfluss der Qualität auf die (maximale) Aktualität; Erholungsgeschwindigkeit
+
+### Einführung weiterer Fixkostenpunkte
+
+* Gehälter für Chef, Nachrichtensprecher, Archivar
+* Raummiete auch für's erste Studio
+* Kosten für erste Antenne nicht frei (ggf. reduziert oder für Zeit X subventioniert und dann steigend)
+* Versicherungskosten für Filmfundus (prozentual zum Wert)
+
+Zu bedenken ist bei solchen Kosten, dass auch sie vermutlich nur bei Spielbeginn relevant sind (Ausnahme Versicherungskosten).
