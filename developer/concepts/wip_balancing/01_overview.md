@@ -5,7 +5,7 @@ Ein für alle Konstellationen konsistentes (und zufriedenstellendes) Ergebnis f�
 
 Ziel dieses Branches und seiner Dokumente ist, den Ist-Stand zusammenzufassen (Beobachtungen und Implementierungsdetails), ein Zielbild zu erarbeiten und daraus Änderungen abzuleiten, die mit vertretbarem Aufwand umgesetzt werden können.
 
-Es wurde zwar schon eine Reihe von Maßnahmen ergriffen (Entfernung Deckel bei Werbeeinnahmen, weniger rigoroser Filmpreisanstieg bei Reichweiteausbau, Anpassung Imageberechnung, größere Antennenreichweite bei späteren Spieljahren, Anpassungen Imagevoraussetzungen bei Kabelverträgen,...), es gibt aber weiterhin grundlegende Probleme (z.B. https://github.com/TVTower/TVTower/issues/784).
+Es wurde zwar schon eine Reihe von Maßnahmen ergriffen (Entfernung Deckel bei Werbeeinnahmen, weniger rigoroser Filmpreisanstieg bei Reichweiteausbau, Anpassung Imageberechnung, größere Antennenreichweite bei späteren Spieljahren, Anpassungen Imagevoraussetzungen bei Kabelverträgen,...), es gibt aber weiterhin grundlegende Probleme.
 Aus diesem Grund soll das Gesamtkonstrukt begutachtet werden.
 
 
@@ -34,21 +34,10 @@ Aus diesem Grund soll das Gesamtkonstrukt begutachtet werden.
 * laufende Senderkosten (!)
 * Kauf von Lizenzen
 * Senderausbau
-* laufende Abonnements (bei aktuellen Preisen relevanter zu Beginn des Spiels als bei höherer Reichweite)
+* laufende Nachrichtenabonnements (bei aktuellen Preisen relevanter zu Beginn des Spiels als bei höherer Reichweite)
 * Kauf von Nachrichten (dito)
 * Studiomieten (dito)
 * Produktionskosten
-
-### Was stört?
-
-* Film kann nach Erholung sehr oft gesendet werden ohne spürbare Einbußen auf Einschaltquote; wenig Anreiz großen Fundus zu "erneuern"
-* zu wenig Anreiz, im Tagesprogramm gute Sendungen zu bringen - da die Zahl der möglichen Zuschauer so gering ist, spielt der Unterschied zwischen 10 und 30 Prozent Einschaltquote oft keine Rolle für die möglichen Werbeeinnahmen; man verschwendet nur einen guten Film; im Ergebnis sendet man Durchschnittskram in Dauerschleife (da sich die wegen geringer Zuschauerzahl auch schnell erholen)
-* Benachteiligung von "Zielgruppen"-Programm (Gesamteinschaltquote gering - wenig Werbeeinnahmen, Imageverlust), führt zu Vernachlässigung ganzer Genres (siehe auch https://www.gamezworld.de/phpforum/post.php?tid=362&qid=90100)
-* gleichzeitig zu großer und zu kleiner Einfluss der Aktualität (siehe weiter unten)
-* gefühlt zu wenig Varianz bei der Genre-Popularität - man kann sich darauf verlassen, dass Komödie zur Prime-Time gute Einschaltquoten bringt
-* Eigenproduktionen mit gutem Drehbuch erlauben bei geringen Kosten überdurchschnittliche Einschaltquoten und Verkaufspreise
-* Berechnung Imagegewinn allein nach Reihenfolge (egal ob absolute oder relative Zuschauerzahl) zu naiv (Abstand zum Nächsten; Zielgruppenfilme kommen implizit schlecht weg)
-* Bedeutung Ramschkiste nur in den ersten Tagen
 
 ### Gedanken zum allgemeinen Spielverlauf
 
@@ -62,6 +51,17 @@ Auch darf man den Frustfaktor nicht vergessen, der sich einstellen kann, wenn es
 Ziel sollte es sein, den Einstieg nicht zu schwer zu machen (weil es Strategien gibt, mit denen man einen guten Start hinlegen kann) und trotzdem Herausforderungen für den weiteren Verlauf zu bieten.
 
 Motto: nicht die ersten 10 Tage schwierig und potentiell frustrierend machen, sondern die nächsten 30 auch interessant zu halten
+
+### Was stört (Grobübersicht)?
+
+* Film kann nach Erholung sehr oft gesendet werden ohne spürbare Einbußen auf Einschaltquote; wenig Anreiz großen Fundus zu "erneuern" (einmalige Kosten, dauerhafte Einnahmen)
+* zu wenig Anreiz, im Tagesprogramm gute Sendungen zu bringen - da die Zahl der möglichen Zuschauer so gering ist, spielt der Unterschied zwischen 10 und 30 Prozent Einschaltquote oft keine Rolle für die möglichen Werbeeinnahmen; man verschwendet nur einen guten Film; im Ergebnis sendet man Durchschnittskram in Dauerschleife (da sich die wegen geringer Zuschauerzahl auch schnell erholen)
+* Benachteiligung von "Zielgruppen"-Programmen (Gesamteinschaltquote gering - wenig Werbeeinnahmen, Imageverlust), führt zu Vernachlässigung ganzer Genres
+* gleichzeitig zu großer und zu kleiner Einfluss der Aktualität (siehe weiter unten)
+* gefühlt zu wenig Varianz bei der Genre-Popularität - man kann sich darauf verlassen, dass Komödie zur Prime-Time gute Einschaltquoten bringt
+* Eigenproduktionen mit gutem Drehbuch erlauben bei geringen Kosten überdurchschnittliche Einschaltquoten und Verkaufspreise
+* Berechnung Imagegewinn allein nach Reihenfolge (egal ob absolute oder relative Zuschauerzahl) zu naiv (Abstand zum Nächsten; Zielgruppenfilme kommen implizit schlecht weg); Einschaltquote berücksichtigt (Sieger mit 10% sollte nicht dasselbe Ergebnis liefern wie Sieger mit 60%)
+* Bedeutung Ramschkiste nur in den ersten Tagen
 
 
 ## Faustregeln (die möglichst immer erfüllt sein sollten)
@@ -100,3 +100,18 @@ Vielleicht sollte hier die Sendezeit eine Rolle spielen - Aktualität zur Prime-
 * Versicherungskosten für Filmfundus (prozentual zum Wert)
 
 Zu bedenken ist bei solchen Kosten, dass auch sie vermutlich nur bei Spielbeginn relevant sind (Ausnahme Versicherungskosten).
+
+## Sonstiges zum Thema Langzeitspielspaß
+
+### neue Raumfunktionen
+
+Räume mit zusätlzichen Funktionen (Sportwetten, Speziallizenzen, Getränkeautomat, Juwelier etc.) können Abwechslung bringen, bedeuten aber auch Implementierungsaufwand.
+
+### Aufgaben vom Chef
+
+* "Wir wollen kein X (Genre) mehr"
+* "Wir wollen mehr X"
+
+### Genre- oder Zielgruppen-Sammys
+
+Neben Kultur auch "SciFi"-Sammy oder Kinderprogramm-Sammy.

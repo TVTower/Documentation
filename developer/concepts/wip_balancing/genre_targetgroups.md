@@ -42,7 +42,7 @@ Dafür gibt es meiner Ansicht nach zwei Haupthinderungsgründe
 
 Analog ggf. für Non-Prime-Genrewerbung.
 Problematisch an diesem Ansatz könnte aber die stark variierende potentielle Zuschauerzahl sein.
-Denn auch im Vorabendprogramm steigt diese stark und würde die Werbung dann am attraktivsten machen.
+Denn auch im Vorabendprogramm steigt diese stark und würde die Werbung dann am attraktivsten machen (Preis pro Zuschauer von der Sendezeit abhängig machen; hier könnte der erwartete Anteil an der Gesamtreichweite Berücksichtigung finden).
 
 Dieser Ansatz hätte den Charme, dass er den Anreiz erhöht auch sehr gute zielgruppenspezifische Filme zur Nicht-Prime-Zeit zu senden - zur Prime wären sie Verschwendung (niedrige Gesamteinschaltquote, jede Komödie wäre besser), im "Spartenprogramm" erzielt sie aber eine hohe Zielgruppeneinschaltquote, die sich direkt (und vollständig) in Einnahmen widerspiegelt.
 
@@ -51,6 +51,8 @@ Dieser Ansatz hätte den Charme, dass er den Anreiz erhöht auch sehr gute zielg
 Wird ein Genre nicht gesendet, erhöht sich sein Attraktivität.
 Jede Ausstrahlung eines Genres verringert seine Attraktivität.
 Wenn man immer nur Komödien sendet, sinken die Einschaltquoten auch bei voller Aktualität.
+
+TODO: siehe TGenrePopularity#changeTrend und finishBroadcast
 
 Vorgeschlagen wurde, Genrebeliebtheiten per Nachrichtenupdate bekanntzugeben.
 Im "Backlog" ist immer noch "Im Trend" (Lizenz zum Kaufen/Show zum Produzieren?), wo man nach der Ausstrahlung Infos zum Beliebtheitsverlauf bekommt.
