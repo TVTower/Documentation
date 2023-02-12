@@ -34,10 +34,16 @@ Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgescheh
 | thread_id | informativ | ID des Nachrichtenthemas - Nachrichten die zusammengehören |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
+| comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
 ## Kindelemente von news
 
 Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sindvollerweise zu definieren, Variablen [variables](main.md#Variablen) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
+
+Ab Version 0.8.1 werden die Variablen an angestoßene Nachrichten weitergegeben.
+Das erlaubt es, Nachrichtenketten abwechslungsreicher zu gestalten, da gewürfelte Namen etc. damit auch in späteren Nachrichten verwendet werden können.
+Alle verwendeten Variablen müssen in der Startnachricht definiert werden.
+Die angestoßenen Nachrichten dürfen keine eigenen Variablendefinitionen enthalten.
 
 ### Daten (data)
 
@@ -264,7 +270,50 @@ Eine Hauptnachricht stößt eine von vier möglichen Nachfolgenachrichten mit un
 </news>
 ```
 
-Ein Beispiel für die Verwendung Variablen sind die Börsennachrichten (ID `news-stockexchange-generic`) in `user/kieferer.xml`.
+### Nachrichtenkette mit weitergegeben Variablen
+
+Eine Hauptnachricht stößt eine Nachfolgenachricht an.
+Die definierten Variablen werden an die Nachfolgenachrichten weitergegeben und bereits durchgeführte Ersetzungen konsistent verwendet.
+Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
+
+```
+<news id="carStrike_0" thread_id="carStrike" type="0">
+	<title>
+		<de>${brand} schreibt Verluste</de>
+		<en>${brand} records losses</en>
+	</title>
+	<description>...
+	</description>
+	<effects>
+		<effect trigger="happen" type="triggernews" news="carStrike_1" time="1,8,12" />
+	</effects>
+	<data genre="3" price="1.0" quality="19" />
+	<variables>
+		<brand>
+			<de>Fort|Bucki|Admiral Motors|Lilaccats|Abraham|Evade</de>
+		</brand>
+		<jobs>
+			<de>4.000|5.000|6.000|7.500</de>
+			<en>4,000|5,000|6,000|7,500</en>
+		</jobs>
+	</variables>
+</news>
+<news id="carStrike_1" thread_id="carStrike" type="2">
+	<title>
+		<de>${brand} will ${jobs} Stellen streichen</de>
+		<en>${brand} to cut ${jobs} jobs</en>
+	</title>
+	<description>
+		<de>Der Amerikanische Autokonzern will aufgrund der hohen Verluste ${jobs} Mitarbeiter entlassen.</de>
+		<en>The American car company plans to lay off ${jobs} employees due to the high losses.</en>
+	</description>
+	...
+</news>
+```
+
+Ein weiteres Beispiel für die Verwendung Variablen sind die Börsennachrichten (ID `news-stockexchange-generic`) in `user/kieferer.xml`.
+Diese stoßen sich selbst wieder an.
+In diesem Fall ist es zulässig, dass die Nachfolgenachrichten Variablendefinitionen enthalten.
 
 ## TODOs und Fragen
 

@@ -32,6 +32,7 @@ Welche der folgenden Eigenschaften und Kindelemente jeweils unterstützt werden,
 | imdb_id | Metadaten optional | [Standardeigenschaft](main.md#imdb_id) |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
+| comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
 `generator` wird nur selten benutzt, der Wert enthält kommasepariert ein Länderkürzel und das Geschlecht für die Bestimmung des Namens.
 Beispiel `generator="de,2"` für eine deutsche Frau.

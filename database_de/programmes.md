@@ -48,6 +48,7 @@ Die Einzellizenz (`licence_type`) ist preiswert zu haben (`price_mod`).
 | imdb_id | optional | [Standardeigenschaft](main.md#imdb_id) |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
+| comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
 ## Kindelemente von programme
 
@@ -63,9 +64,11 @@ Im Hauptknoten `staff` kann eine Liste von Mitwirkenden (`member`) definiert wer
 Im Normalfall wird es sich um eine Referenz auf in der Datenbank definierte Personen handeln.
 Die Eigenschaft `index` gibt die Position (0,1,2,...) an, um die Einträge in Variablen referenzieren zu können, `function` definiert den [Beruf](main.md#Job).
 Wenn eine Besetzung komplett zufällig erzeugt werden soll, kann sie auch mittels `generator` definiert werden.
+Das Attribut `role_guid` kann verwendet werden, um eine Besetzung mit einer definierten Rolle zu verknüpfen.
 
 * `<member index="1" function="2">person-0815</member>` - die Person mit der ID `person-0815` ist als Schauspieler in der Besetzung
 * `<member index="2" function="64" generator="es,0"></member>` - spanischer Gast männlich oder weiblich
+* `<member index="1" function="2" role_guid="role_hercules">person-4711</member>` - die [Rolle](persons.md#Filmrollen) Herkules war in dem Film mit dem Schauspieler mit der ID `person-4711` besetzt.
 
 ### Ziel- und Lobbygruppen (groups)
 

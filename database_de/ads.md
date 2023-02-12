@@ -28,9 +28,9 @@ Um die Werbung überhaupt angeboten zu bekommen, ist ein Image von mindestens 4%
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
 | id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
-| comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
+| comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
 ## Kindelemente von ads
 

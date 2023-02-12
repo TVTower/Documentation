@@ -44,6 +44,7 @@ Dann gibt es eine Belohnung von 50.000 Geld (`type`+`money`).
 | id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
+| comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
 ## Kindelemente von achievement
 

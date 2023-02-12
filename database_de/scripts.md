@@ -65,6 +65,9 @@ Auch werden die Bewertungskategorien (Tempo etc.) oft als Bereich angegeben.
 | product | Pflicht  | [Programmtyp](main.md#Programmtyp) |
 | licence_type | Pflicht | [Lizenztyp](main.md#Lizenztyp) |
 | index | optional | Reihenfolge bei Serien |
+| creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
+| created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
+| comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
 ## Kindelemente von scripttemplate
 
