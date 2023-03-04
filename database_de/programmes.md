@@ -117,6 +117,8 @@ Beispiel: `<ratings critics="45" speed="30" outcome="40" />`
 Wenn man allerdings zum Spielstart relative Jahre oder genauere Daten angeben möchte, kann man `year` weglassen und den `releaseTime`-Knoten verwenden.
 In Kombination mit Live-Programmen, Einschränkung der Ausstrahlungszeit oder -häufigkeit sind die Ausstrahlungsflags interessant.
 
+Wohingegen `maingenre` entscheidend für die Zuschauerberechnung ist, wird `subgenre` derzeit noch nicht in die Berechnung einbezogen.
+
 Im Code wird noch `available` eingelesen, kommt aktuell in der Datenbank aber nicht vor.
 
 ### Veröffentlichung (releaseTime)
