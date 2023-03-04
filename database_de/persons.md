@@ -23,6 +23,7 @@ Welche der folgenden Eigenschaften und Kindelemente jeweils unterstützt werden,
 | nick_name | optional | Spitzname |
 | first_name_original | informativ | wenn es ein echtes Vorbild gibt - der ursprüngliche Vorname |
 | last_name_original | informativ |  wenn es ein echtes Vorbild gibt - der ursprüngliche Nachname |
+| nick_name_original | informativ |  wenn es ein echtes Vorbild gibt - der ursprüngliche Spitzname |
 | fictional | optional | [Standardeigenschaft](main.md#fictional) |
 | levelup | optional | Wahrheitswert - kann die Person eine "Hauptperson" werden (Standardwert 1) |
 | bookable | optional | Wahrheitswert - kann die Person zum jetzigen Zeitpunkt in einer Produktion mitwirken (Standardwert 1) |

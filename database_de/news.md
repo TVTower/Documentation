@@ -31,10 +31,23 @@ Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgescheh
 | ---- | --- |------------- |
 | id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
 | type | Pflicht | Nachrichtentyp; siehe unten 0=Startnachricht, 2=Nachfolgenachricht |
-| thread_id | informativ | ID des Nachrichtenthemas - Nachrichten die zusammengehören |
+| thread_id | optional | ID des Nachrichtenthemas - Nachrichten die zusammengehören |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |
+
+### Bedeutung der `thread_id`
+
+Bis Version 0.8.0 war der Wert rein informativ und wurde nicht ausgewertet
+Eine (identische) `thread_id` wurde typischerweise für Nachrichten einer zusammengehörigen Nachrichtenkette mit Startnachricht und Nachfolgenachrichten vergeben.
+Ab Version 0.8.1 bekommt die `thread_id` eine weitere wichtige Bedeutung.
+
+Nachrichten sind analog Drehbuchvorlagen eigentlich Vorlagen, aus denen die eigentlich ausstrahlbaren Nachrichten erzeugt werden.
+Das Spiel markiert eine Vorlage, um sie nicht zu schnell wiederzuverwenden.
+Ab Version 0.8.1 wird zusätlich die `thread_id` markiert.
+
+Wenn sich also zwei Startnachrichten dieselbe `thread_id` teilen, blockiert die Auswahl der einen Nachricht die andere.
+Auf diese Weise kann erreicht werden, dass nicht zu viele Nachrichten zum selben Thema gleichzeitig erscheinen.
 
 ## Kindelemente von news
 

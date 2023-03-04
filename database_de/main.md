@@ -181,11 +181,15 @@ Siehe [Verfügbarkeit](time.md#Verfügbarkeit) in der Beschreibung von Zeitdefin
 
 #### targetgroupattractivity
 
-Hier kann  für einzelne Zielgruppen ein genauer Attraktivitätsfaktor angegeben werden.
+Hier kann  für einzelne Zielgruppen ein Attraktivitätsfaktor (zwischen 0 und 2) angegeben werden.
 Durch den suffix `_male` und `_female` an der Zielgruppe kann zusätzlich auf die männlichen/weiblichen Vertreter eingeschränkt werden.
 Die Zielgruppennamen sind: `teenagers`, `managers`, `housewives`, `employees`, `women`, `men`, `pensioners`, `unemployed`.
 
 Beispiel: `<targetgroupattractivity teenagers_male="0.7" pensioners="1.6" />` - geringere Attraktivität für männliche Jugendliche, höhere Attraktivität für Rentner.
+
+Die aus den Basiswerten für Genre, Zeit etc. berechnete Zielgruppenattraktivität wird zuletzt mit diesem Wert multipliziert.
+Zu beachten ist, dass nicht allein die Attraktivität die Zuschauerzahl bestimmt.
+Setzt man den Faktor auf 0, bedeutet das nicht, dass es keine Zuschauer dieser Gruppe geben wird, nur sehr viel weniger.
 
 #### modifiers
 
@@ -543,9 +547,11 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | BE | Belgien |
 | BM | Bermudas |
 | BOL | Bolivien |
+| BR | Brasilien |
 | CDN | Kanada |
 | CH | Schweiz |
-| CN | China |
+| CHN | China |
+| CO | Kolumbien |
 | CS | CSSR |
 | D | Deutschland |
 | DDR | DDR |
@@ -561,9 +567,11 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | IND | Indien |
 | IRL | Irland |
 | J | Japan |
+| MEX | Mexiko |
 | NL | Niederlande |
 | P | Portugal |
 | PL | Polen |
+| RA | Argentinien |
 | RM | Republik Molvanien |
 | ROK | Südkorea |
 | S | Schweden |
@@ -597,6 +605,8 @@ Dafür addiert man die Werte der zutreffenden Gruppen auf.
 (Quellcode: `TVTTargetGroup`)
 
 `target_group="65"` würde also Kinder und Rentner umfassen.
+
+Ist eine Gruppe als Zielgruppe definiert (z.B. bei Werbung oder Programmen), wird bei der Berechnung der Zuschauerzahl für diese Gruppe ein leicht erhöhter Attraktivitätswert als normal zugrunde gelegt.
 
 ### Lobbygruppe
 

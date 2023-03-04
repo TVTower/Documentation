@@ -183,6 +183,13 @@ Im Gegensatz zu den Zufallswerten sind hier keine Bereichsdefinitionen möglich 
 
 Die möglichen Modifier sind in den [Programmen](programmes.md#Modifier) zu finden.
 
+### Zielgruppenattraktivität (targetgroupattractivity)
+
+Ab Version 0.8.1 kann auch für Drehbuchvorlagen die Zielgruppenattraktivität definiert werden.
+Sie wird unverändert an die entstehenden Programmdaten weitergegeben.
+
+Siehe [Standardkindelement](main.md#targetgroupattractivity).
+
 ### Serienfolgen (children)
 
 Im Hauptknoten `children` kann eine Liste Vorlagen für Folgen ( wieder als `scripttemplate`-Knoten) definiert werden. Bei diesen muss dann die Eigenschaft `index` definiert werden.
@@ -230,6 +237,7 @@ Im Hauptknoten `children` kann eine Liste Vorlagen für Folgen ( wieder als `scr
 			<!-- live whenever first broadcastd -->
 			<!-- licence flags: 4 + 32 (REMOVE_ON_REACHING_BROADCASTLIMIT + LICENCEPOOL_REMOVES_TRADEABILITY) -->
 			<data flags="1" broadcast_time_slot_start="5" broadcast_time_slot_end="10" production_limit="4" production_broadcast_limit="1" production_broadcast_flags="512" production_licence_flags="36" />
+			<targetgroupattractivity unemployed_male="0.1" managers="2" />
 		</scripttemplate>
 ```
 
@@ -237,6 +245,7 @@ Der interessante Teil an dieser Show (`product`) ist der `data`-Knoten.
 Es handelt sich im eine Liveshow (`flags`), deren Ausstrahlung zwischen 5 Uhr und 10 Uhr stattfinden muss (`broadcast_time_slot_X`), frühestens am Folgetag (`live_date`), in diesem Zeitraum aber immer live ist (`production_broadcast_flags`).
 Es können vier Sendungen (`production_limit`) produziert werden (ohne explizite Definition von `children`!), aber es darf dann je Sendung nur eine Ausstrahlung geben (`production_broadcast_limit`).
 Danach verschwindet die Show und ist nie wieder verfügbar (`production_licence_flags`).
+Männliche Arbeitslose finden diese Show furchtbar, Manager sind begeistert.
 
 ### Serie
 
