@@ -78,6 +78,8 @@ Man muss Zeit und Geld in eine ordentliche Produktion investieren.
 
 Die Formel: Ergebnis = Drehbuchpotential * Produktionsqualität ist zu naiv.
 
+Schnelle Produktion kostet (mindestens Fokuspunkte, vielleicht sogar erreichte Qualität), Punkte für die Crew lassen die Produktionszeit etwas sinken, wirken sich vielleicht aber positiv auf die erreichte Qualität aus.
+
 ### Serien
 
 * Wenn in einer Serie für eine Besetzung eine Rolle definiert ist, sollte es Abzug geben, wenn dieselbe Rolle in den Folgen unterschiedlich besetzt ist (offen - Auswirkung auf Qualität oder erst bei Zuschauerquotenberechnung)
@@ -108,3 +110,20 @@ Unabhängig von allem anderen kann das Durchprobieren der Drehbücher erschwert 
 * Drehbuchverkauf verbieten (nur entsorgen im Studio geht)
 * Drehbuch nur mit massivem Abschlag zurückgeben (nur 25% des Kaufpreises zurück; das Drehbuch landet dann zum Normalpreis wieder in der "Refill-Liste"
 * beim Auffüllen (nach Kauf) werden nur Drehbücher mit einer gedeckelten Attraktivität verwendet (max. Durchschnittsqualität, kein hohes Potential); allein mein turnusmäßigen Refresh wird die gesamte Drehbuchbandbreite berücksichtigt (höherer Anteil "neuer" Drehücher?)
+
+## Herausforderung "mögliche Zuschauerzahl"
+
+Die Zahl der möglichen Zuschauer variiert über den Tag sehr stark.
+Für die möglichen Werbeeinnahmen spielt (bei annähernd gleicher Zuschauerquote zu allen Zeiten) die Ausstrahlungszeit eine erhebliche Rolle.
+Was bedeutet das für Eigenproduktionen und ihre Kosten?
+
+Wenn eine "schlechte" Produktion 6% Einschaltquote bringt, hat sie im Vormittagsprogramm so wenige Zuschauer, dass sie ihre Kosten kaum reinspielen kann.
+Gleichzeitig verliert man aufgrund der Quote Image, so dass auch Wiederholungen unattraktiv sind.
+Zur Prime-Time wäre man vielleicht kostendeckend, aber der Imageverlust (und entgangegene Mehreinnahmen durch Nichtsenden eines guten Programms) machen eine Ausstrahlung hier auch unattraktiv.
+Bei stark steigenden Kosten für eine (etwas) bessere Produktion "verschärft" sich das Problem (deutlich höhere Kosten, kaum mehr Zuschauer).
+
+Umgekehrt muss man aufpassen, dass Billigproduktionen guter Drehbücher kein zu gutes Ergebnis bringen (Einschaltquote/Verkaufspreis).
+Das Potential eines Drehbuchs muss auch "ausgenutzt" werden.
+
+Findet man hier eine gute Abstimmung, ist es ggf. gar nicht nötig, dass die Preise mit steigender Reichweite steigen.
+Die Produktion eines echten Blockbusters kann man sich erst leisten, wenn man die entsprechende Reichweite hat (Fokuspunktpreise steigen exponentiell, damit verlängert sich die Produktionszeit, damit steigen die Kosten für den Cast).

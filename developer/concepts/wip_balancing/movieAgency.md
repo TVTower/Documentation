@@ -34,6 +34,21 @@ Ziel: schlechte Filme brauchen länger, bis Zuschauer sie wiedersehen wollen.
 Mit stärkerem Einfluss der Ausstrahlungshäufigkeit möchte man vielleicht auch nicht nur gute Filme Tagesprogramm verschwenden.
 Zum Reinholen der laufenden Kosten reicht auch mal Durchschnitt.
 
+## Einschränkungen bei Lizenzen
+
+Die Ausstrahlungshäufigkeit kann ja schon prinzipiell eingeschränkt werden.
+Allerdings wird davon in der Datenbank (bei Programmen) kein Gebrauch gemacht, nur bei Drehbuchvorlagen (insb. Live-Formate).
+
+* Level schwer - immer maximal X Ausstrahlungen
+* unabhängig vom Level - Lizenzen bekommen eine Ablaufzeit (in Tagen; durch die Konfigurierbarkeit der Tageszahl pro Saison wird alles andere kompliziert)...
+
+Bei solchen Modellen muss man sich die Preisstruktur genau anschauen.
+Wenn pro Sendeblock bei voller Reichweite ca. 2 Mio(?) an Werbeeinnahmen möglich sind, kann ein Film nicht 20 Mio kosten (10 Ausstrahlungen mit vollen Werbeeinahmen nötig, bevor man die Kosten rein hat).
+
+Weitere Stichpunkte:
+* automatische Lizenzverlängerung (kostenpflichtig) im Archiv (alle, pro Lizenz, mehrere Regale für unterschiedliche Laufzeiten)
+
+
 ## Auswirkung Reichweitelevelaufstieg
 
 Die Preisentwicklung für Lizenzen in früheren Versionen war anders:

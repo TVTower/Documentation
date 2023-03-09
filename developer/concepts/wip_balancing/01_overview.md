@@ -91,6 +91,8 @@ Vielleicht sollte hier die Sendezeit eine Rolle spielen - Aktualität zur Prime-
 * höherer Einfluss der Ausstrahlungshäufigkeit auf die maximale Aktualität (je häufiger desto niedriger)
 * höherer Einfluss einer Genrepopularität auf die Einschaltquote - diese sinkt bei der Ausstrahlung einer Sendung (egal welcher Sender) und erholt sich dann wieder
 * stärkerer Einfluss der Qualität auf die (maximale) Aktualität; Erholungsgeschwindigkeit
+* grundsätzlich langsameres Erholen der Aktualität (ggf. auch abhängig von der Spielstärke des aktuellen Lizenzbesitzers)
+* Anpassung der Werte in den Schwierigkeitsstufen (alle ein wenig anziehen, bei Schwer mehr Inflation bei Senderkosten, Werbeeinnahmen runter)
 
 ### Einführung weiterer Fixkostenpunkte
 
@@ -115,3 +117,8 @@ Räume mit zusätlzichen Funktionen (Sportwetten, Speziallizenzen, Getränkeauto
 ### Genre- oder Zielgruppen-Sammys
 
 Neben Kultur auch "SciFi"-Sammy oder Kinderprogramm-Sammy.
+
+### Ronny
+
+* ausbaufähiges Archiv (Kapazitätsgrenze; Ausbaustufen kosten Miete)
+* News-Abostufen von Chefimage oder anderen Kriterien abhängig
