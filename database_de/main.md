@@ -1,6 +1,8 @@
 # Die TVTower-Datenbank
 
 Die für TVTower verwendeten Daten befinden auf mehrere Dateien aufgeteilt sich im Verzeichns `res/database/`.
+Grundsätzlich könnten mehrere Datenbanken unterstützt werden.
+Die Standarddatenbank befindet sich im Unterverzeichnis `Default`.
 Die Daten sind in einer [XML-Struktur](main.md#allgemeiner-Aufbau-eines-Elements) hinterlegt.
 Der typische Start in die Erstellung eigener Einträge dürfte darin bestehen, vorhandene Elemente aus dem einem bekannten Spielgeschehen zu suchen, die dem gewünschten Verhalten besonders nahe sind, diese zu kopieren und anzupassen.
 Es empfielt sich, eigene Inhalte in einer neuen Datei im `user`-Unterverzeichnis zu sammeln.
