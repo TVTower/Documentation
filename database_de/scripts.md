@@ -160,9 +160,12 @@ Beispiele:
 
 `episodes` kann in zwei verschiedenen, sich ausschließenden Varianten verwendet werden.
 Eine Definition in der Hauptdrehbuchvorlage schränkt die Anzahl der Folgen ein.
-Man definiert also z.B. 12 mögliche Kindvorlagen und sagt aber, dass nur 5 bis 8 zu einer Serie gehören sollen.
-Die erste Vorlage (für die Pilotfolge) wird dabei nie aussortiert; die Reihenfolge bleibt unverändert.
-Der zweite Anwendungsfall ist die Definition von `episodes` in einer oder mehrerer Kindvorlagen.
+Man definiert also z.B. 20 mögliche Kindvorlagen und sagt aber, dass nur 5 bis 8 zu einer Serie gehören sollen.
+Die Reihenfolge der Folgen wird beibehalten.
+Die erste Vorlage wird standardmäßig immer mit ausgewählt (=Pilotfolge, die immer dabei sein soll - siehe z.B. `scripttemplate-ron-visiting` in der Datenbank).
+Wenn auch die erste Folge zu den zufällig gewählten gehören soll, kann man diese als optional markieren (`<episodes min="0" />` für diese Folge).
+
+Der zweite Anwendungsfall ist die Definition von `episodes` in einer oder mehrerer Kindvorlagen, ohne dass die Folgenzahl in der Hauptdrehbuchvorlage angegeben wird.
 Bei der Erstellung des eigentlichen Drehbuchs werden aus der Kindvorlage dann entsprechend viele Folgen (auch 0 ist erlaubt).
 
 Wenn also nicht immer alle der definierten Folgen erzeugt werden sollen, hat man zwei Möglichkeiten: Einschränkung der Gesamtanzahl im Hauptknoten oder Folgen, die weggelassen werden können, mit `<episodes min="0" max="1" />` konfigurieren.

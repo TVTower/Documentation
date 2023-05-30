@@ -96,14 +96,14 @@ Beispiel: `<ratings critics="45" speed="30" outcome="40" />`
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| country | Pflicht | produziert in [Land](main.md#Länder) | 
+| country | Pflicht | produziert in [Land](main.md#Länder) |
 | year | optional | Produktionsjahr |
 | distribution | optional | Verbreitungsweg siehe unten |
 | maingenre | Pflicht | [Hauptgenre](main.md#Genre) des Programms |
 | subgenre | optional  | [Untergenre](main.md#Genre) des Programms |
 | flags | optional | [Programmflags](main.md#Programmflags) |
 | licence_flags | optional | [Lizenzflags](main.md#Lizenzflags) |
-| blocks | optional | Länge in Stunden (default 1) | 
+| blocks | optional | Länge in Stunden (default und Minimum 1, Maximum 12) |
 | price_mod | optional | Faktor für die Preisberechnung |
 | broadcast_time_slot_start | optional | Frühester Start des ersen Blocks |
 | broadcast_time_slot_end | optional | Spätestes Ende des letzten Blocks |
