@@ -2,21 +2,27 @@ Compilation Guide LINUX
 -----------------------
 
 - download the most current pre-build buildpackage
-    bmx-ng.X.XX.Linux_x86_64.tar.gz
+    bmx-ng.X.XX.Linux_x86_64.tar.xz
   from
-    https://github.com/GWRon/BMXNG-Packs
+    https://github.com/bmx-ng/bmx-ng/releases
 - unzip (for now we call this folder "BlitzMax")
 - if needed, mark as executable ("chmod +x"):
   BlitzMax/bin/bcc
   BlitzMax/bin/bmk
   BlitzMax/bin/makedocs
   BlitzMax/bin/docmods
-  BlitzMax/MaxIDE_Linux32
-  BlitzMax/MaxIDE_Linux64
+  BlitzMax/MaxIDE
+
+- in order to update modules later, you can copy updateMod.sh to BlitMax
+  execution will delete existing modules and fetch the latest versions from github
+  be sure to backup a working BlitzMax before doing so as your bmx-ng and the modules
+  may have become incompatible in the meantime
+- after an update you may have to rebuild the modules; use the corresponding option in
+  the MaxIDE Program menu
 
 
 - download/clone TVTower from
-    https://github.com/GWRon/TVTower
+    https://github.com/TVTower/TVTower
 
 - either compile via command line, or via editor
   - command line
@@ -26,7 +32,7 @@ Compilation Guide LINUX
     - for x64
       "./bmk makeapp -r -g x64 -quick -w path/to/TVTower/TVTower.bmx"
   - via editor
-    - open up BlitzMax/MaxIDE_Linux** (the one corresponding to your OS)
+    - open up BlitzMax/MaxIDE (the one corresponding to your OS)
     - open "path/to/TVTower/TVTower.bmx"
     - adjust settings
       "Program"
@@ -39,3 +45,9 @@ Compilation Guide LINUX
   - a script also creates a "TVTower_Linux**" file after compilation
     but the binary "TVTower" is kept, as this is used by the MaxIDE-
     debugger (not needed for you to play the game)
+
+Links
+-----
+
+https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/
+in case you have trouble with conflictign gcc versions
