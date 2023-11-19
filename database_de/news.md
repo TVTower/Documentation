@@ -88,78 +88,28 @@ In der Datenbank werden sie noch nicht vergeben, könnten dann für Erfolge genu
 ### Effekte (effects)
 
 Das dürfte das interessanteste Element für die Nachrichten sein, denn über die Effekte lassen sich z.B. Nachfolgenachrichten anstoßen oder die Beliebtheit von Genre oder Personen beeinflussen.
-Im Hauptknoten `effects` kann eine Liste von Einzeleffekten (`effect`) definiert werden, die angestoßen werden, wenn eine Nachricht veröffentlicht wird.
-Für alle Effekttypen können die folgenden Eigenschaften definiert werden:
+Die Syntax ist für Nachrichten-/Programm-/Drehbucheffekte gleich ([Effekte](main.md#effects)).
 
-| Name | Art | Beschreibung |
-| ---- | --- |------------- |
-| trigger | Pflicht | siehe unten |
-| type | Pflicht | mögliche Werte siehe unten; am häufigsten "triggernews" - Nachfolgenachricht anstoßen |
-| time | optional | wann findet der Effekt statt; Format siehe [Zeitsteuerung](time.md#Zeitattribute) |
-| probability | optional | Wahrscheinlichkeit für das Eintreten dieses Effekts |
-
-Ein `effect`-Knoten hat immer die Eigenschaft `trigger`, die steuert, unter welcher Bedingung der Effekt eintritt. Die anderen Felder hängen vom Effekttyp `type` ab.
-Die häufigsten Zeitsteuerungsvarianten sind 1 (`"1,3,7"` - in 3 bis 7 Stunden), 2 (`"2,1,2,6,14"` - in 1 bis 2 Tagen zwischen 6 und 14 Uhr).
-Die `probability` liegt zwischen 0 und 100 (falls nicht definiert, wird 100 angenommen).
-
-#### trigger
-
-Die Eigenschaft `trigger` hat einen festen Wertebereich.
-Folgende Werte werden unterstützt.
+Für Nachrichteneffekte werden die folgenden Trigger unterstützt
 
 * `happen`- der Effekt tritt in jedem Fall ein; z.B. Nachfolgenachrichten erscheinen, selbst wenn niemand die Nachricht gesendet hat.
 * `broadcast` - der Effekt tritt zu Beginn *jeder einzelnen* Ausstrahlung ein
 * `broadcastDone` - der Effekt tritt am Ende *jeder einzelnen* Ausstrahlung ein
-* `broadcastFirstTime` - der Effekt tritt ein sobald die Nachricht das erst Mal gesendet wird
+* `broadcastFirstTime` - der Effekt tritt ein, sobald die Nachricht das erst Mal gesendet wird
 * `broadcastFirstTimeDone` - der Effekt tritt am Ende der ersten Ausstrahlung ein (pro gestarteter Nachrichtenkette, also nicht nur einmal über die gesamte Spielzeit)
-
-Beispiel: `... trigger="happen" ... `
 
 `broadcastFirstTime` würde man beispielsweise nutzen, wenn Nachfolgenachrichten nur verfügbar sein sollen, wenn der Auslöser gesendet wurde ("Bürger reagieren schockiert auf die Meldung...").
 Wenn dieselbe Ursprungsnachricht zu einem späteren Zeitpunkt wieder erscheint, greift `broadcastFirstTime`-Effekt erneut.
 
 `broadcast` könnte man nutzen, wenn sich eine Genreattraktivität bei jeder Ausstrahlung ändern soll.
 
-#### `type="triggernews"`
+Beispiel:
 
-Es wird *eine* Nachfolgenachricht angestoßen.
-Der Wert von `news` (für diesen Typ Pflicht) enthält die ID der angestoßenen Nachfolgenachricht.
-
-`<effect trigger="happen" type="triggernews" news="ronny-news-drucktaste-02b1" />`
-
-#### `type="triggernewschoice"`
-
-Um unterschiedliche Verläufe in Nachrichtenketten zu ermöglichen kann man mit diesem Effekttyp *eine* der aufgelisteten Nachrichten anstoßen.
-Je Nachricht kann eine Wahrscheinlichkeit angegeben werden.
-
-`<effect trigger="happen" type="triggernewschoice" choose="or" news1="newsId1" probability1="30" news2="newsId2 probability2="70" />`
-
-Im aktuellen Datenbestand werden bis zu vier Nachfolgenachrichten verwendet (`news1...news4, probability1...probability4`).
-Laut Quellcode `Init:TGameModifierNews_TriggerNews` könnten auch unterschiedliche Triggerzeiten (`time1...time4`) angegeben werden.
-Davon wird aktuell aber kein Gebrauch gemacht (Fallback auf dieselbe Zeite `time` für alle Nachfolgenachrichten.)
-
-#### `type="modifyPersonPopularity"`
-
-Es wird die Beliebtheit der referenzierten Person angepasst.
-
-* `<effect trigger="happen" type="modifyPersonPopularity" referenceGUID="personId" valueMin="0.1" valueMax="0.2" />` - 
-die Beliebtheit von der Persion mit der ID personId wird unabhängig von der Ausstrahlung der Nachricht um einen Wert zwischen 0.1 und 0.2 angepasst.
-* `<effect trigger="broadcast" type="modifyPersonPopularity" referenceGUID="personId" valueMin="0.02" valueMax="0.05" />` - 
-die Beliebtheit von der Persion mit der GUID personId wird bei jeder Ausstrahlung der Nachricht um einen Wert zwischen 0.02 und 0.05 angepasst.
-
-#### `type="modifyMovieGenrePopularity"`
-
-Es wird die Beliebtheit des angegebenen Genres angepasst.
-
-* `<effect trigger="happen" type="modifyMovieGenrePopularity" genre="13" valueMin="0.5" valueMax="2.0" />`- die Beliebtheit von Monumentalfilmen wird unabhängig von der Ausstrahlung der Nachricht um einen Wert zwischen 0.5 und 2 angepasst.
-* `<effect trigger="broadcastFirstTime" type="modifyMovieGenrePopularity" genre="3" valueMin="0.2" valueMax="0.7" />`- die Beliebtheit von Trickfilmen wird bei der ersten Ausstrahlung der Nachricht um einen Wert zwischen 0.2 und 0.7 angepasst.
-
-#### `type="modifyNewsAvailability"`
-
-Es wird der Verfügbarkeitsstatus einer Nachricht angepasst.
-
-* `<effect trigger="happen" type="modifyNewsAvailability" enable="1" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der ID "ronny-news-drucktaste-1" wird auf Ja gesetzt.
-* `<effect trigger="happen" type="modifyNewsAvailability" enable="0" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der ID "ronny-news-drucktaste-1" wird auf Nein gesetzt.
+```
+	<effects> 
+		<effect trigger="happen" type="triggernews" time="1,2,3" news="ronny-news-drucktaste-02b1" />
+	</effects>
+```
 
 ### Zielgruppenattraktivität (targetgroupattractivity)
 

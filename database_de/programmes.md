@@ -111,15 +111,19 @@ Beispiel: `<ratings critics="45" speed="30" outcome="40" />`
 | broadcast_flags | optional | [Ausstrahlungsflags](main.md#Ausstrahlungsflags) |
 | licence_broadcast_limit | optional | Anzahl der möglichen Ausstrahlungen (nur für diese Lizenz) |
 | licence_broadcast_flags | optional | [Ausstrahlungsflags](main.md#Ausstrahlungsflags) (nur für diese Lizenz) |
+| available | optional | Wahrheitswert - ist die Lizenz initial verfügbar |
+
 
 `country` und `maingenre` sind Pflicht für "Hauptprogramme", für Serienfolgen werden die Werte des Elternelements übernommen.
 `year` sollte angegeben werden.
 Wenn man allerdings zum Spielstart relative Jahre oder genauere Daten angeben möchte, kann man `year` weglassen und den `releaseTime`-Knoten verwenden.
 In Kombination mit Live-Programmen, Einschränkung der Ausstrahlungszeit oder -häufigkeit sind die Ausstrahlungsflags interessant.
 
-Während `maingenre` entscheidend für die Zuschauerberechnung ist, wird `subgenre` derzeit noch nicht in die Berechnung einbezogen.
+Ab Version 0.8.2 werden sowohl `maingenre` also auch `subgenre` in die Beliebtheits-/Zuschauerberechnung einbezogen.
 
-Im Code wird noch `available` eingelesen, kommt aktuell in der Datenbank aber nicht vor.
+Ab Version 0.8.2 kann eine Lizenz mittels `available="0"` initial deaktiviert werden.
+Die Aktivierung erfolgt dann durch einen Effekt (`modifyProgrammeAvailability` siehe [Effekte](main.md#effects)), z.B. durch das Erscheinen einer Nachricht oder die Ausstrahlung eines anderen Programms.
+Anwendungsfall für dieses Flag wäre z.B. die Definition von vielen Staffeln einer Serie, wobei die Folgestaffeln erst verfügbar werden soll, wenn die Vorgängerstaffel verwendet wurde.
 
 ### Veröffentlichung (releaseTime)
 
@@ -150,9 +154,22 @@ Die relativen Jahresangaben können positiv (ab Startspieljahr) und negativ (vor
 Für Live-Programme, die nicht als "immer live" markiert sind, ist der Releasezeitpunkt auch der Zeitpunkt, zu dem das Programm live ausgestrahlt werden kann.
 Später ist es nur noch eine Aufzeichnung.
 
-### Effekte
+### Effekte (effects)
 
-Laut Datenbankauslesecode können auch Programme Effekte haben. Das wird in der Datenbank aktuell noch nicht verwendet oder vom Editor unterstützt.
+Ab Version 0.8.2 werden auch für Programme Effekte unterstützt.
+Die Syntax ist analog zu den Effekten in den Nachrichten ([Effekte](main.md#effects)).
+Für Programmeffekte werden die folgenden Trigger unterstützt (`happen` wie bei den Nachrichten ist insb. nicht dabei).
+
+* `broadcast` - der Effekt tritt zu Beginn *jeder einzelnen* Ausstrahlung ein
+* `broadcastDone` - der Effekt tritt am Ende *jeder einzelnen* Ausstrahlung ein
+* `broadcastFirstTime` - der Effekt tritt ein, sobald die allererste Ausstrahlung (egal welchen Spielers) beginnt
+* `broadcastFirstTimeDone` - der Effekt tritt am Ende der allerersten Ausstrahlung (egal welchen Spielers) ein
+
+```
+	<effects> 
+		<effect trigger="broadcastFirstTime" type="modifyProgrammeAvailability" guid="ronny-programme-livereportage-raketenstart1" />
+	</effects>
+```
 
 ### Modifier
 

@@ -119,6 +119,7 @@ Beispiele:
 | live_date | optional | [Zeit](time.md#Zeitattribute) der Ausstrahlung für Livesendungen |
 | broadcast_time_slot_start | optional | Frühester Start des ersen Blocks |
 | broadcast_time_slot_end | optional | Spätestes Ende des letzten Blocks |
+| available | optional | Wahrheitswert - ist die Drehuchvorlage initial verfügbar |
 
 Hier dürften `flags` und `flags_optional` für den Einfluss auf das Endergebnis am wichtigsten sein.
 Produziert man eine Livesendung, sollte live_date definiert werden oder das Flag "immer live" gesetzt werden.
@@ -129,6 +130,10 @@ Bei einem optionalen Live-Flag sind dann also immer alle Folgen live oder keine.
 Natürlich kann man `flags_optional` auch im `data`-Knoten eines Einzelfolge (innerhalb von `children`) definieren.
 Der Zufallswert dieser Flags wird dann nur für diese Folge verwendet.
 Damit kann man z.B. erreichen, dass nur eine Folge möglicherweise FSK-18 ist und nicht gleich die gesamte Serie.
+
+Ab Version 0.8.2 kann eine Drehuchvorlage initial als nicht verfügbar markiert werden (`available="0"`).
+Die Aktivierung erfolgt dann durch einen Effekt (`modifyScriptAvailability` siehe [Effekte](main.md#effects)), z.B. durch das Erscheinen einer Nachricht oder der Ausstrahlung eines Programms.
+Anwendungsfall für dieses Flag wäre z.B. die Definition des Drehbuchs für eine Fortsetzung/Folgestaffel, wobei zunächst das Original ausgestrahlt werden muss.
 
 ### Ziel- und Lobbygruppen (groups)
 
@@ -196,6 +201,20 @@ Siehe [Standardkindelement](main.md#targetgroupattractivity).
 ### Serienfolgen (children)
 
 Im Hauptknoten `children` kann eine Liste Vorlagen für Folgen ( wieder als `scripttemplate`-Knoten) definiert werden. Bei diesen muss dann die Eigenschaft `index` definiert werden.
+
+### Effekte (effects)
+
+Ab Version 0.8.2 werden auch für Drehbuchvorlagen Effekte unterstützt.
+Die Syntax ist analog zu den Effekten in den Nachrichten ([Effekte](main.md#effects)).
+Die definierten Effekte werden an die fertige Produktion weitergegeben.
+Insofern werden dieselben Trigger wir für Programme unterstützt (`broadcast`, `broadcastDone`, `broadcastFirstTime`, `broadcastFirstTimeDone`).
+Der typische Anwendungsfall für einen Drehbuchvorlageneffekt dürfte das Freischalten weiterer Vorlagen sein (Staffel zwei zu einer gerade produzierten ersten Staffel).
+
+```
+	<effects> 
+		<effect trigger="broadcastFirstTime" type="modifyScriptAvailability" guid="ronny-scripttemplate-seriesX-season2" />
+	</effects>
+```
 
 ## spezifische Werte für scripttemplate
 

@@ -60,6 +60,10 @@ Im `details`-Knoten sind sie vorrangig zur besseren Lesbarkeit bei [Hauptpersone
 
 Beispiel `<details job="2" gender="1" birthday="1970-08-23" deathday="1993-10-31" country="US" />` - US-amerikanischer Schauspieler, der vom 23.8.1970 bis zum 31.10.1993 gelebt hat.
 
+Ab Version 0.8.2 werden auch relative (negative) Jahresangaben z.B. für das Geburtsjahr unterstützt.
+Das ist für fiktionale Personen interessant, die unabhängig vom Startjahr des Spiels gleich alt sein sollen.
+`birthday="-31-03-02"` würde also 31 Jahre vor dem Startjahr bedeuten.
+
 ### Daten (data)
 
 Diese Daten definieren insbesondere die Werte für Eignung für eine Besetzung.
