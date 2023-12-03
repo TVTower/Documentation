@@ -53,3 +53,5 @@ Die jars findet man z.B. in der `artifact.zip`, die von der Github-Action beim B
 
 Zur Zeit wird der jeweils aktuelle Snapshot der Editor-Plugins unter `https://www.nittka.de/download/tvtdb` zur Verfügung gestellt.
 Eine Updatesite für stabile Releases gibt es noch nicht.
+
+Das dort verfügbare Editor-Feature sollte sich über den Update-Site-Mechanismus in ein Eclipse (möglichst eine Version für Java-Entwickler) installieren lassen (`Help`->`Install New Software` bei `Add` die obige URL eintragen).

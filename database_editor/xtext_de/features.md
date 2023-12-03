@@ -11,6 +11,10 @@ Eine Übersicht der Fehler wird auch im `Problems`-View gegeben (ggf. über Quic
 Spätestens beim Speichern einer Datei erfolgt eine Validierung.
 Wenn sich das Plugin mal verschluck haben sollte, kann man im Hauptmenü `Project`->`Clean` das Gesamtprojekt zurücksetzen und prüfen lassen.
 
+Für manche der Prüfungen lässt sich die Fehler Stufe (Fehler/Warnung/Information/Ignorieren) konfigurieren.
+Das kann dafür genutzt werden Probleme, die gerade nicht interessieren, auszublenden und die Fehlermeldungen übersichtlicher zu gestalten.
+Im Hauptmenü `Window`->`Preferences`->`TVTower Database`->`Errors/Warnings` öffnen und dort die gewünschten Werte eintragen.
+
 ## Autovervollständigung
 
 Die Autovervollständigung wird mit `Strg-Leertaste` angestoßen.
