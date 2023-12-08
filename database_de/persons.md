@@ -26,7 +26,7 @@ Welche der folgenden Eigenschaften und Kindelemente jeweils unterstützt werden,
 | nick_name_original | informativ |  wenn es ein echtes Vorbild gibt - der ursprüngliche Spitzname |
 | fictional | optional | [Standardeigenschaft](main.md#fictional) |
 | levelup | optional | Wahrheitswert - kann die Person eine "Hauptperson" werden (Standardwert 1) |
-| bookable | optional | Wahrheitswert - kann die Person zum jetzigen Zeitpunkt in einer Produktion mitwirken (Standardwert 1) |
+| castable | optional | Wahrheitswert - kann die Person generell in einer Produktion mitwirken |
 | face_code | optional | definiertes Aussehen des Avatars |
 | generator | optional | Anweisungen für automatischen Attributerzeugung (Name, Vorname, Herkunftsland) |
 | tmdb_id | Metadaten optional |  [Standardeigenschaft](main.md#tmdb_id) |
@@ -34,6 +34,10 @@ Welche der folgenden Eigenschaften und Kindelemente jeweils unterstützt werden,
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |
+
+Der Standardwert für `castable` (bis Version 0.8.2 `bookable`) ist "1".
+Grundsätzlich sind aber nur fiktionale Personen in Eigenproduktionen einsetzbar.
+Das Programm unterscheidet für die Einsatzbarkeit zwischen `castable` (grundsätzlich) und `bookable` (zum jetzigen Zeitpunkt).
 
 `generator` wird nur selten benutzt, der Wert enthält kommasepariert ein Länderkürzel und das Geschlecht für die Bestimmung des Namens.
 Beispiel `generator="de,2"` für eine deutsche Frau.
