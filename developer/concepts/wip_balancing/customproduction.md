@@ -6,7 +6,8 @@ Da hier aber nochmal viele neue Faktoren hinzukommen, bekommen sie ein eigenes K
 ## zu berücksichtigende Aspekte
 
 * Drehbuchattribute (Qualität, Potential, Preis, Blöcke)
-* gewählte Besetzung/Produktionsfirme
+* gewählte Besetzung/Produktionsfirma
+	* !!prüfen, ob die Erfahrung nur Einfluss auf den Preis oder auch die erreichte Qualität hat
 * gewählte Punktverteilung
 * Senderimage/Sympathie
 * Anzahl möglicher Produktionen
@@ -17,13 +18,17 @@ Da hier aber nochmal viele neue Faktoren hinzukommen, bekommen sie ein eigenes K
 ## Beobachtungen Ist-Stand
 
 Grundbeobachtung: Eigenproduktionen mit guten Drehbüchern und guter Besetzung liefern verlässlich hohe Einschaltquoten und einen Verkaufspreis, der deutlich über den Kosten liegt.
-Einige Drehbücher stechen hier besonders heraus (Don Rons...)
+
+Einige Drehbücher stechen hier besonders heraus (Don Rons...).
+Das ist aber vielleicht auch OK, denn bei einem nun viel größeren Angebot an Drehbuchvorlagen, sind diese Ausreißer tendenziell seltener verfügbar.
 
 ### Was stört?
 
 * Drehbücher vergleichsweis zu billig
 * Drehbuchkauf/-verkauf ermöglicht schnelles Auswechseln des Angebots (bis was gutes dabei ist)
+	* nochmal prüfen, ob das schon entschärft wurde (Auffüllen nach Raumverlassen vorrangig aus "Zurückgegebenem")
 * Fokuspunktkosten steigen liniear (Punktpreis * Anzahl vergebener Punkte)
+	* 0.8.2: exponentieller Anstieg
 * "Erfolgsgarantie": Drehbuch OK, Cast OK = Ergebnis gut (gute Einschaltquoten und hoher Verkaufspreis)
 * zu geringer Einfluss der Besetzung/Firma auf das Ergebnis (wenig Potential = selbst bei bester Besetzung schlechtes Ergebnis; hohes Potential = selbst bei schlechtester Besetzung brauchbares Ergebnis)
 
@@ -52,13 +57,16 @@ Der eigentliche Dreh beginnt ja erst im Studio, man kann aber schon viele Konzep
 Mögliche Ansatzpunkte wären
 
 * gelegentlicher Urlaub, der Personen nicht verfügbar macht
+* gleiche Besetzung nur für Serie/Multiproduktion erlauben - Person auf Einkaufszettel entfällt für andere Produktionen
 * Umstellung auf "voraussichtliche Produktionszeit", so dass die Zeit erst beim Start der Produktion ermittelt wird (wieviele sind gerade beschäftigt -> verlängert die neu gestartet)
 * Nachricht: X mit Erschöpfung im Krankenhaus - Drehzeiten verlängern sich
 
 ### Produktionsergebnis
 
-* stärkere Kopplung der Cast-Attribute an das Ergebnis
+* !!prüfen, ob Erfahrung auch für das Ergebnis eine Rolle spielt; Ziel: Superergebnisse nur wenn Hauptdarsteller (erste beide/die Hälfte) und Regisseur (immer/vom Genre abhängig) große Erfahrung haben; dadurch würde eine Produktion automatisch teurer
+* stärkere Kopplung der Cast-Attribute an das Ergebnis (Attributmodifier für mehr Genre definieren)
 * stärkere Kopplung der vergebenen Fokuspunkte an das Ergebnis
+* bei Shows werden immer selbe Gäste bestraft (wahrscheinlich schon bei Produktion; bei Ausstrahlung zu kompliziert?)
 
 ## Faustregeln (die möglichst immer erfüllt sein sollten)
 
@@ -108,7 +116,7 @@ Mit der Einführung von Drehbuchvorlagen mit sehr vielen möglichen Produktionen
 Unabhängig von allem anderen kann das Durchprobieren der Drehbücher erschwert werden.
 
 * Drehbuchverkauf verbieten (nur entsorgen im Studio geht)
-* Drehbuch nur mit massivem Abschlag zurückgeben (nur 25% des Kaufpreises zurück; das Drehbuch landet dann zum Normalpreis wieder in der "Refill-Liste"
+* Drehbuch nur mit massivem Abschlag zurückgeben (nur 25% des Kaufpreises zurück; das Drehbuch landet dann zum Normalpreis wieder in der "Refill-Liste" - tut nur am Anfang weh; später sind die Preise im Vergleich zum Vermögen ggf. vernachlässigbar
 * beim Auffüllen (nach Kauf) werden nur Drehbücher mit einer gedeckelten Attraktivität verwendet (max. Durchschnittsqualität, kein hohes Potential); allein mein turnusmäßigen Refresh wird die gesamte Drehbuchbandbreite berücksichtigt (höherer Anteil "neuer" Drehücher?)
 
 ## Herausforderung "mögliche Zuschauerzahl"

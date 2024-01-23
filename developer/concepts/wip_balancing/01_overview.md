@@ -55,13 +55,18 @@ Motto: nicht die ersten 10 Tage schwierig und potentiell frustrierend machen, so
 ### Was stört (Grobübersicht)?
 
 * Film kann nach Erholung sehr oft gesendet werden ohne spürbare Einbußen auf Einschaltquote; wenig Anreiz großen Fundus zu "erneuern" (einmalige Kosten, dauerhafte Einnahmen)
+	* 0.8.2: langsamere Filmerholung, stärkerer Einfluss der Sendehäufigkeit auf die maximale Aktualität umgesetzt
 * zu wenig Anreiz, im Tagesprogramm gute Sendungen zu bringen - da die Zahl der möglichen Zuschauer so gering ist, spielt der Unterschied zwischen 10 und 30 Prozent Einschaltquote oft keine Rolle für die möglichen Werbeeinnahmen; man verschwendet nur einen guten Film; im Ergebnis sendet man Durchschnittskram in Dauerschleife (da sich die wegen geringer Zuschauerzahl auch schnell erholen)
 * Benachteiligung von "Zielgruppen"-Programmen (Gesamteinschaltquote gering - wenig Werbeeinnahmen, Imageverlust), führt zu Vernachlässigung ganzer Genres
 * gleichzeitig zu großer und zu kleiner Einfluss der Aktualität (siehe weiter unten)
 * gefühlt zu wenig Varianz bei der Genre-Popularität - man kann sich darauf verlassen, dass Komödie zur Prime-Time gute Einschaltquoten bringt
+	* 0.8.2: Popularitätsfaktor eines Genres hängt stärker von der Ausstrahlung ab; wenn der Faktor hoch war reduziert er sich mit Ausstrahlungen
 * Eigenproduktionen mit gutem Drehbuch erlauben bei geringen Kosten überdurchschnittliche Einschaltquoten und Verkaufspreise
+	* 0.8.2: erste Anpassungen zu Filmpreisen (und Aktualitätsverlust) wirken sich schon etwas auf die Eigenproduktionen aus
 * Berechnung Imagegewinn allein nach Reihenfolge (egal ob absolute oder relative Zuschauerzahl) zu naiv (Abstand zum Nächsten; Zielgruppenfilme kommen implizit schlecht weg); Einschaltquote berücksichtigt (Sieger mit 10% sollte nicht dasselbe Ergebnis liefern wie Sieger mit 60%)
+	* 0.8.2: erste Anpassung des Imagegewinns abhängig vom Image (stark zurückliegende Spieler haben es leichter, weniger starker Zugewinn, wenn man weit vorne liegt)
 * Bedeutung Ramschkiste nur in den ersten Tagen
+* unplausible Einschaltquoten: insb. nach Senderausbau ohne Konkurrenz im neuen Gebiet, ist es leichter sehr hohe Einschaltquoten zu erreichen (Grundkonkurrenz sollte angenommen werden); Eigenproduktionen einer gewissen Qualität erreichen leicht 60% Einschaltquote - gefühlt zu viel
 
 
 ## Faustregeln (die möglichst immer erfüllt sein sollten)
@@ -86,12 +91,17 @@ Vielleicht sollte hier die Sendezeit eine Rolle spielen - Aktualität zur Prime-
 ## mögliche (Sofort-) Maßnahmen
 
 * erste Ausstrahlung verursacht grundsätzlich Verlust der Maximalaktualität
+	* 0.8.2: umgesetzt
 * höherer Einfluss der Ausstrahlungshäufigkeit auf die Einschaltquote (je häufiger desto niedriger) - insb. zur Primetime!!
+	* 0.8.2: teilweise umgesetzt (Einfluss via Aktualitätsauswirkung; wenn ich mich richtig erinnere liegt zum Zeitpunkt der Einschaltquotenberechnung liegt die Ausstrahlungshäufigkeit gar nicht mehr unmittelbar vor - nochmal prüfen)
 * höherer Einfluss der Ausstrahlungshäufigkeit auf das Tempo der Erholung (je häufiger desto langsamer)
 * höherer Einfluss der Ausstrahlungshäufigkeit auf die maximale Aktualität (je häufiger desto niedriger)
+	* 0.8.2.: erste Version umgesetzt
 * höherer Einfluss einer Genrepopularität auf die Einschaltquote - diese sinkt bei der Ausstrahlung einer Sendung (egal welcher Sender) und erholt sich dann wieder
+	* 0.8.2: erste Version umgesetzt: Ausstrahlung senkt Popularität bis zu bestimmtem Punkt, Nichtausstrahlung lässt sie wieder steigen
 * stärkerer Einfluss der Qualität auf die (maximale) Aktualität; Erholungsgeschwindigkeit
 * grundsätzlich langsameres Erholen der Aktualität (ggf. auch abhängig von der Spielstärke des aktuellen Lizenzbesitzers)
+	* 0.8.2: erste Version umgesetzt; grundsätzlich langsamere Erholung
 * Anpassung der Werte in den Schwierigkeitsstufen (alle ein wenig anziehen, bei Schwer mehr Inflation bei Senderkosten, Werbeeinnahmen runter)
 
 ### Einführung weiterer Fixkostenpunkte

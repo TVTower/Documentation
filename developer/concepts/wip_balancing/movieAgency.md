@@ -6,6 +6,9 @@ Das Thema Unattraktivität Ramschkiste nach den ersten Spieltagen wurde an mehre
 Hypothese war, dass man sie nach wenigen Tagen nicht mehr benötigt, weil man dann einen Fundus zusammenhat, mit dem man dauerhaft Programm mit maximaler Aktualität ausstrahlen kann.
 Ein Vorschlag war, sie im Laufe des Spiels für Sonderangebote zu nutzen oder periodisch (nur) ein Genre anzubieten.
 
+Mit Version 0.8.2 wird ein deutlich größerer Fundus benötigt (langsamere Aktualitätserholung).
+Ob sich das ohne Ramschkiste schaffen lässt, ist noch unklar (für Tagesprogramm nachkaufen).
+
 Bei einer kompletten Abschaffung im späteren Spiel muss man einen möglichen KI-Bankrott berücksichtigen.
 Eine neu hinzukommende KI muss wieder Zugriff zu einem preiswerten Startangebot haben (auch wenn durch mehr Startkapital teurere Filme möglich wären).
 
@@ -26,9 +29,9 @@ Aber es sollte schon mehr Anreiz geben, immer weiter an seinem Fundus zu arbeite
 
 So lange aber (vor allem) die Aktualität eines Films (gefühlt) für die Einschaltquote verantwortlich ist, ergibt sich ein verzerrtes Bild: schlechte neue Filme sind besser als gute alte.
 
-An anderer Stelle wurde ja schon vorgeschlagen, dass sich die Aktualität viel langsamer erholt.
-Gleichzeitig könnte die Aktualität nach der Ausstrahlung eines "schlechten" Films auch stärker fallen und die Maximalaktualität die Qualität reflektieren.
-Ziel: schlechte Filme brauchen länger, bis Zuschauer sie wiedersehen wollen.
+Seit 0.8.2 erholt sich die Aktualität viel langsamer erholt.
+Zusätzlich könnte die Aktualität nach der Ausstrahlung eines "schlechten" Films auch stärker fallen und die Maximalaktualität die Qualität reflektieren.
+Ziel: schlechte Filme brauchen länger, bis Zuschauer sie wieder sehen wollen.
 
 "Miese Filme" haben dennoch einen Platz im Spiel: man kann nicht von Anfang an nur Blockbuster bringen, dafür hat man nicht genug Geld.
 Mit stärkerem Einfluss der Ausstrahlungshäufigkeit möchte man vielleicht auch nicht nur gute Filme Tagesprogramm verschwenden.
@@ -43,7 +46,7 @@ Allerdings wird davon in der Datenbank (bei Programmen) kein Gebrauch gemacht, n
 * unabhängig vom Level - Lizenzen bekommen eine Ablaufzeit (in Tagen; durch die Konfigurierbarkeit der Tageszahl pro Saison wird alles andere kompliziert)...
 
 Bei solchen Modellen muss man sich die Preisstruktur genau anschauen.
-Wenn pro Sendeblock bei voller Reichweite ca. 2 Mio(?) an Werbeeinnahmen möglich sind, kann ein Film nicht 20 Mio kosten (10 Ausstrahlungen mit vollen Werbeeinahmen nötig, bevor man die Kosten rein hat).
+Wenn pro Sendeblock bei voller Reichweite ca. 2 bis max 3 Mio an Werbeeinnahmen möglich sind, kann ein Film nicht 20 Mio kosten (10 Ausstrahlungen mit vollen Werbeeinahmen nötig, bevor man die Kosten rein hat; kann er natürlich - Spieler will den Film aus emotionalen Gründen, nicht aus finanziellen)
 
 Weitere Stichpunkte:
 * automatische Lizenzverlängerung (kostenpflichtig) im Archiv (alle, pro Lizenz, mehrere Regale für unterschiedliche Laufzeiten)
@@ -60,11 +63,11 @@ Im Ergebnis haben sich die Lizenzpreise am Spielanfang also sehr schnell verdrei
 Eine Strategie war also, sich zunächst mit halbwegs vernünftigen Lizenzen einzudecken, und diese dann bei Senderausbau in Dauerschleife zu senden.
 
 Die aktuelle Umsetzung ist vermutlich das andere Extrem - die geringen Preisanstiege machen aufgrund der Werbemehreinnahmen gar keinen Unterschied.
+(Allerdings sind die wirklich guten Filme weiterhin so teuer, dass man den Preis selbst mit mehreren Ausstrahlungen schwer einspielen kann).
 
 ABER: Ich glaube, der erste (wichtigere) Ansatzpunkt ist, die Dauerschleifen unattraktiver zu machen (langsamere Erholung, schnelleres Absinken der Maximalaktualität, größerer Einfluss der Austrahlungsanzahl auf die Einschaltquote).
 
 Nachlizensierungskosten bei Reichweiteerhöhung oder Abwertung des aktuellen Fundus bei Reichweiteerhöhung werden hier als Gedanke aufgenommen.
-
 
 ## Mögliche Maßnahmen
 

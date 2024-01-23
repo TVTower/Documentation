@@ -8,7 +8,9 @@ Hinzu kommt, dass zielgruppenspezifische Werbung aktuell noch nicht überproport
 Der Faktor hängt schon ungefähr an der Größe der Zielgruppe (weniger Bonus, wenn die Zielgruppe 50% der Bevölkerung ausmacht als wenn es 10% sind).
 Insgesamt dürfte Zielgruppenwerbung aber eher als Ersatz als unspezifische Werbung mit mehr Zuschauern eingesetzt werden. (statt einer Werbung für 1Mio Zuschauer, die gerade nicht da war, verwende ich Männerwerbung mit 500K Zuschauern)
 
-Werbung mit Genre-Beschränkung gibt es noch nicht "produktiv".
+In Version 0.8.2 gibt es erste Anpassungen: Berücksichtigung von Subgenres, Anpassung der Genrepopularität durch (Nicht-)Ausstrahlung.
+
+Erste Werbung mit Genre-Beschränkung gibt es seit 0.8.2.
 
 ## Zielgruppenwerbung
 
@@ -33,6 +35,7 @@ Dafür gibt es meiner Ansicht nach zwei Haupthinderungsgründe
 
 ## mögliche Ansätze
 
+* mehr mit der Zuschauerverteilung spielen (wochentagspezifisch); Anteil der Kinder Sonntag vormittag deutlich höher -> Kinderprogramm mit hoher Kindereinschaltquote wirft wesentlich mehr ab
 * aktuell ist der Faktor pro Zielgruppe festgelegt; diese Faktoren könnten nochmal geprüft werden (nicht nur Größe der Zielgruppe, sondern auch Erreichbarkeit - ganzen Tag, nicht in Prime-Time...)
 * Werbung für Zielgruppe+Genre (für ungünstige Kombinationen) wären denkbar, decken aber so wenige Fälle ab, dass es vermutlich den Aufwand nicht lohnt
 
@@ -60,8 +63,8 @@ Oder der Modus der Werbung schaltet ab einem bestimmten Image um (aus allgemeine
 
 ### stärker variierende Genrepopularität
 
-Wird ein Genre nicht gesendet, erhöht sich sein Attraktivität.
-Jede Ausstrahlung eines Genres verringert seine Attraktivität.
+Wird ein Genre nicht gesendet, erhöht sich sein Attraktivität (Umsetzung in 0.8.2).
+Jede Ausstrahlung eines Genres verringert seine Attraktivität (Umsetzung in 0.8.2).
 Wenn man immer nur Komödien sendet, sinken die Einschaltquoten auch bei voller Aktualität.
 
 TODO: siehe TGenrePopularity#changeTrend und finishBroadcast
