@@ -75,6 +75,10 @@ Standardelemente für Titel [title](main.md#title) und Beschreibung [description
 Häufig werden auch Variablen [variables](main.md#Variablen) für Titel und Beschreibung eingesetzt.
 Um die Verfügbarkeit des fertigen Drehbuchs einzuschränken, kann das [availability](time.md#Verfügbarkeit)-Element verwendet werden.
 
+(In einer früheren Version der Dokumentation wurde fälschlicherweise beschrieben, dass die Zielgruppen analog Programmen im groups-Knoten definiert werden können.
+TVTower hat diesen Knoten allerdings zu keinem Zeitpunkt ausgelesen.
+Die Zielgruppen können im `data`-Knoten angegeben werden.)
+
 ### Genre (genres)
 
 Im Knoten `genres` können Hauptgenre (Pflicht) und optional Untergenres (kommasepariert) definiert werden.
@@ -120,8 +124,11 @@ Beispiele:
 | broadcast_time_slot_start | optional | Frühester Start des ersen Blocks |
 | broadcast_time_slot_end | optional | Spätestes Ende des letzten Blocks |
 | available | optional | Wahrheitswert - ist die Drehuchvorlage initial verfügbar |
+| target_groups | optional | definitiv verwendete [Zielgruppe](main.md#Zielgruppe) |
+| target_groups_optional | optional | möglicherweise verwendete [Zielgruppe](main.md#Zielgruppe) |
 
-Hier dürften `flags` und `flags_optional` für den Einfluss auf das Endergebnis am wichtigsten sein.
+
+Hier dürften `flags` und `flags_optional` sowie `target_groups` und `target_groups_optional` für den Einfluss auf das Endergebnis am wichtigsten sein.
 Produziert man eine Livesendung, sollte live_date definiert werden oder das Flag "immer live" gesetzt werden.
 
 Definiert man bei Serien `flags_optional` im Haupteintrag, werden bei der eigentlichen Drehbucherstellung diese Flags einmal ermittelt und dann für alle Serienfolgen verwendet.
@@ -134,10 +141,6 @@ Damit kann man z.B. erreichen, dass nur eine Folge möglicherweise FSK-18 ist un
 Ab Version 0.8.2 kann eine Drehuchvorlage initial als nicht verfügbar markiert werden (`available="0"`).
 Die Aktivierung erfolgt dann durch einen Effekt (`modifyScriptAvailability` siehe [Effekte](main.md#effects)), z.B. durch das Erscheinen einer Nachricht oder der Ausstrahlung eines Programms.
 Anwendungsfall für dieses Flag wäre z.B. die Definition des Drehbuchs für eine Fortsetzung/Folgestaffel, wobei zunächst das Original ausgestrahlt werden muss.
-
-### Ziel- und Lobbygruppen (groups)
-
-Die Definition dieser Gruppen erfolgt genau so wie `groups` in den [Programmen](programmes.md#Ziel--und-Lobbygruppen-groups).
 
 ### (Zufalls-)Werte für das Drehbuch und Ergebnis
 
