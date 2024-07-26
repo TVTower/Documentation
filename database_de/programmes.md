@@ -75,7 +75,6 @@ Das Attribut `role_guid` kann verwendet werden, um eine Besetzung mit einer defi
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
 | target_groups | Pflicht | definitiv verwendete [Zielgruppe](main.md#Zielgruppe) |
-| target_groups_optional | optional | möglicherweise verwendete [Zielgruppe](main.md#Zielgruppe) |
 | pro_pressure_groups | optional | angesprochene [Lobbygruppe](main.md#Lobbygruppe) |
 | contra_pressure_groups | optional | abgeschreckte [Lobbygruppe](main.md#Lobbygruppe) |
 
