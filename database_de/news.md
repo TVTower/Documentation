@@ -51,12 +51,12 @@ Auf diese Weise kann erreicht werden, dass nicht zu viele Nachrichten zum selben
 
 ## Kindelemente von news
 
-Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sindvollerweise zu definieren, Variablen [variables](main.md#Variablen) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
+Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sindvollerweise zu definieren, Variablen [variables](variables.md) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
 
 Ab Version 0.8.1 werden die Variablen an angestoßene Nachrichten weitergegeben.
-Das erlaubt es, Nachrichtenketten abwechslungsreicher zu gestalten, da gewürfelte Namen etc. damit auch in späteren Nachrichten verwendet werden können.
-Alle verwendeten Variablen müssen in der Startnachricht definiert werden.
-Die angestoßenen Nachrichten dürfen keine eigenen Variablendefinitionen enthalten.
+Das erlaubt es, Nachrichtenketten abwechslungsreicher zu gestalten, da gewürfelte Namen etc. damit auch in späteren Nachrichten konsistent verwendet werden können.
+Dafür müssen alle verwendeten Variablen in der Startnachricht definiert werden.
+Die angestoßenen Nachrichten selbst dürfen keine eigenen Variablendefinitionen enthalten.
 
 ### Daten (data)
 
@@ -108,6 +108,7 @@ Beispiel:
 ```
 	<effects> 
 		<effect trigger="happen" type="triggernews" time="1,2,3" news="ronny-news-drucktaste-02b1" />
+		<effect trigger="happen" type="modifyNewsAvailability" enable="0" news="ronny-news-drucktaste-1" />
 	</effects>
 ```
 
@@ -283,16 +284,14 @@ In diesem Fall ist es zulässig, dass die Nachfolgenachrichten Variablendefiniti
 ### Dokumentation
 
 * Klären, welche Modifiers es überhaupt gibt und welche für Nachrichten unterstützt werden. (Ronny: über Modifier Wirkung einer Ausstrahlung auf X Stunden begrenzen)
-* data: `available` nicht verwendet oder dokumentiert, könnte aber genutzt werden, um mittels Effekt mehrere unabhängige Nachrichten als verfügbar zu markieren; eine andere Nachricht könnte diese Markierung wieder entfernen - zu klären, wie ein Effekt nur die Verfügbarkeit von Nachrichten setzen kann; siehe auch TGameModifierNews_ModifyAvailability
 
 ### DB-Cleanup
 
 * Es gibt viele Nachrichten, die nur einmalig verfügbar sind. Hier sollte nochmal analysiert werden, welche sich für häufigeres Senden eignen würden.
 * Newsgenre prüfen (der Outline des Editors eignet sich, leicht das Genre zu erkennen)
-* ggf. Börsennachrichten anpassen; sauberere Trennung von initialem Anstoßen und Nachfolgenachricht (funktioniert nicht wie erwartet)
 
 ### Generell
 
-* Es gibt wenige Nachrichten, welche die Attraktivität von Genre oder Personen anpassen. Wenn Filmrollen mehr Verwendung finden würden, könnte auch die Attraktivität von Rollen angepasst werden (neuer Yams Pond-Film, Yams Pond-Darsteller verstorben) - (es werden bereits Ankündigungen für Kinofilme erzeugt; die mir aber noch nicht aufgefallen sind...)
-* News-Flag 64 ist inhaltlich redundant: Wenn eine Nachricht "unique" ist, kann sie ohnehin kein zweites Mal erscheinen, falls sie nicht "unique" ist, muss eine ggf. gesetzte happen_time ignoriert werden.
+* Es gibt wenige Nachrichten, welche die Attraktivität von Genre oder Personen anpassen. Wenn Filmrollen mehr Verwendung finden würden, könnte auch die Attraktivität von Rollen angepasst werden (neuer Yams Pond-Film, Yams Pond-Darsteller verstorben) - (es werden bereits Ankündigungen für Kinofilme erzeugt)
+* Verwendung von News-Flag 64 prüfen: Wenn eine Nachricht "unique" ist, kann sie ohnehin kein zweites Mal erscheinen, falls sie nicht "unique" ist, muss eine ggf. gesetzte happen_time nach der ersten Veröffentlichung in jedem Fall gelöscht werden (Flag redundant?)
 * News-Flag 16/32 in Klärung, ob Flags zu einem zusammengefasst werden können; unterschiedliche Standardbehandlung für Initial- und Nachfolgenachrichten.

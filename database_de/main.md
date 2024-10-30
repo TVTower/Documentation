@@ -10,6 +10,9 @@ Es empfielt sich, eigene Inhalte in einer neuen Datei im `user`-Unterverzeichnis
 Kurzer Hinweis zu Titeln, Personennamen etc.: diese sind für das Spiel - soweit nicht ohnehin frei erfunden - absichtlich abgeändert, um rechtlichen Problemen aus dem Weg zu gehen.
 Zur Suche, Wiedererkennung und Vermeidung von Dopplungen in der TVTower-Datenbank sind aber zum Teil Filmdatenbank-IDs und Originalnamen hinterlegt.
 
+Für die Version 0.8.4 hat ein großer Umbau bezüglich [Variablen](variables.md) stattgefunden.
+In zukünfitgen Versionen wird das alte Format nicht mehr unterstützt werden und eigene Datenbank-Dateien müssen auf das neue Format umgestellt werden.
+
 ## Grundsätzliche Struktur einer TVTower-Datenbankdatei
 
 ```XML
@@ -59,6 +62,12 @@ Die Struktur ihrer Kindelemente ist separat dokumentiert.
 | programmeroles | [Filmrollen](persons.md#Filmrollen)|
 
 Jeder dieser Hauptknoten ist optional, d.h. eine Datenbankdatei kann nur Werbung enthalten oder aber sämtliche Daten.
+
+## Sprachspezifische Namen
+
+Die Übersetzung von Titeln und Beschreibungen erfolgt direkt in der jeweiligen Datenbankstruktur.
+Das Datenbankformat für Personen und Rollen erlaubt das nicht analog.
+Wenn im Einzelfall Übersetzungen nötig sein sollten, können die in [separaten Dateien](lang.md) hinterlegt werden.
 
 ## von mehreren Elementen verwendete Strukturen
 
@@ -130,40 +139,46 @@ oder am Beispiel eines Filmtitels
 </title>
 ```
 
-Die aktuell verwendeten Sprachen sind Deutsch (de) und Englisch (en).
+Die aktuell verwendeten Sprachen sind Deutsch (de), Englisch (en) und Polnisch (pl).
 Langfristig muss es dabei aber nicht bleiben.
-Spracheinträge können auch Variablen enthalten - diese werden aber in einem [separaten Abschnitt](main.md#Variablen) beschrieben.
+Spracheinträge können auch Variablen enthalten - diese werden aber in einem [separaten Abschnitt](variables.md) beschrieben.
 
-In Drehbuchvorlagen und Nachrichten sind z.B. für Titel und Beschreibung auch Alternativen, d.h. die Auswahl zwischen mehreren Möglichkeiten, sinnvoll einsetzbar.
-Alternativen werden durch `|` ohne Leerzeichen getrennt.
-
-```XML
-<title>
-	<de>Der Held|Der Superheld|Der %ADJEKTIV% Superheld</de>
-	<en>The Hero|The Superhero|The %ADJEKTIV% Superhero</en>
-</title>
-```
-
-Bei der Erstellung des eigentlichen Drehbuchs/der Nachricht wird dann eine der Alternativen ausgewählt.
+Seit der Umstellung ab Version 0.8.4 auf die neue Variablensyntax (`${...}` statt `%...%`) sind Alternativen (`Variante 1|Variante 2`) nur noch in Variablendefinitionen und nicht mehr direkt im Titel der in der Beschreibung erlaubt.
 
 ### Standardkindelemente
 
 #### title
 
 Der `titel`-Knoten enthält Titel von Drehbuchvorlagen, Filmen etc.
-Es werden unterschiedliche Sprachen und [Variablen](main.md#Variablen) unterstützt.
+Es werden unterschiedliche Sprachen und [Variablen](variables.md) unterstützt.
 
 ```XML
 <title>
-	<de>Reise nach %WHERE%</de>
-	<en>Voyage to %WHERE%</en>
+	<de>Reise nach ${WHERE}</de>
+	<en>Voyage to ${WHERE}</en>
+</title>
+```
+
+Soll ein Title in allen Sprachen komplett identisch sein kann die verkürzte Schreibweise ohne Einzelsprachtags verwendet werden.
+
+```XML
+<title>[li3o9n8e0l1]</title>
+```
+
+Achtung: sind Variablen involviert, die für verschiedene Sprachen unterschiedliche Werte liefern sollen, kann die verkürzte Schreibweise **nicht** verwendet werden.
+`<title>${showname}</title>` würde in allen Sprachen denselben Wert liefern, auch wenn die Variablendefinition Übersetzungen enthält.
+Hier muss die ausführliche Variante verwendet werden.
+
+```XML
+<title>
+	<de>${showname}</de>
+	<en>${showname}</en>
 </title>
 ```
 
 #### description
 
-Der `description`-Knoten enthält eine Beschreibung - wieder in unterschiedlichen Sprachen und mit Unterstützung von [Variablen](main.md#Variablen).
-Beispiel:
+Der `description`-Knoten enthält eine Beschreibung. Beispiel:
 
 ```XML
 <description>
@@ -172,10 +187,12 @@ Beispiel:
 </description>
 ```
 
+Auch hier gelten die Hinweise zu [Variablen](variables.md) und Kurzschreibweise wie beim Titel.
+
 #### text
 
 Der `text`-Knoten enthält einen Text.
-Auch hier werden unterschiedliche Sprachen und [Variablen](main.md#Variablen) unterstützt.
+Auch hier werden unterschiedliche Sprachen und [Variablen](variables.md) unterstützt.
 
 #### availability
 
@@ -224,6 +241,9 @@ Für alle Effekttypen können die folgenden Eigenschaften definiert werden:
 | probability | optional | Wahrscheinlichkeit für das Eintreten dieses Effekts |
 
 Ein `effect`-Knoten hat immer die Eigenschaft `trigger`, die steuert, unter welcher Bedingung der Effekt eintritt. Die anderen Felder hängen vom Effekttyp `type` ab.
+ACHTUNG: time wird aktuell nur beim Auslösen von Nachrichten ausgewertet.
+Bei anderen Typen (Beliebtheit, Verfügbarkeit) hat der Wert keine Auswirung.
+Der Effekt tritt immer sofort ein.
 Die häufigsten Zeitsteuerungsvarianten sind 1 (`"1,3,7"` - in 3 bis 7 Stunden), 2 (`"2,1,2,6,14"` - in 1 bis 2 Tagen zwischen 6 und 14 Uhr).
 Die `probability` liegt zwischen 0 und 100 (falls nicht definiert, wird 100 angenommen).
 
@@ -299,122 +319,7 @@ Es wird der Verfügbarkeitsstatus einer Drehbuchvorlage angepasst.
 
 ### Variablen
 
-#### selbst definierte Variablen
-
-Variablen sind ein gute Möglichkeit, Varianz zu erzeugen.
-So kann der Kripoeinsatz in unterschiedlichsten Orten stattfinden.
-
-```XML
-...
-	<title>
-		<de>Kripo %CITY%</de>
-	</title>
-...
-	<variables>
-		<city>
-			<de>Berlin|Bonn|Trier|%STATIONMAP:RANDOMCITY%</de>
-		</city>
-	</variables>
-...
-```
-
-Die Variablenverwendung wird durch zwei den Variablennamen umschließende Prozentzeichen markiert `%VARIABLEN_NAME%`.
-Die Variablen selbst und ihre möglichen Belegungen werden im Hauptknoten `variables` definiert, wobei für jede Variable wieder mehrere Sprachvarianten erlaubt sind.
-Die unterschiedlichen Möglichkeiten für die Ersetzung der Variable verden durch senkrechte Striche `|` voneinander getrennt.
-Im obigen Beispiel könnte das Ergebnis als "Kripo Berlin", "Kripo Bonn", "Kripo Trier" sein; oder der Name der Stadt wir zufällig erzeugt (siehe unten).
-Das Beispiel zeigt, dass Variablendefinition selbst wieder Variablen enthalten können.
-
-Ab Version 0.7.4 wird eine zweite Variablensyntax unterstützt `${VARIABLEN_NAME}`.
-Diese hat den Vorteil, dass Beginn und Ende eindeutig unterscheidbar sind, was verschachtelte Variablen erlaubt `${varpraefix_${variant}}`.
-Hird zunächst die Variante aufgelöst und bestimmt damit, welche "Hauptvariable" Verwendung findet.
-
-```XML
-...
-	<title>
-		<de>${wer_${variant}} und ${pronomen_${variant}} ${adj}${was}</de>
-	</title>
-...
-	<variables>
-		<variant>
-			<de>maennl|weibl</de>
-		</variant>
-		<wer_maennl>
-			<de>Der Anwalt|Der Bäcker|Der König</de>
-		</wer_maennl>
-		<wer_weibl>
-			<de>Die Lehrerin|Die Ärztin|Die Königin</de>
-		</wer_weibl>
-		<pronomen_maennl>
-			<de>seine</de>
-		</pronomen_maennl>
-		<pronomen_weibl>
-			<de>ihre</de>
-		</pronomen_weibl>
-		<adj>
-			<!--erste Alternative leer - also ohne Adjektiv-->
-			<de>|teuren |neusten |früheren </de>
-		</adj>
-		<was>
-			<de>Autos|Liebschaften|Pferde|Probleme</de>
-		</was>
-	</variables>
-...
-```
-
-#### vom Spiel automatisch aufgelöste Variablen
-
-Es gibt Variablennamen und global verfügbare Werte, die von der Spiellogik automatisch aufgelöst werden können.
-
-**globale Variablen**
-
-* `WORLDTIME:YEAR` - aktuelles Jahr im Spiel
-* `WORDLTIME:GAMEDAY` - aktueller Spieltag
-* `WORDLTIME:DAYLONG` - Wochentag (Montag, Dienstag...)
-* `WORLDTIME:GERMANCURRENCY` - aktuelle deutsche Währung
-* `WORLDTIME:GERMANCAPITAL` - deutsche Hauptstadt (Berlin/Bonn)
-* `STATIONMAP:COUNTRYNAME` - Name des Landes
-* `STATIONMAP:POPULATION` - Einwohnerzahl
-
-In Drehbuchvorlagen werden automatisch die Variablen `ROLE1`...`ROLE7` (voller Name), `ROLENAME1`...`ROLENAME7` (Vorname), `GENRE` (Hauptgenre) und `EPISODES` (Anzahl der Folgen) aufgelöst.
-
-Beispiel: `%ROLE1% erlebt wieder viel Abenteuer in %EPISODES% Folgen der neuen %GENRE%serie.`
-
-**vom Spiel erzeugbare Zufallswerte**
-
-* `STATIONMAP:RANDOMCITY` erzeugt einen (fiktiven) Stadtnamen
-
-**Personengenerator**
-
-Zum erzeugen zufälliger Namen, hinter denen keine Person aus der Datenbank stehen muss, kann der Personengenerator verwendet werden.
-Er bekommt als Argumente das Länderkürzel (Achtung - das sind nicht die Werte der [Ländertabelle](main.md#Länder),  wobei `unk` für unbekannt steht und das Geschlecht (1=männlich, 2=weiblich).
-
-Beispiele:
-* `%PERSONGENERATOR_NAME(unk,2)%` - voller Name einer Frau aus unbestimmtem Land
-* `%PERSONGENERATOR_FIRSTNAME(de,1)%` - Vorname eines deutschen Mannes
-* `%PERSONGENERATOR_LASTNAME(us,2)%` - Nachname einer US-Amerikanerin
-
-Die aktuell möglichen Länderkennungen findet man in `base.util.persongenerator.bmx`, wo es für verschiedene Länder `TPersonGeneratorCountry_X`-Implementierungen gibt.
-
-**Achtung:** wenn man dieselbe Zufallsvariable (z.B. einen Namen) an mehreren Stellen (Titel und Beschreibung), dann definiert man eine eigene Variable und verwendet die Zufallsvariable als Inhalt.
-Ansonsten würde jedes Vorkommen der Variable durch einen anderen Zufallswert ersetzt.
-
-```XML
-<variables>
-	<randomcity>
-		<de>%STATIONMAP:RANDOMCITY%</de>
-	</randomcity>
-</variables>
-```
-
-#### Besetzungsvariablen
-
-Einen Sonderfall stellen Variablen dar, die automatisch aus der Besetzung eines Programms aufgelöst werden.
-Über den Index wird die Person definiert und dann kann angegeben werden, ob der volle Name, der Vorname oder der Nachname eingesetzt werden soll.
-Das Format unterscheidet sich leicht: `[Index|WelcherName]`
-
-* `[1|First]` - der Vorname der Besetzung mit Index 1
-* `[2|Last]` - der Nachname der Besetzung mit Index 2
-* `[3|Full]` - der volle Name der Besetzung mit Index 3
+Mit dem Umbau der Variablenauflösung und der Erweiterung auf Funktionsauswertung bekommt dieses Thema sein eigenes [Hauptkapitel](variables.md).
 
 ## Standardwertebereiche
 
@@ -738,6 +643,7 @@ Wenn Kindelemente vorhanden sind, wird das Tag zunächst mit einer schließenden
 Kindknoten werden zur besseren Lesbarkeit eingerückt.
 Die übergeordneten Knoten bestimmen, ob ein Kindknoten optional (muss nicht vorkommen) oder verpflichtend (muss vorkommen) ist und ob er höchstens einmal (einfacher Kindknoten) oder mehrfach (Liste) vorkommen darf.
 Im Fall einer Liste kann es also mehrere Tags mit demselben Namen geben.
+
 ## TODOs und Fragen
 
 ### Dokumentation

@@ -75,7 +75,6 @@ Welche anderen dann benötigt werden, hängt vom Typ ab.
 
 Durch das Angeben der Minute kann man bestimmen, ob die Zuschauerzahl während einer normalen Sendung oder einer Nachrichtensendung erreicht werden soll.
 Aber selbst Zuschauerzahl oder Quote sind optional, so könnte man z.B. über Genre und Flags den Spieler belohnen, der zuerst eine Kultur-Sendung ausstrahlt.
-Allerdings wird limitToGenres/limitToFlags noch nicht im Code ausgewertet.
 
 `<data type="reachAudience" minAudienceAbsolute="1000000" checkMinute="5" checkHour="3">` - Es müssen 1 Mio. Zuschauer um 3:05 Uhr eingeschaltet haben.
 
@@ -163,4 +162,3 @@ Wenn man mehrere Tasks definieren würde, müssen die dann am selben Tag erfüll
 * Wenn es schon einen Reward-Typ gibt, wäre es dann nicht sinnvoller den Wert generisch zu machen? (type="money" value="50000", type="betty" value="5", type="image" value="1")
 * Achievement-Flags noch nicht in der Konstantenklasse
 * Die aktuelle Definition von checkHour könnte zu restriktiv sein. Damit scheint sich nämlich nicht prüfen zu lassen "zur Primetime" also zwischen 19 und 23 Uhr. (Erste Kultursendung zur besten Sendezeit)
-* LimitGenre/Flags im Code auswerten (und in Editor unterstützen)

@@ -217,7 +217,7 @@ Dafür wird das zugrundeliegende Programm mit `programmedata_id` referenziert.
 
 ```XML
 <programme id="myname-programme-testprogramme-limitcopy" programmedata_id="data-myname-programme-testprogramme" product="1" fictional="1" created_by="myname">
-	<!--- licence_flags="4" means: remove from collection when reaching limit -->
+	<!-- licence_flags="4" means: remove from collection when reaching limit -->
 	<data licence_flags="4" licence_broadcast_limit="3" price_mod="0.6" />
 </programme>
 ```
@@ -305,5 +305,4 @@ TODO
 
 * wegen der konfigurierbaren Zahl der Tage muss day aus releaseTime anders interpretiert werden
 * Referenzierung von anderen Programmen im Editor umsetzen
-* Sollte bei staff nicht eigentlich auch eine Rolle referenziert werden können (Yams Pond als Rolle definieren, in Filmen referenzieren; Nachrichten - neuer Yams-Pond-Film erhöht Attraktivität der Rolle und damit auch ein bisschen für ältere Filme)
 * Auswirkung der Lobbygruppe klären: bei Ausstrahlung des Programms verändert sich mein Image bei der entsprechenden Lobbygruppe?

@@ -61,6 +61,8 @@ Beispiel `time="8,2,11,13,30,45"` - falls heute Dienstag ist am Donnerstag zwisc
 
 ## Verfügbarkeit
 
+**TODO überarbeiten**
+
 Der `availability`-Knoten definiert zu welchem Zeitpunkt/in welchem Zeitraum ein Element verfügbar ist.
 
 Als Eigenschaften stehen `year_range_from`, `year_range_to` und `script` zur Verfügung.

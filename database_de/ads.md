@@ -104,6 +104,6 @@ Der Einfluss der Modifier (insb. Wearoff) dürfte aber praktisch irrelevant sein
 
 ### Generell
 
-* conditions:  pro_pressure_groups, contra_pressure_groups noch nicht ausgewertet
+* conditions:  pro_pressure_groups, contra_pressure_groups, forbidden..., limitedtoProgrammetype noch nicht ausgewertet
 * der Quellcode unterstützt noch Effekte und Modifiers, welche in der aktuellen Datenbank nicht vorkommt und von der Grammatik nicht unterstützt werden
 * sollte allowed/prohibited_genre nicht eher eine Liste sein. Bei der großen Anzahl von Genres erscheint es nicht immer sinnvoll, nur ein einziges zu erlauben/verbieten.
