@@ -55,8 +55,8 @@ Standardelemente für Titel [title](main.md#title), Beschreibung [description](m
 
 Ab Version 0.8.1 werden die Variablen an angestoßene Nachrichten weitergegeben.
 Das erlaubt es, Nachrichtenketten abwechslungsreicher zu gestalten, da gewürfelte Namen etc. damit auch in späteren Nachrichten konsistent verwendet werden können.
-Dafür müssen alle verwendeten Variablen in der Startnachricht definiert werden.
-Die angestoßenen Nachrichten selbst dürfen keine eigenen Variablendefinitionen enthalten.
+Dafür sollten alle verwendeten Variablen in der Startnachricht definiert werden.
+Wenn die Variablendefinitionen der aktuellen und der Vorgängernachricht nicht zusammen passen, kann es zum Programmabruch kommen.
 
 ### Daten (data)
 

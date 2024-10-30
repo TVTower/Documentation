@@ -11,7 +11,7 @@ Kurzer Hinweis zu Titeln, Personennamen etc.: diese sind für das Spiel - soweit
 Zur Suche, Wiedererkennung und Vermeidung von Dopplungen in der TVTower-Datenbank sind aber zum Teil Filmdatenbank-IDs und Originalnamen hinterlegt.
 
 Für die Version 0.8.4 hat ein großer Umbau bezüglich [Variablen](variables.md) stattgefunden.
-In zukünfitgen Versionen wird das alte Format nicht mehr unterstützt werden und eigene Datenbank-Dateien müssen auf das neue Format umgestellt werden.
+Zukünftige Versionen unterstützen das alte Format nicht mehr und eigene Datenbank-Dateien müssen auf das neue Format umgestellt werden.
 
 ## Grundsätzliche Struktur einer TVTower-Datenbankdatei
 
@@ -149,7 +149,7 @@ Seit der Umstellung ab Version 0.8.4 auf die neue Variablensyntax (`${...}` stat
 
 #### title
 
-Der `titel`-Knoten enthält Titel von Drehbuchvorlagen, Filmen etc.
+Der `title`-Knoten enthält Titel von Drehbuchvorlagen, Filmen etc.
 Es werden unterschiedliche Sprachen und [Variablen](variables.md) unterstützt.
 
 ```XML
