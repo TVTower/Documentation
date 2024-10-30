@@ -4,7 +4,7 @@ Die Werbeeinträge sind als Liste von `ads`-Kindelementen in das `allads`-Tag ei
 
 ```XML
 <allads>
-	<ad id="527e41eb-a641-49b9-a521-e921ec652e23">
+	<ad guid="527e41eb-a641-49b9-a521-e921ec652e23">
 		<title>
 			<de>Plöpp-Bier</de>
 			<en>Pop'Beer</en>
@@ -27,7 +27,7 @@ Um die Werbung überhaupt angeboten zu bekommen, ist ein Image von mindestens 4%
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |
@@ -46,15 +46,13 @@ Mit Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann
 | min_image | optional | Mindestsenderimage (0-100) |
 | max_image | optional | Höchstsenderimage (0-100) |
 | target_group | optional | [Zielgruppe(n)](main.md#Zielgruppe) für die zu erreichenden Zuschauerzahl |
-| allowed_genre | optional | erlaubtes [Genre](main.md#Genre) |
-| prohibited_genre | optional | verbotenes [Genre](main.md#Genre) |
-| allowed_programme_type | optional | erlaubter [Programmtyp](main.md#Programmtyp) |
-| prohibited_programme_type | optional | verbotener [Programmtyp](main.md#Programmtyp) |
+| allowed_genre | optional | erlaubtes [Hauptgenre](main.md#Genre) |
+| prohibited_genre | optional | verbotenes [Genre](main.md#Genre) (noch nicht unterstützt) |
 | allowed_programme_flag | optional | erlaubte [Programmflags](main.md#Programmflags) |
-| prohibited_programme_flag | optional | verbotene [Programmflags](main.md#Programmflags) |
+| prohibited_programme_flag | optional | verbotene [Programmflags](main.md#Programmflags) (noch nicht unterstützt) |
 
 Die Mindestzuschauerquote `min_audience`bezieht sich auf die möglichen Zuschauer im aktuellen Sendegebiet.
-Die Schalter für Programmtyp, Genre und Flags werden aktuell in der Datenbank noch nicht verwendet.
+Die Schalter für verbotene Genre und Flags werden aktuell vom Programm noch nicht unterstützt.
 
 ### Daten (data)
 
@@ -104,6 +102,6 @@ Der Einfluss der Modifier (insb. Wearoff) dürfte aber praktisch irrelevant sein
 
 ### Generell
 
-* conditions:  pro_pressure_groups, contra_pressure_groups noch nicht ausgewertet
+* conditions:  pro_pressure_groups, contra_pressure_groups, forbidden..., noch nicht ausgewertet
 * der Quellcode unterstützt noch Effekte und Modifiers, welche in der aktuellen Datenbank nicht vorkommt und von der Grammatik nicht unterstützt werden
 * sollte allowed/prohibited_genre nicht eher eine Liste sein. Bei der großen Anzahl von Genres erscheint es nicht immer sinnvoll, nur ein einziges zu erlauben/verbieten.

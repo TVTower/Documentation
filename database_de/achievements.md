@@ -4,13 +4,13 @@ Die Erfolgseinträge sind als Liste von `achievement`-Kindelementen in das `alla
 
 ```XML
 <allachievements>
-	<achievement id="tvt-gameachievement-audience1" creator="5578" created_by="Ronny">
+	<achievement guid="tvt-gameachievement-audience1" creator="5578" created_by="Ronny">
 		<title>
 			<de>Lokalsender</de>
 			<en>Regional broadcaster</en>
 		</title>
 		<tasks>
-			<task id="tvt-gameachievement-task-audience1" creator="5578" created_by="Ronny">
+			<task guid="tvt-gameachievement-task-audience1" creator="5578" created_by="Ronny">
 				<title>
 					<de>Erreiche 250.000 Zuschauer</de>
 					<en>Reach an audience of 250.000</en>
@@ -23,7 +23,7 @@ Die Erfolgseinträge sind als Liste von `achievement`-Kindelementen in das `alla
 			</task>
 		</tasks>
 		<rewards>
-			<reward id="tvt-gameachievement-reward-audience1" creator="5578" created_by="Ronny">
+			<reward guid="tvt-gameachievement-reward-audience1" creator="5578" created_by="Ronny">
 				<data type="money" money="50000" />
 			</reward>
 		</rewards>
@@ -41,7 +41,7 @@ Dann gibt es eine Belohnung von 50.000 Geld (`type`+`money`).
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |
@@ -54,8 +54,8 @@ Das Standardelement Titel [title](main.md#title) muss angegeben werden, ein besc
 
 Im Hauptknoten `tasks` kann eine Liste von Einzelaufgaben `task` definiert werden, die erfüllt werden müssen.
 Typischerweise ist es genau eine Aufgabe.
+Die Standardkindelemente `title` und `text` sind optional (und werden vermutlich gar nicht verwendet).
 Eine Aufgabe hat dieselben Standardeigenschaften `id`, `creator` und `created_by` wie auch der Elternknoten auch.
-Die Standardkindelemente `title` und `text` für die Beschreibung der Aufgabe sind Pflicht.
 
 Das entscheidende Kindelement sind die Aufgabendaten `data`.
 Daraus ermittelt das Programm, wann die Aufgabe erfüllt ist.
@@ -67,7 +67,7 @@ Welche anderen dann benötigt werden, hängt vom Typ ab.
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
 | minAudienceAbsolute | optional | absolute Zuschauerzahl |
-| minAudienceQuote | optional | Einschaltquote (TODO vermutlich bezogen auf mögliche Zuschauer und nicht auf das Sendegebiet) |
+| minAudienceQuote | optional | Einschaltquote (0.2 entspricht 20%)|
 | limitToGenres | optional | Aufgabe gilt nur für Ausstrahlungen dieses Genres |
 | limitToFlags | optional | Aufgabe gilt nur für Ausstrahlungen mit diesen Flags |
 | checkMinute | optional | Minute in der geprüft wird |
@@ -75,9 +75,8 @@ Welche anderen dann benötigt werden, hängt vom Typ ab.
 
 Durch das Angeben der Minute kann man bestimmen, ob die Zuschauerzahl während einer normalen Sendung oder einer Nachrichtensendung erreicht werden soll.
 Aber selbst Zuschauerzahl oder Quote sind optional, so könnte man z.B. über Genre und Flags den Spieler belohnen, der zuerst eine Kultur-Sendung ausstrahlt.
-Allerdings wird limitToGenres/limitToFlags noch nicht im Code ausgewertet.
 
-`<data type="reachAudience" minAudienceAbsolute="1000000" checkMinute="5" checkHour="3">` - Es müssen 1 Mio. Zuschauer um 3:05 Uhr eingeschaltet haben.
+`<data type="reachAudience" minAudienceAbsolute="1000000" checkMinute="5" checkHour="3">` - Um 3:05 Uhr müssen 1 Mio. Zuschauer eingeschaltet haben.
 
 #### type="reachBroadcastArea"
 
@@ -86,7 +85,7 @@ Allerdings wird limitToGenres/limitToFlags noch nicht im Code ausgewertet.
 | minReachAbsolute | optional | absolut zu erreichende Zuschauerzahl im Sendegebiet |
 | minReachPercentage | optional | prozentuale Abdeckung des gesamten Sendegebiets |
 
-`<data type="reachBroadcastArea" minReachAbsolute="20000000">` - das Sendegebiet muss 20 Mio. Zuschauer erreichen können.
+`<data type="reachBroadcastArea" minReachAbsolute="20000000">` - Das Sendegebiet muss 20 Mio. Zuschauer erreichen können.
 
 #### type="BroadcastNewsShow"
 
@@ -163,4 +162,3 @@ Wenn man mehrere Tasks definieren würde, müssen die dann am selben Tag erfüll
 * Wenn es schon einen Reward-Typ gibt, wäre es dann nicht sinnvoller den Wert generisch zu machen? (type="money" value="50000", type="betty" value="5", type="image" value="1")
 * Achievement-Flags noch nicht in der Konstantenklasse
 * Die aktuelle Definition von checkHour könnte zu restriktiv sein. Damit scheint sich nämlich nicht prüfen zu lassen "zur Primetime" also zwischen 19 und 23 Uhr. (Erste Kultursendung zur besten Sendezeit)
-* LimitGenre/Flags im Code auswerten (und in Editor unterstützen)

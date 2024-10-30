@@ -6,8 +6,8 @@ Die Drehbuchvorlageneinträge sind als Liste von `scripttemplate`-Kindelementen 
 <scripttemplates>
 	<scripttemplate product="1" licence_type="1" guid="scripttemplate-random-ron-foodformealtime01">
 		<title>
-			<de>%FOOD% zum %MEALTIME%</de>
-			<en>%FOOD% for %MEALTIME%</en>
+			<de>${food} zum ${mealtime}</de>
+			<en>${food} for ${mealtime}</en>
 		</title>
 		<description>
 			<de>...</de>
@@ -44,7 +44,7 @@ Die Drehbuchvorlageneinträge sind als Liste von `scripttemplate`-Kindelementen 
 ```
 
 Hier soll ein Film (`product`) als Einzellizenz (`licence_type`) gedreht werden können; ein Liebesfilm (`maingenre`) von zwei oder drei Stunden (`blocks`), der aber auch komödiantische Anteile hat (`subgenres`).
-Der Titel könnte "Liebe zum Abendessen" aber auch "Joghurt zum Frühstück" lauten (`title` mit [Variablen](main.md#Variablen)).
+Der Titel könnte "Liebe zum Abendessen" aber auch "Joghurt zum Frühstück" lauten (`title` mit [Variablen](variables.md)).
 Zwingend (`required=1`) werden ein Regisseur (`job index 0`), ein weiblicher und ein männlicher Hauptdarsteller benötigt (`job index 1,2`).
 Es könnten aber auch noch zwei Nebendarsteller zum Drehen erforderlich sein; für einen der Nebendarsteller ist eine [Filmrolle](persons.md#Filmrollen) definiert (`role_guid`).
 Der Preis (`price`) für das Drehbuch beträgt zwischen 12.000 (`min`) und 17.000 (`max`) mit leichter Tendenz zu einem höheren Preis (`slope`).
@@ -61,7 +61,7 @@ Auch werden die Bewertungskategorien (Tempo etc.) oft als Bereich angegeben.
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#id) |
+| guid | Pflicht | [ID](main.md#guid) |
 | product | Pflicht  | [Programmtyp](main.md#Programmtyp) |
 | licence_type | Pflicht | [Lizenztyp](main.md#Lizenztyp) |
 | index | optional | Reihenfolge bei Serien |
@@ -72,7 +72,7 @@ Auch werden die Bewertungskategorien (Tempo etc.) oft als Bereich angegeben.
 ## Kindelemente von scripttemplate
 
 Standardelemente für Titel [title](main.md#title) und Beschreibung [description](main.md#description) sind sindvollerweise zu definieren.
-Häufig werden auch Variablen [variables](main.md#Variablen) für Titel und Beschreibung eingesetzt.
+Häufig werden auch Variablen [variables](variables.md) für Titel und Beschreibung eingesetzt.
 Um die Verfügbarkeit des fertigen Drehbuchs einzuschränken, kann das [availability](time.md#Verfügbarkeit)-Element verwendet werden.
 
 (In einer früheren Version der Dokumentation wurde fälschlicherweise beschrieben, dass die Zielgruppen analog Programmen im groups-Knoten definiert werden können.
@@ -81,7 +81,7 @@ Die Zielgruppen können im `data`-Knoten angegeben werden.)
 
 ### Genre (genres)
 
-Im Knoten `genres` können Hauptgenre (Pflicht) und optional Untergenres (kommasepariert) definiert werden.
+Im Knoten `genres` können ein Hauptgenre (Pflicht) und optional Untergenres (kommasepariert) definiert werden.
 Mögliche Werte sind die [Genres](main.md#Genre), die auch für Programme genutzt werden.
 
 Beispiele:
@@ -101,13 +101,24 @@ Folgende Eigenschaften sind pro `job` definierbar.
 | function | Pflicht | [Job](main.md#Job) |
 | required | Pflicht | Wahrheitswert; muss diese Stelle besetzt werden |
 | gender | optional | Geschlecht |
+| country | optional | Land |
 | role_guid | optional | ID der [Rolle](person.md#Filmrollen) die hier besetzt wird |
+| random_role | optional | Wahrheitswert |
 
 Beispiele:
 
 * `<job index="0" function="1" required="1" />` - Regisseur muss besetzt werden, Geschlecht nicht spezifiziert
 * `<job index="1" function="2" gender="2" required="1" />` - weibliche Hauptdarstellerin muss besetzt werden
 * `<job index="2" function="16" gender="1" required="0" />` - männlicher Gast könnte im fertigen Drehbuch dabei sein oder auch nicht
+
+In Titel und Beschreibung kann auf Besetzungsrollen verwiesen werden (z.B. `${.self:"role":1:"firstname"}`).
+Falls mit `role_guid` eine feste Rolle definiert ist, werden die entsprechenden Namen verwendet.
+Mit dem Flag `random_role="1"` sichergestellt, dass für jedes Drehbuch konsistent eine neue Rolle erzeugt wird.
+Insbesondere bei Serien wird empfohlen, das Flag explizit zu setzen, wenn eine Rollenreferenz verwendet wird.
+Die Attribute `gender` und `country` werden dann für das Würfeln des Namens herangezogen.
+
+* `<job index="1" function="2" gender="1" country="it" required="1" />` - bei Referenz auf die Rolle wird ein männlicher italienischer Name erzeugt
+* `<job index="2" function="2" country="us" required="1" random_role = "1" />` - für jedes Dreahbuch wird eine neue Rolle mit einem US-amerikansichen Name erzeugt, das Geschlecht ist nicht festgelegt
 
 ### Drehbuchdaten (data)
 
@@ -277,12 +288,12 @@ Männliche Arbeitslose finden diese Show furchtbar, Manager sind begeistert.
 ```XML
 <scripttemplate product="2" licence_type="3" guid="TheRob-script-ser-dram-TVTintern">
 	<title>
-		<de>TVTs: %OBJECT% im Hochhaus</de>
-		<en>TVTs: %OBJECT% In A Skyscraper</en>
+		<de>TVTs: ${object} im Hochhaus</de>
+		<en>TVTs: ${object} In A Skyscraper</en>
 	</title>
 	<description>
-		<de>Serie über %OBJECT% im TV Tower Hochhaus</de>
-		<en>Series about %OBJECT% In The TV Tower Skyscraper</en>
+		<de>Serie über ${object} im TV Tower Hochhaus</de>
+		<en>Series about ${object} In The TV Tower Skyscraper</en>
 	</description>
 	<children>
 		<scripttemplate index="0" product="2" licence_type="2" guid="TheRob-script-ser-dram-TVTintern-Ep1">
@@ -295,8 +306,8 @@ Männliche Arbeitslose finden diese Show furchtbar, Manager sind begeistert.
 		...
 		<scripttemplate index="2" product="2" licence_type="2" guid="TheRob-script-ser-dram-TVTintern-Ep3">
 			<title>
-				<de>%ATTRIBUTE% macht eine Party</de>
-				<en>%ATTRIBUTE% Invites To the Party</en>
+				<de>${attribute} macht eine Party</de>
+				<en>${attribute} Invites To the Party</en>
 			</title>
 		</scripttemplate>
 		...

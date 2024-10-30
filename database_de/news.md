@@ -4,7 +4,7 @@ Die Nachrichteneinträge sind als Liste von `news`-Kindelementen in das `allnews
 
 ```XML
 <allnews>
-		<news id="X-news-geld1" thread_id="X-news-geld" type="0">
+		<news guid="X-news-geld1" thread_id="X-news-geld" type="0">
 			<title>
 				<de>Straßenfeger findet 1.000 Mark</de>
 				<en>Street sweeper finds 1,000 marks</en>
@@ -29,7 +29,7 @@ Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgescheh
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | type | Pflicht | Nachrichtentyp; siehe unten 0=Startnachricht, 2=Nachfolgenachricht |
 | thread_id | optional | ID des Nachrichtenthemas - Nachrichten die zusammengehören |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
@@ -51,12 +51,12 @@ Auf diese Weise kann erreicht werden, dass nicht zu viele Nachrichten zum selben
 
 ## Kindelemente von news
 
-Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sindvollerweise zu definieren, Variablen [variables](main.md#Variablen) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
+Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sinnvollerweise zu definieren, Variablen [variables](variables.md) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
 
 Ab Version 0.8.1 werden die Variablen an angestoßene Nachrichten weitergegeben.
-Das erlaubt es, Nachrichtenketten abwechslungsreicher zu gestalten, da gewürfelte Namen etc. damit auch in späteren Nachrichten verwendet werden können.
-Alle verwendeten Variablen müssen in der Startnachricht definiert werden.
-Die angestoßenen Nachrichten dürfen keine eigenen Variablendefinitionen enthalten.
+Das erlaubt es, Nachrichtenketten abwechslungsreicher zu gestalten, da gewürfelte Namen etc. damit auch in späteren Nachrichten konsistent verwendet werden können.
+Dafür sollten alle verwendeten Variablen in der Startnachricht definiert werden.
+Wenn die Variablendefinitionen der aktuellen und der Vorgängernachricht nicht zusammen passen, kann es zum Programmabruch kommen.
 
 ### Daten (data)
 
@@ -108,6 +108,7 @@ Beispiel:
 ```
 	<effects> 
 		<effect trigger="happen" type="triggernews" time="1,2,3" news="ronny-news-drucktaste-02b1" />
+		<effect trigger="happen" type="modifyNewsAvailability" enable="0" news="ronny-news-drucktaste-1" />
 	</effects>
 ```
 
@@ -164,7 +165,7 @@ Dafür addiert man die Werte auf.
 Teure Kulturnachricht geringer Qualität ohne Einschränkungen der Verfügbarkeit oder Effekte.
 
 ```XML
-<news id="ronny-news-tarotimwandel-01" type="0" creator="5578" created_by="Ronny">
+<news guid="ronny-news-tarotimwandel-01" type="0" creator="5578" created_by="Ronny">
 	<title>
 		<de>"Tarot im Wandel der Zeit" auf Tour</de>
 		<en>"Tarot in the course of time" on tour</en>
@@ -182,7 +183,7 @@ Teure Kulturnachricht geringer Qualität ohne Einschränkungen der Verfügbarkei
 Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgenachricht an, deren Typ `type="2"` anzeigt, dass sie nicht beim zufälligen Ermitteln möglicher Nachrichten zur Verfügung steht.
 
 ```XML
-<news id="6b1065dd-36d5-4b4b-9904-1a8b7fd1d9c1" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="0" creator="">
+<news guid="6b1065dd-36d5-4b4b-9904-1a8b7fd1d9c1" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="0" creator="">
 	<title>
 		<de>Terrorismusbekämpfung im Weltall</de>
 		<en>Fighting terrorism in the universe</en>
@@ -198,7 +199,7 @@ Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgen
 	<availability year_range_from="2001" year_range_to="2009" />
 </news>
 
-<news id="7c2911a9-c9b4-40d1-b4f6-02fb0025358a" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="2" creator="">
+<news guid="7c2911a9-c9b4-40d1-b4f6-02fb0025358a" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="2" creator="">
 	<title>
 		<de>Terrorismusbekämpfung – jetzt 2 Shuttles</de>
 		<en>Fighting terrorism - now 2 shuttles</en>
@@ -212,7 +213,7 @@ Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgen
 Eine Hauptnachricht stößt eine von vier möglichen Nachfolgenachrichten mit unterschiedlicher Wahrscheinlichkeit an.
 
 ```XML
-<news id="news-jorgaeff-racing-01" type="0" thread_id="news-jorgaeff-racing" creator="8936" created_by="jorgaeff">
+<news guid="news-jorgaeff-racing-01" type="0" thread_id="news-jorgaeff-racing" creator="8936" created_by="jorgaeff">
 	<title>
 		<de>Formel X: Wer holt sich die Fahrer-WM?</de>
 	</title>
@@ -240,7 +241,7 @@ Die definierten Variablen werden an die Nachfolgenachrichten weitergegeben und b
 Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
 
 ```
-<news id="carStrike_0" thread_id="carStrike" type="0">
+<news guid="carStrike_0" thread_id="carStrike" type="0">
 	<title>
 		<de>${brand} schreibt Verluste</de>
 		<en>${brand} records losses</en>
@@ -261,7 +262,7 @@ Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
 		</jobs>
 	</variables>
 </news>
-<news id="carStrike_1" thread_id="carStrike" type="2">
+<news guid="carStrike_1" thread_id="carStrike" type="2">
 	<title>
 		<de>${brand} will ${jobs} Stellen streichen</de>
 		<en>${brand} to cut ${jobs} jobs</en>
@@ -283,16 +284,14 @@ In diesem Fall ist es zulässig, dass die Nachfolgenachrichten Variablendefiniti
 ### Dokumentation
 
 * Klären, welche Modifiers es überhaupt gibt und welche für Nachrichten unterstützt werden. (Ronny: über Modifier Wirkung einer Ausstrahlung auf X Stunden begrenzen)
-* data: `available` nicht verwendet oder dokumentiert, könnte aber genutzt werden, um mittels Effekt mehrere unabhängige Nachrichten als verfügbar zu markieren; eine andere Nachricht könnte diese Markierung wieder entfernen - zu klären, wie ein Effekt nur die Verfügbarkeit von Nachrichten setzen kann; siehe auch TGameModifierNews_ModifyAvailability
 
 ### DB-Cleanup
 
 * Es gibt viele Nachrichten, die nur einmalig verfügbar sind. Hier sollte nochmal analysiert werden, welche sich für häufigeres Senden eignen würden.
 * Newsgenre prüfen (der Outline des Editors eignet sich, leicht das Genre zu erkennen)
-* ggf. Börsennachrichten anpassen; sauberere Trennung von initialem Anstoßen und Nachfolgenachricht (funktioniert nicht wie erwartet)
 
 ### Generell
 
-* Es gibt wenige Nachrichten, welche die Attraktivität von Genre oder Personen anpassen. Wenn Filmrollen mehr Verwendung finden würden, könnte auch die Attraktivität von Rollen angepasst werden (neuer Yams Pond-Film, Yams Pond-Darsteller verstorben) - (es werden bereits Ankündigungen für Kinofilme erzeugt; die mir aber noch nicht aufgefallen sind...)
-* News-Flag 64 ist inhaltlich redundant: Wenn eine Nachricht "unique" ist, kann sie ohnehin kein zweites Mal erscheinen, falls sie nicht "unique" ist, muss eine ggf. gesetzte happen_time ignoriert werden.
+* Es gibt wenige Nachrichten, welche die Attraktivität von Genre oder Personen anpassen. Wenn Filmrollen mehr Verwendung finden würden, könnte auch die Attraktivität von Rollen angepasst werden (neuer Yams Pond-Film, Yams Pond-Darsteller verstorben) - (es werden bereits Ankündigungen für Kinofilme erzeugt)
+* Verwendung von News-Flag 64 prüfen: Wenn eine Nachricht "unique" ist, kann sie ohnehin kein zweites Mal erscheinen, falls sie nicht "unique" ist, muss eine ggf. gesetzte happen_time nach der ersten Veröffentlichung in jedem Fall gelöscht werden (Flag redundant?)
 * News-Flag 16/32 in Klärung, ob Flags zu einem zusammengefasst werden können; unterschiedliche Standardbehandlung für Initial- und Nachfolgenachrichten.

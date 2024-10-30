@@ -10,20 +10,25 @@ Filmrollen (analog James Bond) sind in Filmen dargestellte Personen.
 
 Welche der folgenden Eigenschaften und Kindelemente jeweils unterstützt werden, ist in den Abschnitten zu Hauptpersonen, Nebenpersonen und Filmrollen aufgelistet.
 
+Im Gegensatz zu Filmtiteln etc. werden sprachspezifische Werte (z.B. andere Schreibweise eines Namens in einer anderen Sprache) nicht direkt von der Hauptdefinition unterstützt.
+Die Lokalisierung von Personennamen oder Filmrollen ist in [separaten Dateien](lang.md) möglich.
+
 ## Eigenschaften von person
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Filmen etc. |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Filmen etc. |
 | first_name | Pflicht* | Vorname |
 | last_name | Pflicht* | Nachname |
+| nick_name | optional | Spitzname |
+| title | optional | Titel |
 | gender | optional | [Geschlecht](main.md#Geschlecht) |
 | job | optional | (aktuell) ausgeübte [Berufe](main.md#Job) |
 | country | optional | [Herkunftsland](main.md#Länder) |
-| nick_name | optional | Spitzname |
 | first_name_original | informativ | wenn es ein echtes Vorbild gibt - der ursprüngliche Vorname |
 | last_name_original | informativ |  wenn es ein echtes Vorbild gibt - der ursprüngliche Nachname |
 | nick_name_original | informativ |  wenn es ein echtes Vorbild gibt - der ursprüngliche Spitzname |
+| title_original | informativ |  wenn es ein echtes Vorbild gibt - der ursprüngliche Titel |
 | fictional | optional | [Standardeigenschaft](main.md#fictional) |
 | levelup | optional | Wahrheitswert - kann die Person eine "Hauptperson" werden (Standardwert 1) |
 | castable | optional | Wahrheitswert - kann die Person generell in einer Produktion mitwirken |
@@ -41,11 +46,11 @@ Das Programm unterscheidet für die Einsatzbarkeit zwischen `castable` (grundsä
 
 `generator` wird nur selten benutzt, der Wert enthält kommasepariert ein Länderkürzel und das Geschlecht für die Bestimmung des Namens.
 Beispiel `generator="de,2"` für eine deutsche Frau.
-Siehe auch die Beschreibung zum Personengenerator in den [Variablen](main.md#Variablen).
+Siehe auch die Beschreibung zum Personengenerator in den [Variablen](variables.md).
 
 ## Kindelemente von person
 
-Für die bessere Lesbarkeit sind bei [Hauptpersonen](persons.md#Hauptpersonen) manchmal auch `first_name`, `last_name`, `nick_name`, `first_name_original` und `last_name_original` als Kindelemente angegeben.
+Für die bessere Lesbarkeit sind bei [Hauptpersonen](persons.md#Hauptpersonen) manchmal auch `first_name`, `last_name`, `nick_name`, `title` und deren original-Versionen als Kindelemente angegeben.
 
 ### Details (details)
 
@@ -99,7 +104,7 @@ Zu beachten ist, dass nur fiktive Hauptpersonen unmittelbar zum Spielbeginn in i
 
 ```XML
 <celebritypeople>
-	<person id="TheRob-TowerTV-VeraZottova" tmdb_id="0" imdb_id="0" creator="8751" created_by="TheRob">
+	<person guid="TheRob-TowerTV-VeraZottova" tmdb_id="0" imdb_id="0" creator="8751" created_by="TheRob">
 		<first_name>Vera</first_name>
 		<last_name>Zottorova</last_name>
 		<nick_name></nick_name>
@@ -120,8 +125,8 @@ Fiktive Nebenpersonen stehen als als Laien für Produktionen zur Verfügung, kö
 
 ```XML
 <insignificantpeople>
-	<person id="Per_custom_Freddy_21" first_name="Sophie" last_name="McAgne" nick_name="" gender="2" country="SCO" fictional="1" />
-	<person id="ronny-people-generated-01" generator="de,2" last_name="Mueller" />
+	<person guid="Per_custom_Freddy_21" first_name="Sophie" last_name="McAgne" nick_name="" gender="2" country="SCO" fictional="1" />
+	<person guid="ronny-people-generated-01" generator="de,2" last_name="Mueller" />
 	...
 </insignificantpeople>
 ```
@@ -145,9 +150,10 @@ Die folgendenen Felder sollten definiert werden
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Drehbuchvorlagen etc. |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Drehbuchvorlagen etc. |
 | first_name | Pflicht* | Vorname |
 | last_name | Pflicht* | Nachname |
+| nick_name | optional | Spitzname |
 | title | optional | Titel (Dr. etc) |
 | gender | optional | [Geschlecht](main.md#Geschlecht) |
 | country | optional | [Herkunftsland](main.md#Länder) |
@@ -159,54 +165,3 @@ Die folgendenen Felder sollten definiert werden
 
 * data klären - werden diese Werte als Basis genommen und dann gewürfelt?
 * data beim Einlesen werden auch min/max-Werte (noch keine Grammatikunterstützung)
-
-# Lokalisierung
-
-Ab Version 0.8.1 ist es möglich Personen- und Rollendaten zu lokalisieren.
-Analog zu Filmtiteln ist es damit möglich, sprachspezifische Schreibweisen oder Namensvarianten zu definieren.
-Die Lokalisierung erfolgt in separaten Dateien und nicht in den "Hauptdateien" der Datenbank.
-Pro Sprache gibt es eine Datei `<Sprachkürzel>.xml` im Verzeichnis `lang`, welches sich im Basisverzeichnis der Datenbank befindet (z.B. `res/database/Default/lang/en.xml` für Englisch oder `res/database/Default/lang/fr.xml` für Französisch).
-Die Sprachkürzel sind dabei dieselben, die auch für die Properties-Dateien unter `res/lang` verwendet werden.
-
-Englisch ist die Standardsprache.
-Das heißt, dass für jeden Lokalisierungseintrag, der für eine Sprache erstellt wird, auch einer für Englisch existieren muss.
-
-Die Personeneinträge sind als Liste von `person`-Kindelementen in das `persons`-Tag eingebettet, die Rolleneintraäge als List von `role`-Kindelementen in das `roles`-Tag.
-
-## Eigenschaften von person
-
-| Name | Art | Beschreibung |
-| ---- | --- |------------- |
-| guid | Pflicht | Referenz einer existierenden Personen-ID |
-| first_name | Pflicht* | Vorname |
-| last_name | Pflicht* | Nachname |
-| nick_name | Pflicht* | Spitzname |
-
-Der Einfachheit halber sind alle Felder Pflicht, können aber leer bleiben.
-
-## Eigenschaften von role
-
-| Name | Art | Beschreibung |
-| ---- | --- |------------- |
-| guid | Pflicht | Referenz einer existierenden Personen-ID |
-| first_name | Pflicht* | Vorname |
-| last_name | Pflicht* | Nachname |
-| title | Pflicht* | Titel |
-
-Der Einfachheit halber sind alle Felder Pflicht, können aber leer bleiben.
-
-## Beispiel einer Lokalisierungsdatei
-
-```XML
-<?xml version="1.0" encoding="utf-8"?>
-<tvtdb>
-	<persons>
-		<person guid="common-amateur-actors" first_name="" last_name="Laiendarsteller" nick_name="Laiendarsteller" />
-		<person guid="common-amateur-director" first_name="" last_name="Regiepraktikant" nick_name="Regiepraktikant" />
-/>
-	</persons>
-	<roles>
-		<role guid="script-roles-ron-001" first_name="Vincent" last_name="Graf" title="" />
-	</roles>
-</tvtdb>
-```
