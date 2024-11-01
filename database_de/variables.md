@@ -273,67 +273,127 @@ Beispiele:
 * `${.persongenerator:"fullname":"":"female":0.9}` - weiblicher Name mit 90%iger Wahrscheinlichkeit für einen Titel
 * `${.persongenerator:"lastname":"${de|it|dk}"}` - deutscher oder italienischer oder dänischer (skandinavischer) Nachname
 
+### locale
+
+Die Funktion `.local` bietet kontextunabhängigen Zugriff auf die Übersetzungsdateien (`res/lang/...`).
+Es können allerdings keine dort verwendeten Parameter übergeben oder wie im Spiel verwendete Zufallsvarianten gewählt werden.
+Neben dem Schlüssel kann optional das Länderkürzel angegeben werden (ansonsten wird die gerade im Spiel eingestellte Sprache verwendet).
+
+* ${.locale:"HOUR"} - Auflösung des Schlüssels "HOUR" aus `genSettings_...` - Stunde auf Deutsch, heure auf Französisch
+* ${.locale:"MOVIES","es"} - Auflösung des Schlüssels "MOVIES" aus `programme_es.txt` -  Peliculas
+
+Da sich zwischen Spielversionen die Lokalisierungsdateien ändern können, die Datenbank aber im Spielstand hinterlegt ist, sollte man darauf achten, keine Schlüssel in der Datenbank zu verwenden, bei denen ein Entfallen/Umbenennen in zukünftigen Versionen wahrscheinlich ist.
+
 ### Referenz auf eigene Besetzung
 
+In Programmen kann auf die Namen der eigenen Besetzung, in Programmen und Drehbuchvorlagen auf die Rollen zugegriffen werden.
+Der grundsätzliche Funktionsaufbau ist immer gleich `${.self:"Typ":Index:"Attribut":inklusiveTitel}`.
+`.self` ist der Indikator dafür, dass die Auswertung im Kontext des definierenden Objekts erfolgt.
+Typ kann `cast` (nur Programme, da in einem Drehbuch die tatsächliche Besetzung noch nicht feststeht) oder `role` für die Rolle sein.
+Index ist die Stelle des gewünchten Wertes in der Besetzungs-/Jobliste in der Datenbank und sollte mit dem an dem Eintrag definierten index-Attributs übereinstimmen.
+Ein Index der außerhalb der Anzahl der Besetzungen liegt, führt zu einem Fehler.
+Der Wahrheitswert `inklusiveTitel` ist optional und gibt bei einem Nachnamen oder vollen Namen an, ob dieser mit Titel zurückgegeben werden soll (Standardfall ist nein).
+
+Die wichtigste möglichen Werte für `Attribut` entsprechen (nahezu) den Werten für zufällige Namen
+* `firstname` - Vorname
+* `lastname` - Nachname
+* `fullname` - vollständiger Name
+* `tilte` - Titel
+* `nickname` - Spitzname (Vorname, falls kein Spitzname definiert ist)
+
+Wird für Drehbuchvorlagen eine Rolle referenziert, die in der Jobliste nicht explizit hinterlegt ist (kein `role_guid`-Attribut), wird automatisch eine Rolle erzeugt, d.h. bei jeder Erstellung eines Drehbuchs aus der Vorlage eine neue Rolle mit neuem Namen.
+Auf diese Weise muss man nicht unbedingt selbst mittels Personengenerator oder verschiedenen Variablen Namen selbst erfinden.
+Bei fertigen Programmen darf man natürlich nur in der Datenbank hinterlegte Rollen refernzieren
+
+Angenommen mit Index 0 ist immer der Regisseur definiert, und alles weitere sind Schauspieler ergeben sich folgende Beispiele
+
+* `${.self:"cast":0:"fullname":true}` - vollständiger Name des Regisseurs inklive Titel (in einer Programmdefinition)
+* `${.self:"cast":2:"firstname"}` - Vorname des Schauspielers mit Index 2
+* `${.self:"role":1:"nickname"}` - Spitzname der Rolle, die für Index 1 hinterlegt ist (oder ggf. erzeugt wird)
+
 ### csv
+
+Bislang konnten grammatisch korrekte Sätze ausschließlich mit verschachtelten Variablen umgesetzt werden.
+Mit Funktionen gibt es nun eine zusättliche Möglichkeit, die zu einer besseren Lesbarkeit in der Datenbank führen kann.
+Die Grundidee ist, dass man eine Liste von Datensätzen zur Verfügung stellt, von denen jeder einzelne alle nötigen Informationen enthält.
+Die Funktion `.csv` erlaubt dann den Zuriff auf die einzelnen Elemente des Datensatzes.
+Der grundsätzliche Aufbau des Funktionsaufrufs ist `${.csv:"Datensatz":Index:"Separator":LeerzeichenEntfernen}`.
+Pflichtparameter sind der Datensatz (Zeichenkette) und Index (welcher Teil des Datensatzes wird zurückgegeben).
+Wenn der Separator im Datensatz nicht das Semikolon ist (`;`), kann optional der Separator mitgegeben werden.
+Normalerweise werden automatisch Leerzeichen, Tabulatutoren etc. vor und hinter dem Gesamtdatensatz entfernt.
+Das kann mit dem vierten Parameter (Wahrheitswert) unterbunden werden.
+
+Einfache Beispiele:
+* `${.csv:"a;b;c":0}` liefert `a`
+* `${.csv:"a;b;c":2}` liefert `c`
+* `${.csv:"a,b,c":1:","}` liefert `b`
+
+Das folgende Beispiel soll illustrieren, was mit der Kombination aus Alternativen, verschachtelten Variablen und csv-Datensätzen möglich ist.
+Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen eingespart werden.
+
+```XML
+...
+	<title>
+		<de>${wer_${geschlecht}} und ${pron_nom_${geschlecht}} ${adj}${was}</de>
+	</title>
+	<description>
+		<de>Wie alle ${wer_plural_${geschlecht}} kämpft ${name} mit ${pron_gen_${geschlecht}} Vorliebe für ${was}.</de>
+	</description>
+...
+	<variables>
+		<geschlecht>m|f</geschlecht>
+		<name>${.persongenerator:"firstname:"de:"${geschlecht}"}</name>
+		<werData>
+			<!--Für die bessere Lesbarkeit kommt jeder Datensatz auf eine eigene Zeile.
+			    Dafür auch das automatische Entfernen von Leerzeichen vor und nach dem Datensatz.
+			-->
+			<de>
+				Anwalt;Anwälte;Anwältin;Anwältinnen|
+				Bäcker;Bäcker;Bäckerin;Bäckerinnen|
+				König;Könige;Königin;Königinnen|
+				Lehrer;Lehrer;Lehrerin;Lehrerinnen|
+				Arzt;Ärzte;Ärztin;Ärztinnen
+			</de>
+		</werData>
+		<wer_m>
+			<de>Der ${.csv:${werData}:0}
+		<wer_m>
+		<wer_f>
+			<de>Die ${.csv:${werData}:2}
+		<wer_f>
+		<wer_plural_m>
+			<de>${.csv:${werData}:1}
+		<wer_plural_m>
+		<wer_plural_f>
+			<de>Die ${.csv:${werData}:3}
+		<wer_plural_f>
+		<pron_nom_m>
+			<de>seine</de>
+		</pron_nom_m>
+		<pron_gen_m>
+			<de>seiner</de>
+		</pron_gen_m>
+		<pron_nom_f>
+			<de>ihre</de>
+		</pron_nom_f>
+		<pron_gen_f>
+			<de>ihrer</de>
+		</pron_gen_f>
+		<adj>
+			<de>|teuren |neusten |früheren </de>
+		</adj>
+		<was>
+			<de>Autos|Liebschaften|Pferde|Probleme</de>
+		</was>
+	</variables>
+...
+```
 
 ### Bedingungen
 
 ### globale Referenz auf Datenbankobjekte
 
-
-
 #### vom Spiel automatisch aufgelöste Variablen
 
-Es gibt Variablennamen und global verfügbare Werte, die von der Spiellogik automatisch aufgelöst werden können.
 
-**globale Variablen**
-
-* `WORLDTIME:YEAR` - aktuelles Jahr im Spiel
-* `WORDLTIME:GAMEDAY` - aktueller Spieltag
-* `WORDLTIME:DAYLONG` - Wochentag (Montag, Dienstag...)
-* `WORLDTIME:GERMANCURRENCY` - aktuelle deutsche Währung
-* `WORLDTIME:GERMANCAPITAL` - deutsche Hauptstadt (Berlin/Bonn)
-* `STATIONMAP:COUNTRYNAME` - Name des Landes
-* `STATIONMAP:POPULATION` - Einwohnerzahl
-
-In Drehbuchvorlagen werden automatisch die Variablen `ROLE1`...`ROLE7` (voller Name), `ROLENAME1`...`ROLENAME7` (Vorname), `GENRE` (Hauptgenre) und `EPISODES` (Anzahl der Folgen) aufgelöst.
-
-Beispiel: `%ROLE1% erlebt wieder viel Abenteuer in %EPISODES% Folgen der neuen %GENRE%serie.`
-
-**vom Spiel erzeugbare Zufallswerte**
-
-* `STATIONMAP:RANDOMCITY` erzeugt einen (fiktiven) Stadtnamen
-
-**Personengenerator**
-
-Zum erzeugen zufälliger Namen, hinter denen keine Person aus der Datenbank stehen muss, kann der Personengenerator verwendet werden.
-Er bekommt als Argumente das Länderkürzel (Achtung - das sind nicht die Werte der [Ländertabelle](main.md#Länder),  wobei `unk` für unbekannt steht und das Geschlecht (1=männlich, 2=weiblich).
-
-Beispiele:
-* `%PERSONGENERATOR_NAME(unk,2)%` - voller Name einer Frau aus unbestimmtem Land
-* `%PERSONGENERATOR_FIRSTNAME(de,1)%` - Vorname eines deutschen Mannes
-* `%PERSONGENERATOR_LASTNAME(us,2)%` - Nachname einer US-Amerikanerin
-
-Die aktuell möglichen Länderkennungen findet man in `base.util.persongenerator.bmx`, wo es für verschiedene Länder `TPersonGeneratorCountry_X`-Implementierungen gibt.
-
-**Achtung:** wenn man dieselbe Zufallsvariable (z.B. einen Namen) an mehreren Stellen (Titel und Beschreibung), dann definiert man eine eigene Variable und verwendet die Zufallsvariable als Inhalt.
-Ansonsten würde jedes Vorkommen der Variable durch einen anderen Zufallswert ersetzt.
-
-```XML
-<variables>
-	<randomcity>
-		<de>%STATIONMAP:RANDOMCITY%</de>
-	</randomcity>
-</variables>
-```
-
-#### Besetzungsvariablen
-
-Einen Sonderfall stellen Variablen dar, die automatisch aus der Besetzung eines Programms aufgelöst werden.
-Über den Index wird die Person definiert und dann kann angegeben werden, ob der volle Name, der Vorname oder der Nachname eingesetzt werden soll.
-Das Format unterscheidet sich leicht: `[Index|WelcherName]`
-
-* `[1|First]` - der Vorname der Besetzung mit Index 1
-* `[2|Last]` - der Nachname der Besetzung mit Index 2
-* `[3|Full]` - der volle Name der Besetzung mit Index 3
+`GENRE` (Hauptgenre) und `EPISODES` (Anzahl der Folgen) aufgelöst.
