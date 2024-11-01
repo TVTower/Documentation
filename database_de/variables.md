@@ -194,6 +194,7 @@ Mögliche Paramtertypen sind
 * Wahrheitswert (`0`,`1`,`true`,`false` - TODO prüfen)
 
 Als Parameter kann natürlich auch wieder ein Ausdruck verwendet werden, dessen Wert zunächst ermittelt wird, bevor er als Funktionsparameter verwendet wird.
+Wird ein Stringparameter erwartet, dessen Wert aber von einer Variable abhängt, kann die Variablenauflösung innerhalb von Anführungszeichen erfolgen `${.funktion:"${variableOderAusdruck}"}`.
 
 Es gibt *globale* Funktionen, die an jeder Stelle verwendet werden können.
 Beispiele dafür sind das bereits verwendete Würfeln von Städtenamen, Funktionen zum ermitteln aktueller Spielzeitwerte oder Bedingungen
@@ -313,7 +314,56 @@ Angenommen mit Index 0 ist immer der Regisseur definiert, und alles weitere sind
 
 ### Bedingungen
 
-TODO
+Bedingungen werden insbesondere für die Verfügbarkeitsscripte benötigt, um z.B. zu prüfen, ob schon genügend Spieltage vergangen sind, bevor eine Drehbuchvorlage verfügbar wird.
+Sie kann aber auch für die Erzeugung von Texten hilfreich sein.
+In früheren Versionen mussten z.B. mehrere Nachrichtenketten definiert werden, um sich im Laufe der Zeit ändernde Währungen oder Städtenamen zu unterstützen.
+Nun könnten diese Texte dynamisch durch Bedingungen erzeugt werden.
+
+Wichtigster Startpunkt für Fallunterscheidungen ist `${.if:Bedinung:ErgebnisWennJa:ErgebnisWennNein}`.
+Die Ergebnisparameter sind optional und wenn sie fehlen wird der jeweilte Wahrheitswert der Bedingungn zurückgegeben.
+
+* `${.if:${.worldtime:"year"}==2000:"zweitausend":"nicht 2000"}` - wenn das aktuelle Jahr 2000 ist, kommt "zweitausend" raus, ansonsten "nicht 2000"
+* `${.if:"${var}"=="foo":"bar":"karte"}` - wenn die Variable `var` zu `foo` ausgewertet wird, kommt "bar" raus, ansonsten "karte"
+* `${.if:${.gt:${.worldtime:"hour"}:21}:"spät":"nicht spät"} - Wenn es nach 22 Uhr ist, kommt "spät" raus, ansonsten "nicht spät"
+* `${.if:var:"nicht leer":"leer"}` - wenn die Variable `var` zu einer leeren Zeichenkette ausgewertet wird, kommt "leer" raus, ansonsten "nicht leer"
+
+Das letzte Beispiel zeigt, wie sich Auswertungsergebnisse über gut Variablennamen weitergeben lassen.
+
+```XML
+<variables>
+	<geschlecht>m|f</geschlecht>
+	<maennl>${.if:"$geschlecht}"=="m"}:"true":""}</maennl>
+	<artikel>
+		<de>
+			${.if:maennl:"Der:"Die"}
+		</de>
+	</artikel>
+...
+```
+Das Geschlecht wird gewürfelt.
+Wenn `f`rauskommt, ist der Inhalt der Variable `maennl` leer und liefert bei der If-Prüfung den Wahrheitswert falsch.
+
+Für Vergleiche stehen mehrere Funktionen bereit.
+Oben wurde eine Gleichheit mit `==` geprüft.
+Da die Verwendung spizter Klammern in XML außer für Tags nicht wirklich empfehlenswert ist, wird von der Verwendung der normalen Operatoren (`<`,`<=`,`>`, `>=`,`<>`) abgeraten.
+Stattdessen sollten die entsprechenden Vergleichsfunktionen für den Vergleich von `p1`und `p2`verwendet werden.
+
+* `${.eq:p1:p2}` - wahr gdw (genau dann, wenn) p1 gleich p2 ist
+* `${.neq:p1:p2}` - wahr gdw p1 ungleich p2 ist
+* `${.gt:p1:p2}` - wahr gdw p1 größer als p2 ist
+* `${.gte:p1:p2}` - wahr gdw p1 größer als oder gleich p2 ist
+* `${.lt:p1:p2}` - wahr gdw p1 kleiner als p2 ist
+* `${.lte:p1:p2}` - wahr gdw p1 kleiner als oder gleich p2 ist
+
+Mit `${.not:bedingung}` kein eine Bedingung negiert werden.
+Und- und Oder-Verknüpfungen von zwei oder mehr Bedingungen sind auch möglich.
+
+* `${.and:b1:b2}` - wahr gdw alle Bedinungen (b1 und b2) wahr sind
+* `${.and:b1:b2:b3:b4}` - wahr gdw alle Bedinungen (b1 bis b4) wahr sind
+* `${.or:b1:b2}` - wahr gdw mindestens eine der Bediungenen (b1 oder b2) wahr sind
+* `${.or:b1:b2:b3:b4}` - wahr gdw mindestens eine der Bedingungen wahr sind
+
+Es versteht sich von selbst, dass die Parameter der Vergleiche etc. selbst wieder komplexe Ausdrücke (mit dem richtigen Typ) sein können.
 
 ### csv
 
@@ -449,7 +499,7 @@ Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen
 
 ### globale Referenz auf Datenbankobjekte
 
-#### vom Spiel automatisch aufgelöste Variablen
+TODO
 
-
+.ucfirst
 `GENRE` (Hauptgenre) und `EPISODES` (Anzahl der Folgen) aufgelöst.
