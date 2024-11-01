@@ -329,7 +329,6 @@ Einfache Beispiele:
 * `${.csv:"a,b,c":1:","}` liefert `b`
 
 Das folgende Beispiel soll illustrieren, was mit der Kombination aus Alternativen, verschachtelten Variablen und csv-Datensätzen möglich ist.
-Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen eingespart werden.
 
 ```XML
 ...
@@ -388,6 +387,67 @@ Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen
 	</variables>
 ...
 ```
+
+Alternativ kann man auch grammatische Information in den Datensätzen doppeln und so mit weniger Variablen auskommen.
+
+```XML
+...
+	<title>
+		<de>${wer} und ${pron_nom_${geschlecht}} ${adj}${was}</de>
+	</title>
+	<description>
+		<de>Wie alle ${wer_plural} kämpft ${name} mit ${pron_gen_${geschlecht}} Vorliebe für ${was}.</de>
+	</description>
+...
+	<variables>
+		<werData>
+			<!--Für die bessere Lesbarkeit kommt jeder Datensatz auf eine eigene Zeile.
+			    Dafür auch das automatische Entfernen von Leerzeichen vor und nach dem Datensatz.
+			-->
+			<de>
+				Der;Anwalt;Anwälte;m|
+				Die;Anwältin;Anwältinnen;f|
+				Der;Bäcker;Bäcker;m|
+				Die;Bäckerin;Bäckerinnen;f|
+				Der;König;Könige;m|
+				Die;Königin;Königinnen;f|
+				Der;Lehrer;Lehrer;m|
+				Die;Lehrerin;Lehrerinnen;f|
+				Der;Arzt;Ärzte;m|
+				Die;Ärztin;Ärztinnen;f
+			</de>
+		</werData>
+		<geschlecht>${.csv:${werData}:3}</geschlecht>
+		<wer>
+			<de>${.csv:${werData}:0} ${.csv:${werData}:1}
+		<wer>
+		<name>${.persongenerator:"firstname:"de:"${geschlecht}"}</name>
+		<wer_plural>
+			<de>${.csv:${werData}:2}
+		<wer_plural>
+		<pron_nom_m>
+			<de>seine</de>
+		</pron_nom_m>
+		<pron_gen_m>
+			<de>seiner</de>
+		</pron_gen_m>
+		<pron_nom_f>
+			<de>ihre</de>
+		</pron_nom_f>
+		<pron_gen_f>
+			<de>ihrer</de>
+		</pron_gen_f>
+		<adj>
+			<de>|teuren |neusten |früheren </de>
+		</adj>
+		<was>
+			<de>Autos|Liebschaften|Pferde|Probleme</de>
+		</was>
+	</variables>
+...
+```
+
+Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen eingespart werden.
 
 ### Bedingungen
 
