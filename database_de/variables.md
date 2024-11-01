@@ -311,6 +311,10 @@ Angenommen mit Index 0 ist immer der Regisseur definiert, und alles weitere sind
 * `${.self:"cast":2:"firstname"}` - Vorname des Schauspielers mit Index 2
 * `${.self:"role":1:"nickname"}` - Spitzname der Rolle, die für Index 1 hinterlegt ist (oder ggf. erzeugt wird)
 
+### Bedingungen
+
+TODO
+
 ### csv
 
 Bislang konnten grammatisch korrekte Sätze ausschließlich mit verschachtelten Variablen umgesetzt werden.
@@ -341,7 +345,7 @@ Das folgende Beispiel soll illustrieren, was mit der Kombination aus Alternative
 ...
 	<variables>
 		<geschlecht>m|f</geschlecht>
-		<name>${.persongenerator:"firstname:"de:"${geschlecht}"}</name>
+		<name>${.persongenerator:"firstname":"de":geschlecht}</name>
 		<werData>
 			<!--Für die bessere Lesbarkeit kommt jeder Datensatz auf eine eigene Zeile.
 			    Dafür auch das automatische Entfernen von Leerzeichen vor und nach dem Datensatz.
@@ -355,17 +359,17 @@ Das folgende Beispiel soll illustrieren, was mit der Kombination aus Alternative
 			</de>
 		</werData>
 		<wer_m>
-			<de>Der ${.csv:${werData}:0}
-		<wer_m>
+			<de>Der ${.csv:werData:0}</de>
+		</wer_m>
 		<wer_f>
-			<de>Die ${.csv:${werData}:2}
-		<wer_f>
+			<de>Die ${.csv:werData:2}</de>
+		</wer_f>
 		<wer_plural_m>
-			<de>${.csv:${werData}:1}
-		<wer_plural_m>
+			<de>${.csv:werData:1}</de>
+		</wer_plural_m>
 		<wer_plural_f>
-			<de>Die ${.csv:${werData}:3}
-		<wer_plural_f>
+			<de>Die ${.csv:werData:3}</de>
+		</wer_plural_f>
 		<pron_nom_m>
 			<de>seine</de>
 		</pron_nom_m>
@@ -388,15 +392,15 @@ Das folgende Beispiel soll illustrieren, was mit der Kombination aus Alternative
 ...
 ```
 
-Alternativ kann man auch grammatische Information in den Datensätzen doppeln und so mit weniger Variablen auskommen.
+Alternativ kann man auch grammatische Information in den Datensätzen doppeln sowie Bedingungen verwenden und so mit weniger Variablen auskommen.
 
 ```XML
 ...
 	<title>
-		<de>${wer} und ${pron_nom_${geschlecht}} ${adj}${was}</de>
+		<de>${wer} und ${pron_nom} ${adj}${was}</de>
 	</title>
 	<description>
-		<de>Wie alle ${wer_plural} kämpft ${name} mit ${pron_gen_${geschlecht}} Vorliebe für ${was}.</de>
+		<de>Wie alle ${wer_plural} kämpft ${name} mit ${pron_dat} Vorliebe für ${was}.</de>
 	</description>
 ...
 	<variables>
@@ -405,38 +409,32 @@ Alternativ kann man auch grammatische Information in den Datensätzen doppeln un
 			    Dafür auch das automatische Entfernen von Leerzeichen vor und nach dem Datensatz.
 			-->
 			<de>
-				Der;Anwalt;Anwälte;m|
-				Die;Anwältin;Anwältinnen;f|
-				Der;Bäcker;Bäcker;m|
-				Die;Bäckerin;Bäckerinnen;f|
-				Der;König;Könige;m|
-				Die;Königin;Königinnen;f|
-				Der;Lehrer;Lehrer;m|
-				Die;Lehrerin;Lehrerinnen;f|
-				Der;Arzt;Ärzte;m|
-				Die;Ärztin;Ärztinnen;f
+				Anwalt;Anwälte;m|
+				Anwältin;Anwältinnen;f|
+				Bäcker;Bäcker;m|
+				Bäckerin;Bäckerinnen;f|
+				König;Könige;m|
+				Königin;Königinnen;f|
+				Lehrer;Lehrer;m|
+				Lehrerin;Lehrerinnen;f|
+				Arzt;Ärzte;m|
+				Ärztin;Ärztinnen;f
 			</de>
 		</werData>
-		<geschlecht>${.csv:${werData}:3}</geschlecht>
+		<maennl>${.if:${.eq:"${.csv:werData:2}":"m"}:"true":""}</maennl>
 		<wer>
-			<de>${.csv:${werData}:0} ${.csv:${werData}:1}
-		<wer>
-		<name>${.persongenerator:"firstname:"de:"${geschlecht}"}</name>
+			<de>${.if:maennl:"Der":"Die"} ${.csv:werData:0}</de>
+		</wer>
+		<name>${.persongenerator:"firstname":"de":"${.csv:werData:2}"}</name>
 		<wer_plural>
-			<de>${.csv:${werData}:2}
-		<wer_plural>
-		<pron_nom_m>
-			<de>seine</de>
-		</pron_nom_m>
-		<pron_gen_m>
-			<de>seiner</de>
-		</pron_gen_m>
-		<pron_nom_f>
-			<de>ihre</de>
-		</pron_nom_f>
-		<pron_gen_f>
-			<de>ihrer</de>
-		</pron_gen_f>
+			<de>${.csv:werData:1}</de>
+		</wer_plural>
+		<pron_nom>
+			<de>${.if:maennl:"seine":"ihre"}</de>
+		</pron_nom>
+		<pron_dat>
+			<de>${.if:maennl:"seiner":"ihrer"}</de>
+		</pron_dat>
 		<adj>
 			<de>|teuren |neusten |früheren </de>
 		</adj>
@@ -448,8 +446,6 @@ Alternativ kann man auch grammatische Information in den Datensätzen doppeln un
 ```
 
 Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen eingespart werden.
-
-### Bedingungen
 
 ### globale Referenz auf Datenbankobjekte
 
