@@ -10,7 +10,7 @@ Es empfielt sich, eigene Inhalte in einer neuen Datei im `user`-Unterverzeichnis
 Kurzer Hinweis zu Titeln, Personennamen etc.: diese sind für das Spiel - soweit nicht ohnehin frei erfunden - absichtlich abgeändert, um rechtlichen Problemen aus dem Weg zu gehen.
 Zur Suche, Wiedererkennung und Vermeidung von Dopplungen in der TVTower-Datenbank sind aber zum Teil Filmdatenbank-IDs und Originalnamen hinterlegt.
 
-Für die Version 0.8.4 hat ein großer Umbau bezüglich [Variablen](variables.md) stattgefunden.
+Für die Version 0.8.3 hat ein großer Umbau bezüglich [Variablen](variables.md) stattgefunden.
 Zukünftige Versionen unterstützen das alte Format nicht mehr und eigene Datenbank-Dateien müssen auf das neue Format umgestellt werden.
 
 ## Grundsätzliche Struktur einer TVTower-Datenbankdatei
@@ -143,7 +143,7 @@ Die aktuell verwendeten Sprachen sind Deutsch (de), Englisch (en) und Polnisch (
 Langfristig muss es dabei aber nicht bleiben.
 Spracheinträge können auch Variablen enthalten - diese werden aber in einem [separaten Abschnitt](variables.md) beschrieben.
 
-Seit der Umstellung ab Version 0.8.4 auf die neue Variablensyntax (`${...}` statt `%...%`) sind Alternativen (`Variante 1|Variante 2`) nur noch in Variablendefinitionen und nicht mehr direkt im Titel der in der Beschreibung erlaubt.
+Seit der Umstellung ab Version 0.8.3 auf die neue Variablensyntax (`${...}` statt `%...%`) sind Alternativen (`Variante 1|Variante 2`) nur noch in Variablendefinitionen und nicht mehr direkt im Titel der in der Beschreibung erlaubt.
 
 ### Standardkindelemente
 

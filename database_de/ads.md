@@ -46,12 +46,12 @@ Mit Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann
 | min_image | optional | Mindestsenderimage (0-100) |
 | max_image | optional | Höchstsenderimage (0-100) |
 | target_group | optional | [Zielgruppe(n)](main.md#Zielgruppe) für die zu erreichenden Zuschauerzahl |
-| allowed_genre | optional | erlaubtes [Genre](main.md#Genre) |
-| prohibited_genre | optional | verbotenes [Genre](main.md#Genre) |
+| allowed_genre | optional | erlaubtes [Hauptgenre](main.md#Genre) |
+| prohibited_genre | optional | verbotenes [Genre](main.md#Genre) (noch nicht unterstützt) |
 | allowed_programme_type | optional | erlaubter [Programmtyp](main.md#Programmtyp) |
-| prohibited_programme_type | optional | verbotener [Programmtyp](main.md#Programmtyp) |
+| prohibited_programme_type | optional | verbotener [Programmtyp](main.md#Programmtyp) (noch nicht unterstützt) |
 | allowed_programme_flag | optional | erlaubte [Programmflags](main.md#Programmflags) |
-| prohibited_programme_flag | optional | verbotene [Programmflags](main.md#Programmflags) |
+| prohibited_programme_flag | optional | verbotene [Programmflags](main.md#Programmflags) (noch nicht unterstützt) |
 
 Die Mindestzuschauerquote `min_audience`bezieht sich auf die möglichen Zuschauer im aktuellen Sendegebiet.
 Die Schalter für Programmtyp, Genre und Flags werden aktuell in der Datenbank noch nicht verwendet.
