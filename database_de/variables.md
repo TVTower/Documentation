@@ -210,13 +210,68 @@ In Nachrichten gibt es keine Rollen.
 
 ## Übersicht über wichtige Funktionen
 
-TODO weiter
+Einstiegspunkte für die definierten Funktionen sind `game.gamescriptexpression.bmx` für TVTower-spezifische Funktionen und `base.util.scriptexpression_ng.bmx` für allgemeine Funktionen (Bediungen etc.).
+Mit einer Textsuche nach `RegisterFunctionHandler` bekommt man einen schnellen Überblick, was es so gibt und wo es definiert ist.
+In der registrierten `SEFN_`-Funktion kann man dann die möglichen Parameter nachvollziehen.
+Die im folgenden aufgelisteten Parameter müssen nicht vollständig sein!
 
 ### stationmap
 
+Die Funktion `.stationmap` bietet kontextunabhängigen Zugriff auf Informationen zur gerade im Spiel verwendeten Karte (aktuell nur Deutschland).
+Es muss genau ein Zeichenkettenparameter angegeben werden.
+
+* `${.stationmap:"randomcity"}` - zufälliger Städtename
+* `${.stationmap:"population"}` - Bevölkerungszahl
+* `${.stationmap:"mapname"}` - Name des Landes
+* `${.stationmap:"mapnameshort"}` - ISO-Ländercode
+
 ### worldtime
 
+Die Funktion `.worldtime` bietet kontextunabhängigen Zugriff auf den aktuellen Zeitpunkt im Spiel.
+Es muss genau eine Zeichenkettenparameter angegeben werden.
+
+* `${.worldtime:"year"}` - aktuelles Jahr
+* `${.worldtime:"month"}` - aktueller Monat (als Zahl)
+* `${.worldtime:"day"}` - aktueller Tag (als fortlaufende Zahl)
+* `${.worldtime:"dayofmonth"}` - Tag des Monats (1-31)
+* `${.worldtime:"hour"}` - aktuelle Stunde des Tages (0-23)
+* `${.worldtime:"minute"}` - aktuelle Minute (0-59)
+* `${.worldtime:"daysplayed"}` - Anzahl fertig gespielter Tage
+* `${.worldtime:"dayplaying"}` - aktueller Spieltag
+* `${.worldtime:"yearsplayed"}` - Anzahl fertig gespielter Jahre
+* `${.worldtime:"weekday"}` - aktueller Wochentag (als Zahl; 0=Montag)
+* `${.worldtime:"season"}` - aktueller Jahreszeit (als Zahl; 1=Frühling, 4=Winter)
+
 ### persongenerator
+
+Die Funktion `.persongenerator` erlaubt kontextunabhängig länderspezifische Namen zu erzeugen.
+Es ist nicht direkt möglich, eine Person zu erzeugen und dann auf die unterschiedlichen Namensbestandteile (Vorname, Nachname, Titel) zuzugreifen.
+Der Grundsätzliche Aufruf ist `${.persongenerator:"Namenstyp":"Land":"Geschlecht":WahrscheinlichkeitFürTitel}.
+Nur der erste Parameter Namenstyp ist Pflicht und bis auf die Wahrscheinlichkeit für den Titel (Zahl zwischen 0 und 1) sind alles Zeichenkettenparameter.
+
+Erlaubte Namenstypen sind
+* "name", "firstname" - Vorname
+* "lastname" - Nachname
+* "fullname" - vollständiger Name inklusive Titel
+* "title"
+
+Ist das Länderkürzel nicht angegeben, leer oder unbekannt wird ein zufälliges Land verwendet.
+Einstiegspunkt für weitere Recherche ist `base.util.persongenerator.bmx`.
+Aktuell bekannte Kürzel sind: aut, de, uk, cn, ru, tr, us, dk, gr, ug, es, fr, pl.
+Ein paar weitere delegieren auf ähnliche Länder (sco, e, irl, nor, swe, se, sui, bra, por, mex, d).
+
+Für das Geschlecht werden folgende Werte unterstützt
+
+* männlich: `"m"`, `"1"`, `"male"`
+* weiblich: `"f"`, `"2"`, `"female"`
+* bei anderen Werten wird ein zufälliges Geschlecht ausgewählt
+
+Beispiele:
+
+* `${.persongenerator:"firstname"}` - beliebiger Vorname
+* `${.persongenerator:"firstname":"us":"male"}` - US-amerikanischer männlicher Vorname
+* `${.persongenerator:"fullname":"":"female":0.9}` - weiblicher Name mit 90%iger Wahrscheinlichkeit für einen Titel
+* `${.persongenerator:"lastname":"${de|it|dk}"}` - deutscher oder italienischer oder dänischer (skandinavischer) Nachname
 
 ### Referenz auf eigene Besetzung
 
