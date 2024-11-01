@@ -1,44 +1,151 @@
-**TODO überarbeiten**
+# Variablen und Funktionsaufrufe
 
-#### selbst definierte Variablen
+Für die Version 0.8.3 wurde die Verarbeitung von Variablen und anderen dynamischen Inhalten überarbeitet.
+Ziel war eine einheitlichere Syntax und gleichzeitig mehr Flexibilität.
+Folgende grundsätliche Konzepte gibt es weiterhin
 
-Variablen sind ein gute Möglichkeit, Varianz zu erzeugen.
-So kann der Kripoeinsatz in unterschiedlichsten Orten stattfinden.
+* eigene Variablendefinitionen
+* Alternativen in Vorlagen, von denen (z.B. für eine konkrete Nachricht) eine ausgewählt wird
+* vom Spiel bereitgestellte dynamische Inhalte
+
+Ergänzt wurden
+
+* Verwendung von Bedingungen nicht nur im Script für die Verfügbarkeit sondern überall wo Variablen erlaubt sind
+* Funktionen, die Zugriff auf andere Datenbankelemente erlauben (z.B. Referenz auf Personen, die nicht Teil der Besetzung sind)
+* Funktionen, die eine kompaktere Schreibweise für dynamische Inhalte erlauben
+
+Haupteinsatzgebiet von Variablen ist die Erzeugung von Varianz in Texten (Nachrichten, Drehbüchern) aber auch die Referenz z.B. auf Personen, ohne deren Namen fest in den Texten zu hinterlegen.
+Das kann z.B. sinnvoll sein, wenn z.B. Anpassungen an Personen- oder Rollendefinitionen in der Datenbank gemacht werden.
+Filmtitel oder Beschreibungen müssen dann nicht entsprechend korrigiert werden.
+Typischerweise werden Variablen an allen Stellen verwendet, an denen es sprachspezifische Texte gibt.
 
 ```XML
 ...
 	<title>
-		<de>Kripo %CITY%</de>
+		<de>Es tanzt ${animal}</de>
+		...
 	</title>
 ...
 	<variables>
-		<city>
-			<de>Berlin|Bonn|Trier|%STATIONMAP:RANDOMCITY%</de>
-		</city>
+		<animal>
+			<de>der Bär|die Maus</de>
+			...
+		</animal>
 	</variables>
 ...
 ```
 
-Die Variablenverwendung wird durch zwei den Variablennamen umschließende Prozentzeichen markiert `%VARIABLEN_NAME%`.
-Die Variablen selbst und ihre möglichen Belegungen werden im Hauptknoten `variables` definiert, wobei für jede Variable wieder mehrere Sprachvarianten erlaubt sind.
-Die unterschiedlichen Möglichkeiten für die Ersetzung der Variable verden durch senkrechte Striche `|` voneinander getrennt.
-Im obigen Beispiel könnte das Ergebnis als "Kripo Berlin", "Kripo Bonn", "Kripo Trier" sein; oder der Name der Stadt wir zufällig erzeugt (siehe unten).
-Das Beispiel zeigt, dass Variablendefinition selbst wieder Variablen enthalten können.
+## Syntaxgrundlagen
 
-Ab Version 0.7.4 wird eine zweite Variablensyntax unterstützt `${VARIABLEN_NAME}`.
-Diese hat den Vorteil, dass Beginn und Ende eindeutig unterscheidbar sind, was verschachtelte Variablen erlaubt `${varpraefix_${variant}}`.
+Da wir es nicht mehr nur mit einfachen Variablen und Zugriff auf Werte aus dem Spiel mittels Konstanten zu tun haben, sprechen wir von *Ausdrücken*.
+Der grundsätzliche Aufbau eines erst zur Zeit des Spiels ausgewerteten Ausdrucks ist `${auszuwerten}`.
+Er beginnt mit `${` und endet mit `}`.
+`auszuwerten` kann wie im obigen Beispiel der Name einer selbst definierten Variable sein oder aber eine komplexere Struktur haben kann, z.B. selbst wieder Ausdrücke enthalten.
+
+* `${einfacheVariable}`
+* `${variablenPraefix_${suffixZuerstAusgewertet}}`
+* `${.funktionsName:parameter1:parameter2...}`
+
+### Variablendefinition
+
+Eine Reihe von Datenbankstrukturen erlauben die Definition von Variablen, um z.B. für Texte und Beschreibugnen mehr Varianz zu erlauben.
+Die Variablen selbst und ihre möglichen Belegungen werden im Hauptknoten `variables` definiert, wobei für jede Variable wieder mehrere Sprachvarianten erlaubt sind.
+Unterschiedliche Möglichkeiten für die Ersetzung der Variable verden durch senkrechte Striche `|` voneinander getrennt.
+
+
+```XML
+	<variables>
+		<animal>
+			<de>der Bär|die Maus|das Kamel</de>
+			<en>the bear|the mouse|the camel</en>
+		</animal>
+		<rndcity>${.stationmap:"randomcity"}</rndcity>
+		<city>Berlin|Bonn|Trier|${.stationmap:"randomcity"}</city>
+	</variables>
+```
+
+Im diesem Beispiel werden drei Variablen definiert: `animal`, `rndcity` und `city`.
+Typischerweise wird es innerhalb der Definition Tags für unterschiedliche Sprachen geben, so dass sprachspezifische Texte erstellt werden können.
+Für `animal` gibt es eine deutsche und eine englische Variante.
+Diese Definition enthält Alternativen (`Variante 1|Variante 2|Variante 3`), die durch `|` voneinander getrennt sind.
+Zur Auswertungszeit wird für die Variable einmalig eine Zahl gewürfelt (je nach Anzahl der Alternativen) und dann für alle Sprachen verwendet.
+Leere Alternativen sind erlaubt (`<de>||große </de>` - nur in einem Drittel der Fälle würde das Adjektiv erscheinen).
+Wird also die 2 gewürfelt, wäre der Wert von `animal` im Deutschen `die Maus` und im Englischen `the mouse`.
+
+Soll der Text aber immer für alle Sprachen genau gleich sein, kann seit Version 8.3.0 auf das Sprachtag verzichtet werden.
+`<rndcity>${.stationmap:"randomcity"}</rndcity>` macht für alle Sprachen einen einmalig erzeugten Stadtnamen (für die vom Spiel zur Verfügung gestellten Funktionen siehe unten) unter dem Variablennamen `rndcity` verfügbar.
+
+### einfache Variablen
+
+Der Zugriff auf eine so definierte Variable erfolgt im einfachsten Fall über den Ausdruck `${variablenname}`.
+Für die oben definierten Variablen wären das die Ausdrücke `${animal}`, `${rndcity}` und `${city}`.
+Sie können im Titel, der Beschreibung aber auch in anderen Variablendefinitionen verwendet werden.
+Bevor der Wert einer Variable feststeht, werden zunächst alle Ausdrücke in der Definition vollständig ausgewertet.
+(Variablendefinitionen dürfen also nicht auf sich gegenseitig verweisen.)
+
+### wichtiger Hinweis zu kopierten Spracheinträgen
+
+Soll z.B. der Titel eines Drehbuchs zufällig erzeugt werden und mehrere Varianten unterstützen, kann folgendes Schema verwendet werden:
+
+```XML
+...
+	<title>
+		<de>${theTitle}</de>
+		<en>${theTitle}</en>
+	</title>
+...
+	<variables>
+		<theTitle>
+			<de>Die Saga von ...|Das Geheimnis von ...</de>
+			<en>The Saga of ...|The Secret of ...</en>
+		</theTitle>
+	</variables>
+...
+```
+
+Selbst wenn die Spracheinträge für `title` für alle Sprachen gleich sind und nur aus der Variablenreferenz bestehen, kann die verkürzte Schreibweise `<title>${theTitle}</title>` nicht verwendet werden.
+In dem Fall würden nämlich alle Sprachen denselben Titel bekommen - der Ausdruck wird nur einmal ausgewertet und dann für alle Sprachen verwendet.
+
+Aus demselben Grund würde man auch nicht folgende Variablendefinition verwenden:
+
+```XML
+	<variables>
+		<city>
+			<de>Lissabon|${.stationmap:"randomcity"}</de>
+			<en>Lisbon|${.stationmap:"randomcity"}</en>
+		</city>
+	</variables>
+```
+
+Wird zur Spielzeit die Alternative zwei gewürfelt, würde sowohl für Deutsch als auch für Englisch ein zufälliger Städtename ermittelt.
+In den Texten würden dann also unterschiedliche Städte erscheinen, was vermutlich nicht dem gewünschten Ergebnis entspricht.
+Richtig wäre
+
+```XML
+	<variables>
+		<rndcity>${.stationmap:"randomcity"}</rndcity>
+		<city>
+			<de>Lissabon|${rndcity}</de>
+			<en>Lisbon|${rndcity}</en>
+		</city>
+	</variables>
+```
+
+Da `rndcity` sprachunabhängig definiert ist und der Wert einer Variablen nur einmalig ermittelt wird, liefert die zeite Alternative von `city` wie gewünscht dieselbe Stadt.
+
+### geschachtelte Variablen
+
+Da Ausdrücke selbst wieder Ausdrücke enthalten können, die von innen nach außen ausgewertet werden, können geschachtelte Variablen verwendet werden `${varpraefix_${variant}}`.
 Hird zunächst die Variante aufgelöst und bestimmt damit, welche "Hauptvariable" Verwendung findet.
 
 ```XML
 ...
 	<title>
-		<de>${wer_${variant}} und ${pronomen_${variant}} ${adj}${was}</de>
+		<de>${wer_${geschlecht}} und ${pronomen_${geschlecht}} ${adj}${was}</de>
 	</title>
 ...
 	<variables>
-		<variant>
-			<de>maennl|weibl</de>
-		</variant>
+		<geschlecht>maennl|weibl</geschlecht>
 		<wer_maennl>
 			<de>Der Anwalt|Der Bäcker|Der König</de>
 		</wer_maennl>
@@ -61,6 +168,65 @@ Hird zunächst die Variante aufgelöst und bestimmt damit, welche "Hauptvariable
 	</variables>
 ...
 ```
+
+Das ist eine Möglichkeit grammatisch korrekte Texte zu erstellen.
+Zunächst wird einmalig das Geschlecht ermittelt wodurch aus `${wer_${geschlecht}}` entweder `${wer_maennl}` oder `${wer_weibl}` wird.
+Das ist dann eine einfache Variable, die direkt aufgelöst werden kann.
+
+Mögliche Titel wären in diesem Beispiel also
+* Der Anwalt und seine turen Liebschaften
+* Die Lehrerin und ihre Autos
+* Der König und seine früheren Pferde
+
+Eine weitere ab Version 0.8.3 verfügbare Möglichkeit solche komplexeren Texte zu erstellen ist die csv-Funktion - siehe weiter unten.
+
+### Funktionsaufrufe
+
+Neben dem Auflösen selbst definierter Variablen erlauben Ausdrücke auch das Auswerten von Funktionen.
+Diese sind im Spiel fest hinterlegt und werden abhängig vom Kontext der Verwendung und dem aktuellen Zustand des Spiels ausgewertet.
+
+Der grundsätzliche Aufbau eines Funktionsaufrufs ist `${.funktionsName:parameter1:parameter2...}`, wobei die Anzahl der Parameter und deren Typ von der Funktion und dem Kontext der Verwendung abhängt.
+Mögliche Paramtertypen sind
+
+* Zeichenkette (`"wert"` - in Anführungszeichen)
+* Variable (`variablenName` - ohne Anführungszeichen)
+* Zahl (`17`, `0.25`)
+* Wahrheitswert (`0`,`1`,`true`,`false` - TODO prüfen)
+
+Als Parameter kann natürlich auch wieder ein Ausdruck verwendet werden, dessen Wert zunächst ermittelt wird, bevor er als Funktionsparameter verwendet wird.
+
+Es gibt *globale* Funktionen, die an jeder Stelle verwendet werden können.
+Beispiele dafür sind das bereits verwendete Würfeln von Städtenamen, Funktionen zum ermitteln aktueller Spielzeitwerte oder Bedingungen
+
+* `${.stationmap:"randomcity"}` - zufällig ermittelter Städtename
+* `${.worldtime:"year"}` - aktuelles Jahr im Spiel
+* `${.if:${.eq:${.worldtime:"weekday"}:0}:"Montag":"nicht Montag"}` - wenn der aktuelle Wochentag 0 ist (entspricht Montag) dann wird der gesamte Ausdruck zu `Montag` ausgewertetn ansonsten zu `nicht Montag`
+* `${.person:"123abc":"fullname"}` - vollständiger Name der Persion mit der GUID 123abc
+
+Andere Funktionen sind kontextabhängig, können also nur in bestimmten Datenbankobjekten verwendet werden.
+`${.self:"role":1:"fullname"}` zum Beispiel liefert den vollständiger Name der Rolle mit Index 1.
+Dieser Ausdruck ergibt aber nur in einem Programm oder einer Drehbuchvorlage Sinn.
+In Nachrichten gibt es keine Rollen.
+
+## Übersicht über wichtige Funktionen
+
+TODO weiter
+
+### stationmap
+
+### worldtime
+
+### persongenerator
+
+### Referenz auf eigene Besetzung
+
+### csv
+
+### Bedingungen
+
+### globale Referenz auf Datenbankobjekte
+
+
 
 #### vom Spiel automatisch aufgelöste Variablen
 
