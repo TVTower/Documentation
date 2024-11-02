@@ -191,7 +191,7 @@ Mögliche Paramtertypen sind
 * Zeichenkette (`"wert"` - in Anführungszeichen)
 * Variable (`variablenName` - ohne Anführungszeichen)
 * Zahl (`17`, `0.25`)
-* Wahrheitswert (`0`,`1`,`true`,`false` - TODO prüfen)
+* Wahrheitswert (`0`,`1`,`true`,`false`)
 
 Als Parameter kann natürlich auch wieder ein Ausdruck verwendet werden, dessen Wert zunächst ermittelt wird, bevor er als Funktionsparameter verwendet wird.
 Wird ein Stringparameter erwartet, dessen Wert aber von einer Variable abhängt, kann die Variablenauflösung innerhalb von Anführungszeichen erfolgen `${.funktion:"${variableOderAusdruck}"}`.
@@ -214,7 +214,7 @@ In Nachrichten gibt es keine Rollen.
 Einstiegspunkte für die definierten Funktionen sind `game.gamescriptexpression.bmx` für TVTower-spezifische Funktionen und `base.util.scriptexpression_ng.bmx` für allgemeine Funktionen (Bediungen etc.).
 Mit einer Textsuche nach `RegisterFunctionHandler` bekommt man einen schnellen Überblick, was es so gibt und wo es definiert ist.
 In der registrierten `SEFN_`-Funktion kann man dann die möglichen Parameter nachvollziehen.
-Die im folgenden aufgelisteten Parameter müssen nicht vollständig sein!
+Die im folgenden aufgelisteten Funktionen und Parameter müssen nicht vollständig sein!
 
 ### stationmap
 
@@ -241,7 +241,7 @@ Es muss genau eine Zeichenkettenparameter angegeben werden.
 * `${.worldtime:"dayplaying"}` - aktueller Spieltag
 * `${.worldtime:"yearsplayed"}` - Anzahl fertig gespielter Jahre
 * `${.worldtime:"weekday"}` - aktueller Wochentag (als Zahl; 0=Montag)
-* `${.worldtime:"season"}` - aktueller Jahreszeit (als Zahl; 1=Frühling, 4=Winter)
+* `${.worldtime:"season"}` - aktueller Jahreszeit (als Zahl; 1=Frühling, 4=Winter), wobei Frühling März bis Mai ist
 
 ### persongenerator
 
@@ -499,7 +499,20 @@ Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen
 
 ### globale Referenz auf Datenbankobjekte
 
-TODO
+Von beliebigen Stellen aus kann über deren ID auf Personen, Rollen und Programme zugegriffen werden.
+Hier nur ein paar Beispiel.
+In `game.gamescriptexpression.bmx` kann man nachschauen, ob vielleicht benötigte Information schon jetzt verfügbar ist.
 
-.ucfirst
-`GENRE` (Hauptgenre) und `EPISODES` (Anzahl der Folgen) aufgelöst.
+* `${.person:"836b4aa3-b5c6-4529-b30d-4501594cdf13":"nickname"}` - Spitzname der Person mit der gegebenen ID
+* `${.person:"3342a0e3-66f3-4f30-922c-ebe1b0611a00":"age"}` - Alter der Person
+* `${.programme:"04439fd1-e89f-4922-a48e-6f8ddf96f7ab":"episodecount"}` - Anzahl der Folgen der Serie
+* `${.programme:"35190c1d-aa55-4e84-967f-72a374e84dcf":"year"}` - Erscheinungsjahr des Programms
+* `${.programme:"02d0dfa5-dbcf-40b5-abb4-7e20a58d8efa":"cast":1:"fullname"}` - vollständiger Name der Besetzung mit Index 1
+* `${.programme:"a61e7775-7565-48cd-ab4a-e5faea09d70d":"title"}` - Titel des Programms
+* `${.role:"1d1f05ea-43ff-4399-81d9-f00239460700":"fullname"}` - vollständiger Name der Rolla
+1d1f05ea-43ff-4399-81d9-f00239460700
+
+### Zeichenkettenoperationen
+
+Mit `.ucfirst:parameter` kann mann den ersten Buchstaben des Parameters in einen Großbuchstaben umwandeln.
+Das ist hilfreich, wenn man Wörter für Satzanfang und Satzinneres nicht in zwei Varianten definieren möchte.

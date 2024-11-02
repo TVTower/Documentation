@@ -61,8 +61,6 @@ Beispiel `time="8,2,11,13,30,45"` - falls heute Dienstag ist am Donnerstag zwisc
 
 ## Verfügbarkeit
 
-**TODO überarbeiten**
-
 Der `availability`-Knoten definiert zu welchem Zeitpunkt/in welchem Zeitraum ein Element verfügbar ist.
 
 Als Eigenschaften stehen `year_range_from`, `year_range_to` und `script` zur Verfügung.
@@ -73,30 +71,12 @@ Bei year wird die Jahreszahl angegeben (ggf. -1 für nicht beschränkt), so dass
 * `...year_range_from="2000" year_range_to="-1"` - 
 ab 2000
 
-`script` erlaubt eine (zusätzliche) feinere Steuerung.
-Über Vergleiche (`=`, `<=`, `>=`) und logische Verknüpfung (`||` für oder, `&amp;&amp;` für und) lassen sich Bedingungen definieren.
+`script` erlaubt eine (zusätzliche) feinere Steuerung mit [Bedingungen](variables.md#Bedingungen) und [Zeitfunktionen](variables.md#worldtime).
+Wenn möglich sollten Jahresprüfungen für Optimierungen im Programm aber mit den obigen Range-Attributen gemacht werden.
+Typische Anwedungsfälle sind jahreszeitabhängige Nachrichten oder solche, die nur an bestimmten Wochentagen erscheinen sollen oder aber Drehbücher, die erst nach einer gewissen Spielzeit zur Verfügung stehen sollen.
+Da in den Funktionsaufrufen doppelte Anführungszeichen für Zeichenkettenparameter verwendet werden, ist das script-Attribut typischerweise mit einfachen Anführungszeichen umschlossen.
 
-TODO vielleicht griffiges xml-kompatibles Symbol für "und" finden (Vorschlag Ronny: OR, AND)?
-
-Auf folgende Zeitwerte kann zugegriffen werden
-
-| Name | Bedeutung |
-| ---- | --------- |
-| TIME_YEAR | Jahr |
-| TIME_DAY | TODO | 
-| TIME_HOUR | Stunde des Tages |
-| TIME_MINUTE | Minute der Stunde |
-| TIME_WEEKDAY | Wochentag (0-6) |
-| TIME_SEASON | Jahreszeit (1-4) |
-| TIME_DAYSPLAYED | Anzahl gespielter Tage|
-| TIME_YEARSPLAYED | Anzahl gespielter Jahre |
-| TIME_DAYOFMONTH | Tag des Monats |
-| TIME_DAYOFYEAR | Tag des (gespielten) Jahres |
-| TIME_ISNIGHT | es ist Nacht |
-| TIME_ISDAWN | es ist Morgen |
-| TIME_ISDAY | es ist Tag |
-| TIME_ISDUSK | es ist Abend |
-
-Die Jahreszeiten beginnen mit 1=Frühling (Monate März-Mai).
-
-TODO Beispiele
+* `script='${.eq:${.worldtime:"weekday"}:6}'` - verfügbar, wenn Sonntag ist (Montag=0, ..., Sonntag=6)
+* `script='${.and:${.eq:${.worldtime:"weekday"}:2}:${.gte:${.worldtime:"hour"}:18}}'` - Mittwoch ab 18 Uhr
+* `script='${.gt:${.worldtime:"daysplayed"}:12}'` - mehr als 12 Tage gespielt
+* `script='${.or:${.eq:${.worldtime:"month"}:1}:${.eq:${.worldtime:"month"}:7}}'` - im Januar oder im Juli
