@@ -291,7 +291,7 @@ In Programmen kann auf die Namen der eigenen Besetzung, in Programmen und Drehbu
 Der grundsätzliche Funktionsaufbau ist immer gleich `${.self:"Typ":Index:"Attribut":inklusiveTitel}`.
 `.self` ist der Indikator dafür, dass die Auswertung im Kontext des definierenden Objekts erfolgt.
 Typ kann `cast` (nur Programme, da in einem Drehbuch die tatsächliche Besetzung noch nicht feststeht) oder `role` für die Rolle sein.
-Index ist die Stelle des gewünchten Wertes in der Besetzungs-/Jobliste in der Datenbank und sollte mit dem an dem Eintrag definierten index-Attributs übereinstimmen.
+Index ist die Stelle des gewünchten Wertes in der Besetzungs-/Jobliste in der Datenbank und sollte mit dem an dem Eintrag definierten index-Attributs übereinstimmen (Index 0 ist der erste Eintrag der Liste).
 Ein Index der außerhalb der Anzahl der Besetzungen liegt, führt zu einem Fehler.
 Der Wahrheitswert `inklusiveTitel` ist optional und gibt bei einem Nachnamen oder vollen Namen an, ob dieser mit Titel zurückgegeben werden soll (Standardfall ist nein).
 
@@ -499,18 +499,20 @@ Mit der Verwendung von Bedingungen in den Ausdrücken könnten weitere Variablen
 
 ### globale Referenz auf Datenbankobjekte
 
-Von beliebigen Stellen aus kann über deren ID auf Personen, Rollen und Programme zugegriffen werden.
-Hier nur ein paar Beispiel.
-In `game.gamescriptexpression.bmx` kann man nachschauen, ob vielleicht benötigte Information schon jetzt verfügbar ist.
+Von beliebigen Stellen aus kann auf Personen, Rollen und Programme über deren in der Datenbank vergebenen GUID zugegriffen werden.
+Hier nur ein paar Beispiele.
+In `game.gamescriptexpression.bmx` kann man nachschauen, ob die vielleicht benötigte Information schon jetzt verfügbar ist.
 
 * `${.person:"836b4aa3-b5c6-4529-b30d-4501594cdf13":"nickname"}` - Spitzname der Person mit der gegebenen ID
 * `${.person:"3342a0e3-66f3-4f30-922c-ebe1b0611a00":"age"}` - Alter der Person
-* `${.programme:"04439fd1-e89f-4922-a48e-6f8ddf96f7ab":"episodecount"}` - Anzahl der Folgen der Serie
+* `${.programme:"04439fd1-e89f-4922-a48e-6f8ddf96f7ab":"episodecount"}` - Anzahl Folgen der Serie
 * `${.programme:"35190c1d-aa55-4e84-967f-72a374e84dcf":"year"}` - Erscheinungsjahr des Programms
-* `${.programme:"02d0dfa5-dbcf-40b5-abb4-7e20a58d8efa":"cast":1:"fullname"}` - vollständiger Name der Besetzung mit Index 1
+* `${.programme:"02d0dfa5-dbcf-40b5-abb4-7e20a58d8efa":"cast":1:"fullname"}` - vollständiger Name der Besetzung mit Index 1 (wie bei den Referenzen auf die eigene Besetzung ist Index 0 typischerweise der erste Eintrag der Liste)
 * `${.programme:"a61e7775-7565-48cd-ab4a-e5faea09d70d":"title"}` - Titel des Programms
-* `${.role:"1d1f05ea-43ff-4399-81d9-f00239460700":"fullname"}` - vollständiger Name der Rolla
+* `${.role:"1d1f05ea-43ff-4399-81d9-f00239460700":"fullname"}` - vollständiger Name der Rolle
 1d1f05ea-43ff-4399-81d9-f00239460700
+
+
 
 ### Zeichenkettenoperationen
 

@@ -51,7 +51,7 @@ Auf diese Weise kann erreicht werden, dass nicht zu viele Nachrichten zum selben
 
 ## Kindelemente von news
 
-Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sindvollerweise zu definieren, Variablen [variables](variables.md) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
+Standardelemente für Titel [title](main.md#title), Beschreibung [description](main.md#description) sind sinnvollerweise zu definieren, Variablen [variables](variables.md) sind nötig, wenn sie in Titel oder Beschreibung verwendet werden sollen und mit (zeitlicher) Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann die Nachrichten veröffentlicht werden können.
 
 Ab Version 0.8.1 werden die Variablen an angestoßene Nachrichten weitergegeben.
 Das erlaubt es, Nachrichtenketten abwechslungsreicher zu gestalten, da gewürfelte Namen etc. damit auch in späteren Nachrichten konsistent verwendet werden können.
