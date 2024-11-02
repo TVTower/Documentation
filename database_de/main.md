@@ -537,43 +537,71 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | ------ | ---- |
 | A | Österreich |
 | AFG | Afghanistan |
+| AM | Armenien |
 | AUS | Australien |
-| BE | Belgien |
+| B | Belgien |
+| BG | Bulgarien |
+| BIH | Bosnien und Herzegowina |
 | BM | Bermudas |
 | BOL | Bolivien |
 | BR | Brasilien |
+| BW | Botswana |
+| C| Kuba |
 | CDN | Kanada |
 | CH | Schweiz |
 | CHN | China |
+| CL | Sri Lanka |
 | CO | Kolumbien |
 | CS | CSSR |
+| CZ | Tschechische Republik |
 | D | Deutschland |
 | DDR | DDR |
 | DK | Dänemark |
 | E | Spanien |
 | F | Frankreich |
+| FL | Liechtenstein |
 | GB | Vereinigtes Königreich |
+| GH | Ghana |
 | GR | Griechenland
 | H | Ungarn |
 | HK | Hongkong |
+| HR | Kroatien |
 | I | Italien |
 | IL | Israel |
 | IND | Indien |
 | IRL | Irland |
 | J | Japan |
+| KN | Grönland |
+| KSA | Saudi-Arabien |
+| L | Luxemburg |
+| LT | Litauen |
+| M | Malta |
+| MA | Marocco |
 | MEX | Mexiko |
+| N | Norwegen |
 | NL | Niederlande |
+| NZ | Neuseeland |
 | P | Portugal |
+| PA | Panama |
+| PE | Peru |
 | PL | Polen |
 | RA | Argentinien |
+| RC | Taiwan |
 | RM | Republik Molvanien |
+| RO | Rumänien |
 | ROK | Südkorea |
+| RP | Philippinen |
+| RUS | Russland |
 | S | Schweden |
 | SCO | Schottland |
 | SU | UDSSR |
+| T | Thailand |
+| TN | Tunesien |
 | TR | Türkei |
 | USA | USA |
+| YU | Jugoslawien|
 | ZA | Südafrika |
+| ZW | Simbabwe |
 
 Basis für die Vereinheitlichung beim Datenbankaufräumen war die Liste der Autokennzeichen (https://de.wikipedia.org/wiki/Liste_der_Kfz-Nationalit%C3%A4tszeichen).
 Bei Koproduktionen werden die Länder durch Schrägstrich und ohne Leerzeichen getrennt (`F/CDN`).
