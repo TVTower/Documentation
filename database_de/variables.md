@@ -75,6 +75,9 @@ Wird also die 2 gewürfelt, wäre der Wert von `animal` im Deutschen `die Maus` 
 Soll der Text aber immer für alle Sprachen genau gleich sein, kann seit Version 8.3.0 auf das Sprachtag verzichtet werden.
 `<rndcity>${.stationmap:"randomcity"}</rndcity>` macht für alle Sprachen einen einmalig erzeugten Stadtnamen (für die vom Spiel zur Verfügung gestellten Funktionen siehe unten) unter dem Variablennamen `rndcity` verfügbar.
 
+Variablendefinitionen können natürlich selbst wieder Referenzen auf andere Variablen enthalten.
+Dabei darf es natürlich keine Zyklen geben (v1 hängt von der Auswertung von v2 ab und v2 von der Auswertung von v1).
+
 ### einfache Variablen
 
 Der Zugriff auf eine so definierte Variable erfolgt im einfachsten Fall über den Ausdruck `${variablenname}`.

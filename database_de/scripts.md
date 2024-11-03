@@ -101,6 +101,7 @@ Folgende Eigenschaften sind pro `job` definierbar.
 | function | Pflicht | [Job](main.md#Job) |
 | required | Pflicht | Wahrheitswert; muss diese Stelle besetzt werden |
 | gender | optional | Geschlecht |
+| country | optional | Land |
 | role_guid | optional | ID der [Rolle](person.md#Filmrollen) die hier besetzt wird |
 
 Beispiele:
@@ -108,6 +109,14 @@ Beispiele:
 * `<job index="0" function="1" required="1" />` - Regisseur muss besetzt werden, Geschlecht nicht spezifiziert
 * `<job index="1" function="2" gender="2" required="1" />` - weibliche Hauptdarstellerin muss besetzt werden
 * `<job index="2" function="16" gender="1" required="0" />` - männlicher Gast könnte im fertigen Drehbuch dabei sein oder auch nicht
+
+In Titel und Beschreibung kann auf Besetzungsrollen verwiesen werden (z.B. `${.self:"role":1:"firstname"}`).
+Falls mit `role_guid` eine feste Rolle definiert ist, werden die entsprechenden Namen verwendet.
+Falls keine Rolle definiert ist, wird automatisch eine erzeugt - für jedes Drehbuch eine neue.
+Die Attribute `gender` und `country` werden dann für das Würfeln des Namens herangezogen.
+
+* `<job index="1" function="2" gender="1" country="it" required="1" />` - bei Referenz auf die Rolle wird ein männlicher italienischer Name erzeugt
+* `<job index="2" function="2" country="us" required="1" />` - bei Referenz auf die Rolle wird ein US-amerikansicher Name erzeugt, das Geschlecht ist nicht festgelegt
 
 ### Drehbuchdaten (data)
 
