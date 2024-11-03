@@ -9,7 +9,7 @@ Die Sprachkürzel sind dabei dieselben, die auch für die Properties-Dateien unt
 Englisch ist die Standardsprache.
 Das heißt, dass für jeden Lokalisierungseintrag, der für eine Sprache erstellt wird, auch einer für Englisch existieren muss.
 
-Die Personeneinträge sind als Liste von `person`-Kindelementen in das `persons`-Tag eingebettet, die Rolleneintraäge als List von `role`-Kindelementen in das `roles`-Tag.
+Die Personeneinträge sind als Liste von `person`-Kindelementen in das `persons`-Tag eingebettet, die Rolleneintraäge als List von `role`-Kindelementen in das `programmeroles`-Tag.
 
 ## Eigenschaften von person
 
@@ -47,8 +47,8 @@ Es ist also nicht möglich, einfach nur den Vornamen zu überschreiben und den N
 		<person guid="common-amateur-director" first_name="" last_name="Regiepraktikant" nick_name="Regiepraktikant" />
 />
 	</persons>
-	<roles>
+	<programmeroles>
 		<role guid="script-roles-ron-001" first_name="Vincent" last_name="Graf" title="" />
-	</roles>
+	</programmeroles>
 </tvtdb>
 ```
