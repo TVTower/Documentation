@@ -335,7 +335,7 @@ Das letzte Beispiel zeigt, wie sich Auswertungsergebnisse über gut Variablennam
 ```XML
 <variables>
 	<geschlecht>m|f</geschlecht>
-	<maennl>${.if:"$geschlecht}"=="m"}:"true":""}</maennl>
+	<maennl>${.if:"${geschlecht}"=="m"}:"true":""}</maennl>
 	<artikel>
 		<de>
 			${.if:maennl:"Der:"Die"}
@@ -358,13 +358,19 @@ Stattdessen sollten die entsprechenden Vergleichsfunktionen für den Vergleich v
 * `${.lt:p1:p2}` - wahr gdw p1 kleiner als p2 ist
 * `${.lte:p1:p2}` - wahr gdw p1 kleiner als oder gleich p2 ist
 
+Da ein einfaches if-then-else sehr häufig vorkommt und die verschachtelten Funktionsaufrufe nicht leicht lesbar sind, gibt es neben dem Vergleich, der einen Wahrheitswert zurückliefert auch noch eine Kurzschreibweise.
+`${.cmp:p1:p2:ErgebnisWennJa:ErgebnisWennNein}` - je nach Ergebnis des Vergleichs von p1 und p2 ist das Ergebnis entweder der vorletzte oder der letzte Parameter
+
+* `${.eq:geschlecht:"m":"Der":"Die"}` - Wenn der Wert der Variable `geschlecht` `m` ist, kommt `Der` raus, ansonste `Die`
+* `${.gte:${.worldtime:"year"}:2002:"Euro":"DM"}` -  ab 2002 Euro, vorher DM
+
 Mit `${.not:bedingung}` kein eine Bedingung negiert werden.
 Und- und Oder-Verknüpfungen von zwei oder mehr Bedingungen sind auch möglich.
 
-* `${.and:b1:b2}` - wahr gdw alle Bedinungen (b1 und b2) wahr sind
-* `${.and:b1:b2:b3:b4}` - wahr gdw alle Bedinungen (b1 bis b4) wahr sind
-* `${.or:b1:b2}` - wahr gdw mindestens eine der Bediungenen (b1 oder b2) wahr sind
-* `${.or:b1:b2:b3:b4}` - wahr gdw mindestens eine der Bedingungen wahr sind
+* `${.and:p1:p2}` - wahr gdw alle Bedinungen (p1 und p2) wahr sind
+* `${.and:p1:p2:p3:p4}` - wahr gdw alle Bedinungen (p1 bis p4) wahr sind
+* `${.or:p1:p2}` - wahr gdw mindestens eine der Bediungenen (p1 oder p2) wahr sind
+* `${.or:p1:p2:p3:p4}` - wahr gdw mindestens eine der Bedingungen wahr sind
 
 Es versteht sich von selbst, dass die Parameter der Vergleiche etc. selbst wieder komplexe Ausdrücke (mit dem richtigen Typ) sein können.
 
