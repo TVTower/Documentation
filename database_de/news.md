@@ -4,7 +4,7 @@ Die Nachrichteneinträge sind als Liste von `news`-Kindelementen in das `allnews
 
 ```XML
 <allnews>
-		<news id="X-news-geld1" thread_id="X-news-geld" type="0">
+		<news guid="X-news-geld1" thread_id="X-news-geld" type="0">
 			<title>
 				<de>Straßenfeger findet 1.000 Mark</de>
 				<en>Street sweeper finds 1,000 marks</en>
@@ -29,7 +29,7 @@ Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgescheh
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | type | Pflicht | Nachrichtentyp; siehe unten 0=Startnachricht, 2=Nachfolgenachricht |
 | thread_id | optional | ID des Nachrichtenthemas - Nachrichten die zusammengehören |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
@@ -165,7 +165,7 @@ Dafür addiert man die Werte auf.
 Teure Kulturnachricht geringer Qualität ohne Einschränkungen der Verfügbarkeit oder Effekte.
 
 ```XML
-<news id="ronny-news-tarotimwandel-01" type="0" creator="5578" created_by="Ronny">
+<news guid="ronny-news-tarotimwandel-01" type="0" creator="5578" created_by="Ronny">
 	<title>
 		<de>"Tarot im Wandel der Zeit" auf Tour</de>
 		<en>"Tarot in the course of time" on tour</en>
@@ -183,7 +183,7 @@ Teure Kulturnachricht geringer Qualität ohne Einschränkungen der Verfügbarkei
 Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgenachricht an, deren Typ `type="2"` anzeigt, dass sie nicht beim zufälligen Ermitteln möglicher Nachrichten zur Verfügung steht.
 
 ```XML
-<news id="6b1065dd-36d5-4b4b-9904-1a8b7fd1d9c1" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="0" creator="">
+<news guid="6b1065dd-36d5-4b4b-9904-1a8b7fd1d9c1" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="0" creator="">
 	<title>
 		<de>Terrorismusbekämpfung im Weltall</de>
 		<en>Fighting terrorism in the universe</en>
@@ -199,7 +199,7 @@ Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgen
 	<availability year_range_from="2001" year_range_to="2009" />
 </news>
 
-<news id="7c2911a9-c9b4-40d1-b4f6-02fb0025358a" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="2" creator="">
+<news guid="7c2911a9-c9b4-40d1-b4f6-02fb0025358a" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="2" creator="">
 	<title>
 		<de>Terrorismusbekämpfung – jetzt 2 Shuttles</de>
 		<en>Fighting terrorism - now 2 shuttles</en>
@@ -213,7 +213,7 @@ Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgen
 Eine Hauptnachricht stößt eine von vier möglichen Nachfolgenachrichten mit unterschiedlicher Wahrscheinlichkeit an.
 
 ```XML
-<news id="news-jorgaeff-racing-01" type="0" thread_id="news-jorgaeff-racing" creator="8936" created_by="jorgaeff">
+<news guid="news-jorgaeff-racing-01" type="0" thread_id="news-jorgaeff-racing" creator="8936" created_by="jorgaeff">
 	<title>
 		<de>Formel X: Wer holt sich die Fahrer-WM?</de>
 	</title>
@@ -241,7 +241,7 @@ Die definierten Variablen werden an die Nachfolgenachrichten weitergegeben und b
 Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
 
 ```
-<news id="carStrike_0" thread_id="carStrike" type="0">
+<news guid="carStrike_0" thread_id="carStrike" type="0">
 	<title>
 		<de>${brand} schreibt Verluste</de>
 		<en>${brand} records losses</en>
@@ -262,7 +262,7 @@ Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
 		</jobs>
 	</variables>
 </news>
-<news id="carStrike_1" thread_id="carStrike" type="2">
+<news guid="carStrike_1" thread_id="carStrike" type="2">
 	<title>
 		<de>${brand} will ${jobs} Stellen streichen</de>
 		<en>${brand} to cut ${jobs} jobs</en>

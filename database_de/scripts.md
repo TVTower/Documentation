@@ -61,7 +61,7 @@ Auch werden die Bewertungskategorien (Tempo etc.) oft als Bereich angegeben.
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#id) |
+| guid | Pflicht | [ID](main.md#guid) |
 | product | Pflicht  | [Programmtyp](main.md#Programmtyp) |
 | licence_type | Pflicht | [Lizenztyp](main.md#Lizenztyp) |
 | index | optional | Reihenfolge bei Serien |

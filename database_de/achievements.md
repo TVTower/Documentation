@@ -4,13 +4,13 @@ Die Erfolgseinträge sind als Liste von `achievement`-Kindelementen in das `alla
 
 ```XML
 <allachievements>
-	<achievement id="tvt-gameachievement-audience1" creator="5578" created_by="Ronny">
+	<achievement guid="tvt-gameachievement-audience1" creator="5578" created_by="Ronny">
 		<title>
 			<de>Lokalsender</de>
 			<en>Regional broadcaster</en>
 		</title>
 		<tasks>
-			<task id="tvt-gameachievement-task-audience1" creator="5578" created_by="Ronny">
+			<task guid="tvt-gameachievement-task-audience1" creator="5578" created_by="Ronny">
 				<title>
 					<de>Erreiche 250.000 Zuschauer</de>
 					<en>Reach an audience of 250.000</en>
@@ -23,7 +23,7 @@ Die Erfolgseinträge sind als Liste von `achievement`-Kindelementen in das `alla
 			</task>
 		</tasks>
 		<rewards>
-			<reward id="tvt-gameachievement-reward-audience1" creator="5578" created_by="Ronny">
+			<reward guid="tvt-gameachievement-reward-audience1" creator="5578" created_by="Ronny">
 				<data type="money" money="50000" />
 			</reward>
 		</rewards>
@@ -41,7 +41,7 @@ Dann gibt es eine Belohnung von 50.000 Geld (`type`+`money`).
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |

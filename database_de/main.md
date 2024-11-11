@@ -76,14 +76,13 @@ Die folgenden Beschreibungen werden dann von anderen Stellen der Dokumentation a
 
 ### Standardeigenschaftem
 
-#### id
+#### guid
 
-`id` (manchmal auch `guid`) ist die Eigenschaft, mit der ein Element global eindeutig identifiziert wird.
+`guid` ist die Eigenschaft, mit der ein Element global eindeutig identifiziert wird.
 Ein für die Eindeutigkeit hilfreiches Schema ist `Autor-Typ-Titel` (z.B. `jim-news-homerun` oder `david-programme-Yfiles-season1-episode3`).
 
 Technisch wird zwischen einer programminternen numerischen ID und einer textbasierten GUID unterschieden.
 In der Datenbank wird die GUID definiert, weshalb in der Dokumentation vereinfachend oft nur ID steht.
-Beispiel: `... id="jim-news-homerun"...`
 
 #### creator
 

@@ -17,7 +17,7 @@ Die Lokalisierung von Personennamen oder Filmrollen ist in [separaten Dateien](l
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Filmen etc. |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Filmen etc. |
 | first_name | Pflicht* | Vorname |
 | last_name | Pflicht* | Nachname |
 | nick_name | optional | Spitzname |
@@ -104,7 +104,7 @@ Zu beachten ist, dass nur fiktive Hauptpersonen unmittelbar zum Spielbeginn in i
 
 ```XML
 <celebritypeople>
-	<person id="TheRob-TowerTV-VeraZottova" tmdb_id="0" imdb_id="0" creator="8751" created_by="TheRob">
+	<person guid="TheRob-TowerTV-VeraZottova" tmdb_id="0" imdb_id="0" creator="8751" created_by="TheRob">
 		<first_name>Vera</first_name>
 		<last_name>Zottorova</last_name>
 		<nick_name></nick_name>
@@ -125,8 +125,8 @@ Fiktive Nebenpersonen stehen als als Laien für Produktionen zur Verfügung, kö
 
 ```XML
 <insignificantpeople>
-	<person id="Per_custom_Freddy_21" first_name="Sophie" last_name="McAgne" nick_name="" gender="2" country="SCO" fictional="1" />
-	<person id="ronny-people-generated-01" generator="de,2" last_name="Mueller" />
+	<person guid="Per_custom_Freddy_21" first_name="Sophie" last_name="McAgne" nick_name="" gender="2" country="SCO" fictional="1" />
+	<person guid="ronny-people-generated-01" generator="de,2" last_name="Mueller" />
 	...
 </insignificantpeople>
 ```
@@ -150,7 +150,7 @@ Die folgendenen Felder sollten definiert werden
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#id), insb. für Referenzierung bei Drehbuchvorlagen etc. |
+| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Drehbuchvorlagen etc. |
 | first_name | Pflicht* | Vorname |
 | last_name | Pflicht* | Nachname |
 | nick_name | optional | Spitzname |

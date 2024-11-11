@@ -4,7 +4,7 @@ Die Programm-Einträge sind als Liste von `programme`-Kindelementen in das `allp
 
 ```XML
 <allprogrammes>
-	<programme id="54084557-4497-48d5-8e3a-6a6c987ebb26" product="1" licence_type="1" tmdb_id="0" imdb_id="tt0114746" creator="">
+	<programme guid="54084557-4497-48d5-8e3a-6a6c987ebb26" product="1" licence_type="1" tmdb_id="0" imdb_id="tt0114746" creator="">
 		<title>
 			<de>11 Donkeys</de>
 			<en></en>
@@ -40,7 +40,7 @@ Die Einzellizenz (`licence_type`) ist preiswert zu haben (`price_mod`).
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| id | Pflicht | [ID](main.md#id) |
+| guid | Pflicht | [ID](main.md#guid) |
 | product | Pflicht  | [Programmtyp](main.md#Programmtyp) |
 | licence_type | Pflicht | [Lizenztyp](main.md#Lizenztyp) |
 | fictional | optional | [Standardeigenschaft](main.md#fictional) |
@@ -216,7 +216,7 @@ Das kann interessant sein, um einen "Director's Cut" oder  eine preiswertere abe
 Dafür wird das zugrundeliegende Programm mit `programmedata_id` referenziert.
 
 ```XML
-<programme id="myname-programme-testprogramme-limitcopy" programmedata_id="data-myname-programme-testprogramme" product="1" fictional="1" created_by="myname">
+<programme guid="myname-programme-testprogramme-limitcopy" programmedata_id="data-myname-programme-testprogramme" product="1" fictional="1" created_by="myname">
 	<!-- licence_flags="4" means: remove from collection when reaching limit -->
 	<data licence_flags="4" licence_broadcast_limit="3" price_mod="0.6" />
 </programme>
@@ -227,7 +227,7 @@ Dafür wird das zugrundeliegende Programm mit `programmedata_id` referenziert.
 ### minimal 
 
 ```XML
-<programme id="auth-programme-test" product="1" licence_type="1" created_by="documentation">
+<programme guid="auth-programme-test" product="1" licence_type="1" created_by="documentation">
 	<title>
 		<de>Reißerischer Titel</de>
 	</title>
@@ -249,7 +249,7 @@ Obwohl Kritiker nicht überzeugt waren und der Film totlangweilig ist, war er ei
 ### Serie
 
 ```XML
-<programme id="7ad20bf5-c4c6-4237-b52a-b7b189ede0bf" product="7" licence_type="3" tmdb_id="0" imdb_id="" creator="5578" created_by="Ronny">
+<programme guid="7ad20bf5-c4c6-4237-b52a-b7b189ede0bf" product="7" licence_type="3" tmdb_id="0" imdb_id="" creator="5578" created_by="Ronny">
 	<title>
 		<de>Rolf Krall besucht...</de>
 		<en></en>
@@ -267,7 +267,7 @@ Obwohl Kritiker nicht überzeugt waren und der Film totlangweilig ist, war er ei
 	<releaseTime year_relative="-1" year_relative_min="1985" year_relative_max="1990" />
 	<ratings critics="20" speed="42" outcome="35" />
 	<children>
-		<programme id="8258fb18-d138-49b4-b07c-0519eec12d2c" product="7" licence_type="2" tmdb_id="0" imdb_id="" creator="5578" created_by="Ronny">
+		<programme guid="8258fb18-d138-49b4-b07c-0519eec12d2c" product="7" licence_type="2" tmdb_id="0" imdb_id="" creator="5578" created_by="Ronny">
 			<title>
 				<de>Rolf Krall besucht... Madame Krussaud</de>
 				<en></en>
