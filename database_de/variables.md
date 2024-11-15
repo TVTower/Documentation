@@ -373,6 +373,14 @@ Und- und Oder-Verknüpfungen von zwei oder mehr Bedingungen sind auch möglich.
 * `${.or:p1:p2:p3:p4}` - wahr gdw mindestens eine der Bedingungen wahr sind
 
 Es versteht sich von selbst, dass die Parameter der Vergleiche etc. selbst wieder komplexe Ausdrücke (mit dem richtigen Typ) sein können.
+Dabei ist aber äußerste Vorsicht geboten, damit aus Zeichenketten innerer Ausdrücke nicht plötzlich Variablennamen im äußeren Ausdruck werden, die zu unerwartetem Verhalten führen.
+
+Beispiel für eine solche Falle:
+
+`${.eq:0:1:"foo":${.eq:0:1:"bar":"baz"}}` -> `${.eq:0:1:"foo":baz}}` -> Wert der vermutlich undefinierten Variable baz.
+Gewollt war wohl eher `${.eq:0:1:"foo":"${.eq:0:1:"bar":"baz"}"}` -> `${.eq:0:1:"foo":"baz"}}`.
+Zu beachten sind die Anführungszeichen um den inneren Ausdruck.
+
 
 ### csv
 
