@@ -103,6 +103,7 @@ Folgende Eigenschaften sind pro `job` definierbar.
 | gender | optional | Geschlecht |
 | country | optional | Land |
 | role_guid | optional | ID der [Rolle](person.md#Filmrollen) die hier besetzt wird |
+| random_role | optional | Wahrheitswert |
 
 Beispiele:
 
@@ -112,11 +113,12 @@ Beispiele:
 
 In Titel und Beschreibung kann auf Besetzungsrollen verwiesen werden (z.B. `${.self:"role":1:"firstname"}`).
 Falls mit `role_guid` eine feste Rolle definiert ist, werden die entsprechenden Namen verwendet.
-Falls keine Rolle definiert ist, wird automatisch eine erzeugt - für jedes Drehbuch eine neue.
+Mit dem Flag `random_role="1"` sichergestellt, dass für jedes Drehbuch konsistent eine neue Rolle erzeugt wird.
+Insbesondere bei Serien wird empfohlen, das Flag explizit zu setzen, wenn eine Rollenreferenz verwendet wird.
 Die Attribute `gender` und `country` werden dann für das Würfeln des Namens herangezogen.
 
 * `<job index="1" function="2" gender="1" country="it" required="1" />` - bei Referenz auf die Rolle wird ein männlicher italienischer Name erzeugt
-* `<job index="2" function="2" country="us" required="1" />` - bei Referenz auf die Rolle wird ein US-amerikansicher Name erzeugt, das Geschlecht ist nicht festgelegt
+* `<job index="2" function="2" country="us" required="1" random_role = "1" />` - für jedes Dreahbuch wird eine neue Rolle mit einem US-amerikansichen Name erzeugt, das Geschlecht ist nicht festgelegt
 
 ### Drehbuchdaten (data)
 
