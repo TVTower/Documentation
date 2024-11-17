@@ -61,10 +61,13 @@ Unterschiedliche Möglichkeiten für die Ersetzung der Variable verden durch sen
 		</animal>
 		<rndcity>${.stationmap:"randomcity"}</rndcity>
 		<city>Berlin|Bonn|Trier|${.stationmap:"randomcity"}</city>
+		<name>
+			<all>Peter|Paul|Mary</all>
+		</name
 	</variables>
 ```
 
-Im diesem Beispiel werden drei Variablen definiert: `animal`, `rndcity` und `city`.
+Im diesem Beispiel werden vier Variablen definiert: `animal`, `rndcity`, `city` und `name`.
 Typischerweise wird es innerhalb der Definition Tags für unterschiedliche Sprachen geben, so dass sprachspezifische Texte erstellt werden können.
 Für `animal` gibt es eine deutsche und eine englische Variante.
 Diese Definition enthält Alternativen (`Variante 1|Variante 2|Variante 3`), die durch `|` voneinander getrennt sind.
@@ -74,6 +77,12 @@ Wird also die 2 gewürfelt, wäre der Wert von `animal` im Deutschen `die Maus` 
 
 Soll der Text aber immer für alle Sprachen genau gleich sein, kann seit Version 8.3.0 auf das Sprachtag verzichtet werden.
 `<rndcity>${.stationmap:"randomcity"}</rndcity>` macht für alle Sprachen einen einmalig erzeugten Stadtnamen (für die vom Spiel zur Verfügung gestellten Funktionen siehe unten) unter dem Variablennamen `rndcity` verfügbar.
+
+Für `name` ist die angegebene Sprache `all`.
+Das ist eine Kurzschreibweise für Kopien desselben Eintrags für alle Sprachen, für die offiziell Datenbankübersetzungen existieren (aktuell Englisch, Deutsch und Polnisch).
+Warum sollte man aber `all` verwenden, wenn keine Variablen involviert sind, das Ergebnis also für alle Sprachen ohnehin identisch wäre?
+Irgendwann könnte eine Sprache dazukommen, in der einer der Namen eine andere Schreibweise hat.
+In diesem Fall kann einfach eine weitere Sprachdefinition ergänzt werden ohne die Struktur es Bestandseintrags ändern zu müssen.
 
 Variablendefinitionen können natürlich selbst wieder Referenzen auf andere Variablen enthalten.
 Dabei darf es natürlich keine Zyklen geben (v1 hängt von der Auswertung von v2 ab und v2 von der Auswertung von v1).
@@ -108,6 +117,15 @@ Soll z.B. der Titel eines Drehbuchs zufällig erzeugt werden und mehrere Variant
 
 Selbst wenn die Spracheinträge für `title` für alle Sprachen gleich sind und nur aus der Variablenreferenz bestehen, kann die verkürzte Schreibweise `<title>${theTitle}</title>` nicht verwendet werden.
 In dem Fall würden nämlich alle Sprachen denselben Titel bekommen - der Ausdruck wird nur einmal ausgewertet und dann für alle Sprachen verwendet.
+Für eine verkürzte Schreibweise kann man das Sprachtag `all` verwenden und stattdessen schreiben:
+
+```XML
+	<title>
+		<all>${theTitle}</all>
+	</title>
+```
+
+Hier wird für alle (unterstützten) Sprachen eine Kopie des Eintrags erstellt.
 
 Aus demselben Grund würde man auch nicht folgende Variablendefinition verwenden:
 
