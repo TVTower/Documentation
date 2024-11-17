@@ -48,13 +48,11 @@ Mit Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann
 | target_group | optional | [Zielgruppe(n)](main.md#Zielgruppe) für die zu erreichenden Zuschauerzahl |
 | allowed_genre | optional | erlaubtes [Hauptgenre](main.md#Genre) |
 | prohibited_genre | optional | verbotenes [Genre](main.md#Genre) (noch nicht unterstützt) |
-| allowed_programme_type | optional | erlaubter [Programmtyp](main.md#Programmtyp) |
-| prohibited_programme_type | optional | verbotener [Programmtyp](main.md#Programmtyp) (noch nicht unterstützt) |
 | allowed_programme_flag | optional | erlaubte [Programmflags](main.md#Programmflags) |
 | prohibited_programme_flag | optional | verbotene [Programmflags](main.md#Programmflags) (noch nicht unterstützt) |
 
 Die Mindestzuschauerquote `min_audience`bezieht sich auf die möglichen Zuschauer im aktuellen Sendegebiet.
-Die Schalter für Programmtyp, Genre und Flags werden aktuell in der Datenbank noch nicht verwendet.
+Die Schalter für verbotene Genre und Flags werden aktuell vom Programm noch nicht unterstützt.
 
 ### Daten (data)
 
@@ -104,6 +102,6 @@ Der Einfluss der Modifier (insb. Wearoff) dürfte aber praktisch irrelevant sein
 
 ### Generell
 
-* conditions:  pro_pressure_groups, contra_pressure_groups, forbidden..., limitedtoProgrammetype noch nicht ausgewertet
+* conditions:  pro_pressure_groups, contra_pressure_groups, forbidden..., noch nicht ausgewertet
 * der Quellcode unterstützt noch Effekte und Modifiers, welche in der aktuellen Datenbank nicht vorkommt und von der Grammatik nicht unterstützt werden
 * sollte allowed/prohibited_genre nicht eher eine Liste sein. Bei der großen Anzahl von Genres erscheint es nicht immer sinnvoll, nur ein einziges zu erlauben/verbieten.
