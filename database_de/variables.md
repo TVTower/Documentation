@@ -13,6 +13,7 @@ Ergänzt wurden
 * Verwendung von Bedingungen nicht nur im Script für die Verfügbarkeit sondern überall wo Variablen erlaubt sind
 * Funktionen, die Zugriff auf andere Datenbankelemente erlauben (z.B. Referenz auf Personen, die nicht Teil der Besetzung sind)
 * Funktionen, die eine kompaktere Schreibweise für dynamische Inhalte erlauben
+* [globale Variablen](lang.md) für die Möglichkeit einheitlicher Benennungen ohne mehrfaches Definieren (oder duplizierte Klartexte)
 
 Haupteinsatzgebiet von Variablen ist die Erzeugung von Varianz in Texten (Nachrichten, Drehbüchern) aber auch die Referenz z.B. auf Personen, ohne deren Namen fest in den Texten zu hinterlegen.
 Das kann z.B. sinnvoll sein, wenn z.B. Anpassungen an Personen- oder Rollendefinitionen in der Datenbank gemacht werden.
