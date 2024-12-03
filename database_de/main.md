@@ -239,10 +239,9 @@ Für alle Effekttypen können die folgenden Eigenschaften definiert werden:
 | time | optional | wann findet der Effekt statt; Format siehe [Zeitsteuerung](time.md#Zeitattribute) |
 | probability | optional | Wahrscheinlichkeit für das Eintreten dieses Effekts |
 
-Ein `effect`-Knoten hat immer die Eigenschaft `trigger`, die steuert, unter welcher Bedingung der Effekt eintritt. Die anderen Felder hängen vom Effekttyp `type` ab.
-ACHTUNG: time wird aktuell nur beim Auslösen von Nachrichten ausgewertet.
-Bei anderen Typen (Beliebtheit, Verfügbarkeit) hat der Wert keine Auswirung.
-Der Effekt tritt immer sofort ein.
+Ein `effect`-Knoten hat immer die Eigenschaft `trigger`, die steuert, unter welcher Bedingung der Effekt eintritt.
+Die anderen Felder hängen vom Effekttyp `type` ab.
+`time` ist insbesondere beim Auslösen von Folgenachrichten im Einsatz, kann aber auch für die Verfügbarkeitssteuerung verwendet werden.
 Die häufigsten Zeitsteuerungsvarianten sind 1 (`"1,3,7"` - in 3 bis 7 Stunden), 2 (`"2,1,2,6,14"` - in 1 bis 2 Tagen zwischen 6 und 14 Uhr).
 Die `probability` liegt zwischen 0 und 100 (falls nicht definiert, wird 100 angenommen).
 
@@ -251,7 +250,7 @@ Die `probability` liegt zwischen 0 und 100 (falls nicht definiert, wird 100 ange
 Die Eigenschaft `trigger` hat einen je nach Hauptelement (Nachrichten, Programme etc.) einen festen Wertebereich.
 Typische Werte sind
 
-* `happen`- der Effekt tritt in jedem Fall ein
+* `happen`- der Effekt tritt in jedem Fall ein (aktuell nur beim Erscheinen von Nachrichten angestoßen)
 * `broadcast` - der Effekt tritt zu Beginn *jeder einzelnen* Ausstrahlung ein
 * `broadcastDone` - der Effekt tritt am Ende *jeder einzelnen* Ausstrahlung ein
 * `broadcastFirstTime` - der Effekt tritt zu Beginn der ersten Ausstrahlung ein
@@ -266,6 +265,8 @@ Der Wert von `news` (für diesen Typ Pflicht) enthält die ID der angestoßenen 
 
 `<effect trigger="happen" type="triggernews" news="ronny-news-drucktaste-02b1" />`
 
+Da man eine Liste von Effekten definieren kann, lassen sich natürlich auch mehrere Folgenachrichten anstoßen.
+
 ##### `type="triggernewschoice"`
 
 Um unterschiedliche Verläufe in Nachrichtenketten zu ermöglichen kann man mit diesem Effekttyp *eine* der aufgelisteten Nachrichten anstoßen.
@@ -273,8 +274,7 @@ Je Nachricht kann eine Wahrscheinlichkeit angegeben werden.
 
 `<effect trigger="happen" type="triggernewschoice" choose="or" news1="newsId1" probability1="30" news2="newsId2 probability2="70" />`
 
-Im aktuellen Datenbestand werden bis zu vier Nachfolgenachrichten verwendet (`news1...news4, probability1...probability4`).
-Laut Quellcode `Init:TGameModifierNews_TriggerNews` könnten auch unterschiedliche Triggerzeiten (`time1...time4`) angegeben werden.
+Laut Quellcode `Init:TGameModifierNews_TriggerNews` könnten auch unterschiedliche Triggerzeiten (`time1...timeX`) angegeben werden.
 Davon wird aktuell aber kein Gebrauch gemacht (Fallback auf dieselbe Zeite `time` für alle Nachfolgenachrichten.)
 
 ##### `type="modifyPersonPopularity"`
@@ -304,7 +304,7 @@ Es wird der Verfügbarkeitsstatus einer Nachricht angepasst.
 
 Es wird der Verfügbarkeitsstatus einer Programmlizenz angepasst.
 
-* `<effect trigger="broadcastFirstTime" type="modifyProgrammeAvailability" enable="1" guid="ronny-programme-livereportage-raketenstart1" />`- bei Beginn der ersten Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Lizenz mit der ID "ronny-programme-livereportage-raketenstart1" auf Ja gesetzt. `enable="1"` kann dabei auch weggelassen werden. Falls das Attribut nicht gesetzt ist, wird es automatisch als "ja" angenommen.
+* `<effect trigger="broadcastFirstTime" type="modifyProgrammeAvailability" enable="1" guid="ronny-programme-livereportage-raketenstart1" time="1,48,96" />`- 48 bis 96 Stunden nach Beginn der ersten Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Lizenz mit der ID "ronny-programme-livereportage-raketenstart1" auf Ja gesetzt. `enable="1"` kann dabei auch weggelassen werden. Falls das Attribut nicht gesetzt ist, wird es automatisch als "ja" angenommen.
 
 * `<effect trigger="broadcastFirstTimeDone" type="modifyProgrammeAvailability" enable="0" news="ronny-programme-livereportage-raketenstart1" />`- bei Ende der ersten Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Lizenz mit der ID "ronny-programme-livereportage-raketenstart1" auf Nein gesetzt.
 
@@ -315,6 +315,18 @@ Es wird der Verfügbarkeitsstatus einer Drehbuchvorlage angepasst.
 * `<effect trigger="broadcast" type="modifyScriptAvailability" enable="1" guid="scripttemplate-ron-musiksterneamabend" />`- bei Beginn jeder Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Drehbuchvorlage mit der ID "scripttemplate-ron-musiksterneamabend" auf Ja gesetzt. `enable="1"` kann dabei auch weggelassen werden. Falls das Attribut nicht gesetzt ist, wird es automatisch als "ja" angenommen.
 
 * `<effect trigger="broadcastDone" type="modifyProgrammeAvailability" enable="0" news="scripttemplate-ron-musiksterneamabend" />`- bei Ende jeder Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Drehbuchvorlage mit der ID "scripttemplate-ron-musiksterneamabend" wird auf Nein gesetzt.
+
+##### `type="modifyBettyLove"`
+
+Es werden die Betty-Zuneigungspunkte angepasst.
+Intern entspricht der Wert 100 einem Prozent, 25 wären also 0.25% und -123 wären -1.23%.
+
+* `<effect trigger="broadcast" type="modifyBettyLove" valueMin="25" valueMax="50" />`- bei jeder Ausstrahlung wird die Zuneigung um einen Wert zwischen 0.25% und 0.5% erhöht.
+
+* `<effect trigger="broadcastFirstTimeDone" type="modifyBettyLove" valueMin="-100" valueMax="-100" />`- bei der ersten Ausstrahlung wird die Zuneigung um genau 1% verringert.
+
+Zu beachten ist, dass dieser Effekt zusätzlich zu den automatischen Anpassungen durch das Spiel wirkt.
+Durch das Ausstrahlungsflag 2048 (ignoriert durch Betty) wird (nur) die automatische Anpssung unterdrückt, selbst definierte Effekte sind durch das Flag nicht betroffen.
 
 ### Variablen
 
@@ -490,6 +502,9 @@ Die meisten Ausstrahlungsflags sind nur programmintern sinnvoll verwendbar.
 Einige sind aber auch für die Definition in der Datenbank interessant.
 Standardmäßig gilt die Begrenzung der Ausstrahlungszeit nur für die Erstausstrahlung.
 Soll sie auch für Folgeausstrahlungen gelten, muss zusätzlich Flag 32768 gesetzt sein.
+
+Das Flag 2048 (von Betty ignoriert) hat nur Auswirkung auf die spielintern berechnete Anpassung.
+Selbst definierte Effekte für die Anpassung der Betty-Punkte treten in jedem Fall ein.
 
 ### Geschlecht
 
