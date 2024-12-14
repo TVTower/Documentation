@@ -27,7 +27,7 @@ Um die Werbung überhaupt angeboten zu bekommen, ist ein Image von mindestens 4%
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [GUID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |

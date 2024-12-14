@@ -539,7 +539,7 @@ Von beliebigen Stellen aus kann auf Personen, Rollen und Programme über deren i
 Hier nur ein paar Beispiele.
 In `game.gamescriptexpression.bmx` kann man nachschauen, ob die vielleicht benötigte Information schon jetzt verfügbar ist.
 
-* `${.person:"836b4aa3-b5c6-4529-b30d-4501594cdf13":"nickname"}` - Spitzname der Person mit der gegebenen ID
+* `${.person:"836b4aa3-b5c6-4529-b30d-4501594cdf13":"nickname"}` - Spitzname der Person mit der gegebenen GUID
 * `${.person:"3342a0e3-66f3-4f30-922c-ebe1b0611a00":"age"}` - Alter der Person
 * `${.programme:"04439fd1-e89f-4922-a48e-6f8ddf96f7ab":"episodecount"}` - Anzahl Folgen der Serie
 * `${.programme:"35190c1d-aa55-4e84-967f-72a374e84dcf":"year"}` - Erscheinungsjahr des Programms

@@ -82,7 +82,7 @@ Die folgenden Beschreibungen werden dann von anderen Stellen der Dokumentation a
 Ein für die Eindeutigkeit hilfreiches Schema ist `Autor-Typ-Titel` (z.B. `jim-news-homerun` oder `david-programme-Yfiles-season1-episode3`).
 
 Technisch wird zwischen einer programminternen numerischen ID und einer textbasierten GUID unterschieden.
-In der Datenbank wird die GUID definiert, weshalb in der Dokumentation vereinfachend oft nur ID steht.
+In der Datenbank werden GUIDs definiert und typischerweise GUIDs referenziert, da die technische ID in der Datenbank nicht bekannt ist.
 
 #### creator
 
@@ -255,13 +255,14 @@ Typische Werte sind
 * `broadcastDone` - der Effekt tritt am Ende *jeder einzelnen* Ausstrahlung ein
 * `broadcastFirstTime` - der Effekt tritt zu Beginn der ersten Ausstrahlung ein
 * `broadcastFirstTimeDone` - der Effekt tritt am Ende der ersten Ausstrahlung ein
+* `productionStart` - der Effekt tritt zu Beginn einer Produktion im Studio ein
 
 Beispiel: `... trigger="happen" ... `
 
 ##### `type="triggernews"`
 
 Es wird *eine* Nachfolgenachricht angestoßen.
-Der Wert von `news` (für diesen Typ Pflicht) enthält die ID der angestoßenen Nachfolgenachricht.
+Der Wert von `news` (für diesen Typ Pflicht) enthält die GUID der angestoßenen Nachfolgenachricht.
 
 `<effect trigger="happen" type="triggernews" news="ronny-news-drucktaste-02b1" />`
 
@@ -281,9 +282,9 @@ Davon wird aktuell aber kein Gebrauch gemacht (Fallback auf dieselbe Zeite `time
 
 Es wird die Beliebtheit der referenzierten Person angepasst.
 
-* `<effect trigger="happen" type="modifyPersonPopularity" referenceGUID="personId" valueMin="0.1" valueMax="0.2" />` - 
-die Beliebtheit von der Persion mit der ID personId wird unabhängig von der Ausstrahlung der Nachricht um einen Wert zwischen 0.1 und 0.2 angepasst.
-* `<effect trigger="broadcast" type="modifyPersonPopularity" referenceGUID="personId" valueMin="0.02" valueMax="0.05" />` - 
+* `<effect trigger="happen" type="modifyPersonPopularity" guid="personId" valueMin="0.1" valueMax="0.2" />` - 
+die Beliebtheit von der Persion mit der GUID personId wird unabhängig von der Ausstrahlung der Nachricht um einen Wert zwischen 0.1 und 0.2 angepasst.
+* `<effect trigger="broadcast" type="modifyPersonPopularity" guid="personId" valueMin="0.02" valueMax="0.05" />` - 
 die Beliebtheit von der Persion mit der GUID personId wird bei jeder Ausstrahlung der Nachricht um einen Wert zwischen 0.02 und 0.05 angepasst.
 
 ##### `type="modifyMovieGenrePopularity"`
@@ -297,24 +298,26 @@ Es wird die Beliebtheit des angegebenen Genres angepasst.
 
 Es wird der Verfügbarkeitsstatus einer Nachricht angepasst.
 
-* `<effect trigger="happen" type="modifyNewsAvailability" enable="1" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der ID "ronny-news-drucktaste-1" wird auf Ja gesetzt.
-* `<effect trigger="happen" type="modifyNewsAvailability" enable="0" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der ID "ronny-news-drucktaste-1" wird auf Nein gesetzt.
+* `<effect trigger="happen" type="modifyNewsAvailability" enable="1" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der GUID "ronny-news-drucktaste-1" wird auf Ja gesetzt.
+* `<effect trigger="happen" type="modifyNewsAvailability" enable="0" news="ronny-news-drucktaste-1" />`- die Eigenschaft `available` (verfügbar) der Nachricht mit der GUID "ronny-news-drucktaste-1" wird auf Nein gesetzt.
 
 ##### `type="modifyProgrammeAvailability"`
 
 Es wird der Verfügbarkeitsstatus einer Programmlizenz angepasst.
 
-* `<effect trigger="broadcastFirstTime" type="modifyProgrammeAvailability" enable="1" guid="ronny-programme-livereportage-raketenstart1" time="1,48,96" />`- 48 bis 96 Stunden nach Beginn der ersten Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Lizenz mit der ID "ronny-programme-livereportage-raketenstart1" auf Ja gesetzt. `enable="1"` kann dabei auch weggelassen werden. Falls das Attribut nicht gesetzt ist, wird es automatisch als "ja" angenommen.
+* `<effect trigger="broadcastFirstTime" type="modifyProgrammeAvailability" enable="1" guid="ronny-programme-livereportage-raketenstart1" time="1,48,96" />`- 48 bis 96 Stunden nach Beginn der ersten Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Lizenz mit der GUID "ronny-programme-livereportage-raketenstart1" auf Ja gesetzt. `enable="1"` kann dabei auch weggelassen werden. Falls das Attribut nicht gesetzt ist, wird es automatisch als "ja" angenommen.
 
-* `<effect trigger="broadcastFirstTimeDone" type="modifyProgrammeAvailability" enable="0" news="ronny-programme-livereportage-raketenstart1" />`- bei Ende der ersten Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Lizenz mit der ID "ronny-programme-livereportage-raketenstart1" auf Nein gesetzt.
+* `<effect trigger="broadcastFirstTimeDone" type="modifyProgrammeAvailability" enable="0" guid="ronny-programme-livereportage-raketenstart1" />`- bei Ende der ersten Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Lizenz mit der GUID "ronny-programme-livereportage-raketenstart1" auf Nein gesetzt.
 
 ##### `type="modifyScriptAvailability"`
 
 Es wird der Verfügbarkeitsstatus einer Drehbuchvorlage angepasst.
 
-* `<effect trigger="broadcast" type="modifyScriptAvailability" enable="1" guid="scripttemplate-ron-musiksterneamabend" />`- bei Beginn jeder Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Drehbuchvorlage mit der ID "scripttemplate-ron-musiksterneamabend" auf Ja gesetzt. `enable="1"` kann dabei auch weggelassen werden. Falls das Attribut nicht gesetzt ist, wird es automatisch als "ja" angenommen.
+* `<effect trigger="broadcast" type="modifyScriptAvailability" enable="1" guid="scripttemplate-ron-musiksterneamabend" />`- bei Beginn jeder Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Drehbuchvorlage mit der GUID "scripttemplate-ron-musiksterneamabend" auf Ja gesetzt. `enable="1"` kann dabei auch weggelassen werden. Falls das Attribut nicht gesetzt ist, wird es automatisch als "ja" angenommen.
 
-* `<effect trigger="broadcastDone" type="modifyProgrammeAvailability" enable="0" news="scripttemplate-ron-musiksterneamabend" />`- bei Ende jeder Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Drehbuchvorlage mit der ID "scripttemplate-ron-musiksterneamabend" wird auf Nein gesetzt.
+* `<effect trigger="broadcastDone" type="modifyScriptAvailability" enable="0" guid="scripttemplate-ron-musiksterneamabend" />`- bei Ende jeder Ausstrahlung wird die Eigenschaft `available` (verfügbar) der Drehbuchvorlage mit der GUID "scripttemplate-ron-musiksterneamabend" wird auf Nein gesetzt.
+
+* `<effect trigger="productionStart" type="modifyScriptAvailability" enable="0" guid="scripttemplate-ron-musiksterneamabend" />`- bei Beginn der Produktion des Drehbuchs, für das dieser Effekt definiert ist, wird die Drehbuchvorlage  mit der GUID "scripttemplate-ron-musiksterneamabend" auf nicht verfügbar gesetzt.
 
 ##### `type="modifyBettyLove"`
 
@@ -345,7 +348,7 @@ Möglich sind unter anderem
 * Datentypen
     * natürliche Zahlen (
     * Faktor: Zahl mit Kommastellen um 1 herum ("0.7", "1", "1.00" ,"1.3")
-* IDs, die an anderer Stelle in der Datenbank definiert sind
+* GUIDs, die an anderer Stelle in der Datenbank definiert sind
 * Flags, d.h. natürliche Zahlen bei der jedes Bit in der Binärdarstellung eine besondere Bedeutung hat. Eine Zahl repräsentiert die Kombination der Eigenschaften der aktivierten Bits.
 * [Zeitattribute](time.md)
 
@@ -691,7 +694,6 @@ Im Fall einer Liste kann es also mehrere Tags mit demselben Namen geben.
 ### Dokumentation
 
 * typische Flags fett markieren?
-* id durch GUID ersetzen?
 * modifiers ist sehr generisch gehalten; wie bekommt man am besten verfügbare Modifier raus?
 
 ### Generell

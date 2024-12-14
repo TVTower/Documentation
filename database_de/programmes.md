@@ -40,7 +40,7 @@ Die Einzellizenz (`licence_type`) ist preiswert zu haben (`price_mod`).
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#guid) |
+| guid | Pflicht | [GUID](main.md#guid) |
 | product | Pflicht  | [Programmtyp](main.md#Programmtyp) |
 | licence_type | Pflicht | [Lizenztyp](main.md#Lizenztyp) |
 | fictional | optional | [Standardeigenschaft](main.md#fictional) |
@@ -66,9 +66,9 @@ Die Eigenschaft `index` gibt die Position (0,1,2,...) an, um die Einträge in Va
 Wenn eine Besetzung komplett zufällig erzeugt werden soll, kann sie auch mittels `generator` definiert werden.
 Das Attribut `role_guid` kann verwendet werden, um eine Besetzung mit einer definierten Rolle zu verknüpfen.
 
-* `<member index="1" function="2">person-0815</member>` - die Person mit der ID `person-0815` ist als Schauspieler in der Besetzung
+* `<member index="1" function="2">person-0815</member>` - die Person mit der GUID `person-0815` ist als Schauspieler in der Besetzung
 * `<member index="2" function="64" generator="es,0"></member>` - spanischer Gast männlich oder weiblich
-* `<member index="1" function="2" role_guid="role_hercules">person-4711</member>` - die [Rolle](persons.md#Filmrollen) Herkules war in dem Film mit dem Schauspieler mit der ID `person-4711` besetzt.
+* `<member index="1" function="2" role_guid="role_hercules">person-4711</member>` - die [Rolle](persons.md#Filmrollen) Herkules war in dem Film mit dem Schauspieler mit der GUID `person-4711` besetzt.
 
 ### Ziel- und Lobbygruppen (groups)
 
@@ -187,11 +187,20 @@ Mögliche Anpassungen sind
 | topicality::notLive | Einfluss "nicht mehr live" auf Max.-Aktualität (0.8 weniger, 1.2 mehr) |
 | topicality::timesBroadcasted | Einfluss Ausstrahlungsanzahl auf Max.-Aktualität (0.8 weniger, 1.2 mehr) |
 | callin::perViewerRevenue | Einnahmen für Call-In-Shows (0.8 weniger, 1.2 mehr) |
+| betty::pointsabsolute | für den Spieler direkt vergebene Bettypunkte (100 = 1%, -50 = -0.5%) |
+| betty::rawquality | Programmqualität für die automatische Berechnung der Bettypunkte (0.0-1.0) |
+| betty::pointsmod | Faktor für die automatische Berechnung der Bettypunkte (0.8 weniger, 1.2 mehr) |
 
 Beispiel: `<modifier name="topicality::age" value="1.6" />` - das Programm altert deutlich schneller als normal.
 
 `topicality::notLive` hat ausschließlich dann einen Einfluss, wenn das Programm überhaupt ein Live-Programm war.
 In diesem Fall ist auch der Default für `topicality::firstBroadcastDone` nicht 0 sondern 1.0, d.h. ein Live-Programm verliert (falls nicht anders konfiguriert) durch die Erstausstrahlung automatisch einen erheblichen Anteil an maximaler Aktualität.
+
+Mit den betty-Modifiern kann Einfluss auf die vergebenen Punkte genommen werden.
+Mit `betty::pointsabsolute` wird die hinterlegte Punktzahl vergeben egal, was die automatische Berechnung ergeben hätte (Wert 1 entspricht 0.01%, 50 entspricht 0.5%, 125 entspricht 1.25%).
+`betty::rawquality` überschreibt die tatsächliche Programmqualität (zwischen 0 und 1) für die Berechnung - es könnten trotz schlechter Qualität mehr Punkte vergeben werden oder aber weniger Punkte trotz guter Qualität.
+Im Gegensatz zu den absoluten Punkten wird die Aktualität des Programms berücksichtigt.
+
 
 ### Programmkinder (children)
 
@@ -235,7 +244,7 @@ Dafür wird das zugrundeliegende Programm mit `programmedata_id` referenziert.
 		<de>Ansprechende Beschreibung.</de>
 	</description>
 	<staff>
-		<member index="0" function="1">PersonID</member>
+		<member index="0" function="1">PersonGUID</member>
 	</staff>
 	<groups target_groups="32" />
 	<data country="D" year="2021" distribution="2" maingenre="10" flags="16" blocks="4" />

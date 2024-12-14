@@ -22,16 +22,16 @@ Die Nachrichteneinträge sind als Liste von `news`-Kindelementen in das `allnews
 </allnews>
 ```
 
-Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgeschehennachricht (`genre`) von niedriger Qualität (`quality`) hat deutsche und englische Titel und Nachrichtentexte (`title`, `description`) und stößt (`effect`) in 10 bis 15 Stunden (`time`) die Nachfolgenachricht mit der ID X-news-geld2 an.
+Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgeschehennachricht (`genre`) von niedriger Qualität (`quality`) hat deutsche und englische Titel und Nachrichtentexte (`title`, `description`) und stößt (`effect`) in 10 bis 15 Stunden (`time`) die Nachfolgenachricht mit der GUID X-news-geld2 an.
 (In diesem aus der Datenbank leicht angepassten Beispiel hätte man auch die Jahresbeschränkung weglassen und stattdessen die Währung über die globale Währungsvariable verwenden können.)
 
 ## Eigenschaften von news
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [GUID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | type | Pflicht | Nachrichtentyp; siehe unten 0=Startnachricht, 2=Nachfolgenachricht |
-| thread_id | optional | ID des Nachrichtenthemas - Nachrichten die zusammengehören |
+| thread_id | optional | GUID des Nachrichtenthemas - Nachrichten die zusammengehören |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |
@@ -275,7 +275,7 @@ Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
 </news>
 ```
 
-Ein weiteres Beispiel für die Verwendung Variablen sind die Börsennachrichten (ID `news-stockexchange-generic`) in `user/kieferer.xml`.
+Ein weiteres Beispiel für die Verwendung Variablen sind die Börsennachrichten (GUID `news-stockexchange-generic`) in `user/kieferer.xml`.
 Diese stoßen sich selbst wieder an.
 In diesem Fall ist es zulässig, dass die Nachfolgenachrichten Variablendefinitionen enthalten.
 

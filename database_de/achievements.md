@@ -41,7 +41,7 @@ Dann gibt es eine Belohnung von 50.000 Geld (`type`+`money`).
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
+| guid | Pflicht | [GUID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |

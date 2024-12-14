@@ -17,7 +17,7 @@ Die Lokalisierung von Personennamen oder Filmrollen ist in [separaten Dateien](l
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Filmen etc. |
+| guid | Pflicht | [GUID](main.md#guid), insb. für Referenzierung bei Filmen etc. |
 | first_name | Pflicht* | Vorname |
 | last_name | Pflicht* | Nachname |
 | nick_name | optional | Spitzname |
@@ -150,7 +150,7 @@ Die folgendenen Felder sollten definiert werden
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#guid), insb. für Referenzierung bei Drehbuchvorlagen etc. |
+| guid | Pflicht | [GUID](main.md#guid), insb. für Referenzierung bei Drehbuchvorlagen etc. |
 | first_name | Pflicht* | Vorname |
 | last_name | Pflicht* | Nachname |
 | nick_name | optional | Spitzname |

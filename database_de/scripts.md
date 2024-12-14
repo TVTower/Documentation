@@ -61,7 +61,7 @@ Auch werden die Bewertungskategorien (Tempo etc.) oft als Bereich angegeben.
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | [ID](main.md#guid) |
+| guid | Pflicht | [GUID](main.md#guid) |
 | product | Pflicht  | [Programmtyp](main.md#Programmtyp) |
 | licence_type | Pflicht | [Lizenztyp](main.md#Lizenztyp) |
 | index | optional | Reihenfolge bei Serien |
@@ -102,7 +102,7 @@ Folgende Eigenschaften sind pro `job` definierbar.
 | required | Pflicht | Wahrheitswert; muss diese Stelle besetzt werden |
 | gender | optional | Geschlecht |
 | country | optional | Land |
-| role_guid | optional | ID der [Rolle](person.md#Filmrollen) die hier besetzt wird |
+| role_guid | optional | GUID der [Rolle](person.md#Filmrollen) die hier besetzt wird |
 | random_role | optional | Wahrheitswert |
 
 Beispiele:

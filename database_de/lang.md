@@ -22,7 +22,7 @@ Die Personeneinträge sind als Liste von `person`-Kindelementen in das `persons`
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | Referenz einer existierenden Personen-ID |
+| guid | Pflicht | GUID der existierenden Person |
 | first_name | Optional | Vorname |
 | last_name | Optional | Nachname |
 | nick_name | Optional | Spitzname |
@@ -35,7 +35,7 @@ Es ist also nicht möglich, einfach nur den Vornamen zu überschreiben und den N
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| guid | Pflicht | Referenz einer existierenden Personen-ID |
+| guid | Pflicht | GUID der existierenden Rolle |
 | first_name | Optional | Vorname |
 | last_name | Optional | Nachname |
 | nick_name | Optional | Spitzname |
