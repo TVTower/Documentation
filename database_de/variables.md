@@ -294,7 +294,6 @@ Beispiele:
 * `${.persongenerator:"firstname"}` - beliebiger Vorname
 * `${.persongenerator:"firstname":"us":"male"}` - US-amerikanischer männlicher Vorname
 * `${.persongenerator:"fullname":"":"female":0.9}` - weiblicher Name mit 90%iger Wahrscheinlichkeit für einen Titel
-* `${.persongenerator:"lastname":"${de|it|dk}"}` - deutscher oder italienischer oder dänischer (skandinavischer) Nachname
 
 ### locale
 

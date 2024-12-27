@@ -4,7 +4,7 @@ Die Nachrichteneinträge sind als Liste von `news`-Kindelementen in das `allnews
 
 ```XML
 <allnews>
-		<news guid="X-news-geld1" thread_id="X-news-geld" type="0">
+		<news guid="X-news-geld1" thread_guid="X-news-geld" type="0">
 			<title>
 				<de>Straßenfeger findet 1.000 Mark</de>
 				<en>Street sweeper finds 1,000 marks</en>
@@ -31,22 +31,22 @@ Diese bis 2001 verfügbare (`year_range_to`) überteuerte (`price`) Tagesgescheh
 | ---- | --- |------------- |
 | guid | Pflicht | [GUID](main.md#guid), insb. für Referenzierung bei Nachfolgenachrichten |
 | type | Pflicht | Nachrichtentyp; siehe unten 0=Startnachricht, 2=Nachfolgenachricht |
-| thread_id | optional | GUID des Nachrichtenthemas - Nachrichten die zusammengehören |
+| thread_guid | optional | GUID des Nachrichtenthemas - Nachrichten die zusammengehören |
 | creator | Metadaten optional | [Standardeigenschaft](main.md#creator) |
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
-### Bedeutung der `thread_id`
+### Bedeutung der `thread_guid`
 
 Bis Version 0.8.0 war der Wert rein informativ und wurde nicht ausgewertet
-Eine (identische) `thread_id` wurde typischerweise für Nachrichten einer zusammengehörigen Nachrichtenkette mit Startnachricht und Nachfolgenachrichten vergeben.
-Ab Version 0.8.1 bekommt die `thread_id` eine weitere wichtige Bedeutung.
+Eine (identische) `thread_guid` wurde typischerweise für Nachrichten einer zusammengehörigen Nachrichtenkette mit Startnachricht und Nachfolgenachrichten vergeben.
+Ab Version 0.8.1 bekommt die `thread_guid` eine weitere wichtige Bedeutung.
 
 Nachrichten sind analog Drehbuchvorlagen eigentlich Vorlagen, aus denen die eigentlich ausstrahlbaren Nachrichten erzeugt werden.
 Das Spiel markiert eine Vorlage, um sie nicht zu schnell wiederzuverwenden.
-Ab Version 0.8.1 wird zusätlich die `thread_id` markiert.
+Ab Version 0.8.1 wird zusätlich die `thread_guid` markiert.
 
-Wenn sich also zwei Startnachrichten dieselbe `thread_id` teilen, blockiert die Auswahl der einen Nachricht die andere.
+Wenn sich also zwei Startnachrichten dieselbe `thread_guid` teilen, blockiert die Auswahl der einen Nachricht die andere.
 Auf diese Weise kann erreicht werden, dass nicht zu viele Nachrichten zum selben Thema gleichzeitig erscheinen.
 
 ## Kindelemente von news
@@ -183,7 +183,7 @@ Teure Kulturnachricht geringer Qualität ohne Einschränkungen der Verfügbarkei
 Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgenachricht an, deren Typ `type="2"` anzeigt, dass sie nicht beim zufälligen Ermitteln möglicher Nachrichten zur Verfügung steht.
 
 ```XML
-<news guid="6b1065dd-36d5-4b4b-9904-1a8b7fd1d9c1" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="0" creator="">
+<news guid="6b1065dd-36d5-4b4b-9904-1a8b7fd1d9c1" thread_guid="0328d075-c155-43c9-b0c1-e130eb972f38" type="0" creator="">
 	<title>
 		<de>Terrorismusbekämpfung im Weltall</de>
 		<en>Fighting terrorism in the universe</en>
@@ -199,7 +199,7 @@ Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgen
 	<availability year_range_from="2001" year_range_to="2009" />
 </news>
 
-<news guid="7c2911a9-c9b4-40d1-b4f6-02fb0025358a" thread_id="0328d075-c155-43c9-b0c1-e130eb972f38" type="2" creator="">
+<news guid="7c2911a9-c9b4-40d1-b4f6-02fb0025358a" thread_guid="0328d075-c155-43c9-b0c1-e130eb972f38" type="2" creator="">
 	<title>
 		<de>Terrorismusbekämpfung – jetzt 2 Shuttles</de>
 		<en>Fighting terrorism - now 2 shuttles</en>
@@ -213,7 +213,7 @@ Eine zwischen 2001 und 2009 verfügbare Politiknachricht stößt eine Nachfolgen
 Eine Hauptnachricht stößt eine von vier möglichen Nachfolgenachrichten mit unterschiedlicher Wahrscheinlichkeit an.
 
 ```XML
-<news guid="news-jorgaeff-racing-01" type="0" thread_id="news-jorgaeff-racing" creator="8936" created_by="jorgaeff">
+<news guid="news-jorgaeff-racing-01" type="0" thread_guid="news-jorgaeff-racing" creator="8936" created_by="jorgaeff">
 	<title>
 		<de>Formel X: Wer holt sich die Fahrer-WM?</de>
 	</title>
@@ -241,7 +241,7 @@ Die definierten Variablen werden an die Nachfolgenachrichten weitergegeben und b
 Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
 
 ```
-<news guid="carStrike_0" thread_id="carStrike" type="0">
+<news guid="carStrike_0" thread_guid="carStrike" type="0">
 	<title>
 		<de>${brand} schreibt Verluste</de>
 		<en>${brand} records losses</en>
@@ -262,7 +262,7 @@ Wird die Hauptnachricht später erneut gesendet, wird neu gewürfelt.
 		</jobs>
 	</variables>
 </news>
-<news guid="carStrike_1" thread_id="carStrike" type="2">
+<news guid="carStrike_1" thread_guid="carStrike" type="2">
 	<title>
 		<de>${brand} will ${jobs} Stellen streichen</de>
 		<en>${brand} to cut ${jobs} jobs</en>

@@ -12,6 +12,7 @@ Zur Suche, Wiedererkennung und Vermeidung von Dopplungen in der TVTower-Datenban
 
 Für die Version 0.8.3 hat ein großer Umbau bezüglich [Variablen](variables.md) stattgefunden.
 Zukünftige Versionen unterstützen das alte Format nicht mehr und eigene Datenbank-Dateien müssen auf das neue Format umgestellt werden.
+Hinweise für die Umstellung sind im [Migration-Guide](dbmigration.md) zusammengestellt.
 
 ## Grundsätzliche Struktur einer TVTower-Datenbankdatei
 
