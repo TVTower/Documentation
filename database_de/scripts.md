@@ -104,6 +104,7 @@ Folgende Eigenschaften sind pro `job` definierbar.
 | country | optional | Land |
 | role_guid | optional | GUID der [Rolle](person.md#Filmrollen) die hier besetzt wird |
 | random_role | optional | Wahrheitswert |
+| person | optional | GUID/Variable vordefinierte Besetzung |
 
 Beispiele:
 
@@ -119,6 +120,11 @@ Die Attribute `gender` und `country` werden dann für das Würfeln des Namens he
 
 * `<job index="1" function="2" gender="1" country="it" required="1" />` - bei Referenz auf die Rolle wird ein männlicher italienischer Name erzeugt
 * `<job index="2" function="2" country="us" required="1" random_role = "1" />` - für jedes Dreahbuch wird eine neue Rolle mit einem US-amerikansichen Name erzeugt, das Geschlecht ist nicht festgelegt
+
+Ab Version 0.8.4 kann durch die Datenbank eine Besetzung vordefiniert werden.
+Dazu wird im Attribut `person` die GUID einer Person oder eine Variable, die zu einer GUID aufgelöst wird, angegeben.
+Im Supermarkt wird die entsprechende Person dann angezeigt und kann nicht geändert werden.
+Damit können z.B. Filme eines bestimmten Regisseurs oder Shows mit einem bestimmten Gastgeber umgesetzt werden (X's Dracula, Die Late-Night-Show mit Y).
 
 ### Drehbuchdaten (data)
 
