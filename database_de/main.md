@@ -431,10 +431,14 @@ Dafür addiert man die Werte auf.
 | 1024 | im Spiel produziert | |
 | 2048 | unsichtbar | nicht im Programmplaner angezeigt |
 | 4096 | RE-Live | Livesendung später nochmal ausgestrahlt |
+| 8192 | keine Neuverfilmung | dieses Programm darf nicht für automatische Neuverfilmungen verwendet werden|
 
 (Quellcode: `TVTProgrammeDataFlag`)
 
 `flags="12"` würde eine Kult-Kultursendung beschreiben.
+
+Hinweis zum Flag 8192: Da bei langen Spielen oder Spielen mit späten Startjahren die Datenbank nicht genügend Einträge für Produktionen für das aktuelle Spieljahr enthalten kann, werden automatisch für zufällig ausgewählte Filme, die bereits aussortiert wurden, Neuverfilmungen erzeugt.
+Durch Setzen des Flags in der Datenbank kann das unterbunden werden, z.B. weil die Beschreibung, die sonst unverändert übernommen wird, nicht zu einer Neuverfilmung passen würde.
 
 ### Lizenztyp
 
