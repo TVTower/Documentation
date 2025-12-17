@@ -42,7 +42,7 @@ Mit Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann
 
 | Name | Art | Beschreibung |
 | ---- | --- |------------- |
-| min_audience | optional | Mindestzuschauerquote |
+| min_audience | optional | Mindestzuschauerzahl |
 | min_image | optional | Mindestsenderimage (0-100) |
 | max_image | optional | Höchstsenderimage (0-100) |
 | target_group | optional | [Zielgruppe(n)](main.md#Zielgruppe) für die zu erreichenden Zuschauerzahl |
@@ -50,8 +50,9 @@ Mit Verfügbarkeit [availability](time.md#Verfügbarkeit) kann man steuern, wann
 | allowed_programme_flag | optional | erlaubte [Programmflags](main.md#Programmflags) |
 | prohibited_programme_flag | optional | verbotene [Programmflags](main.md#Programmflags) |
 
-Die Mindestzuschauerquote `min_audience`bezieht sich auf die möglichen Zuschauer im aktuellen Sendegebiet.
-Die Schalter für verbotene Genre und Flags werden aktuell vom Programm noch nicht unterstützt.
+Die Mindestzuschauerzahl `min_audience` bezieht sich auf die Gesamtreichweite im aktuellen Sendegebiet (in Prozent).
+(Die Zuschauerquote hingegen wird aufgrund der zur jeweiligen Zeit möglichen Zuschauer ermittelt.)
+Ist die Reichweite also 10 Mio, bedeuten `minaudience="2.5"` 250000 Zuschauer, was je nach Sendezeit unterschiedlich hohe Zuschauerquoten verlangen würde.
 
 ### Daten (data)
 
@@ -94,13 +95,13 @@ Der Einfluss der Modifier (insb. Wearoff) dürfte aber praktisch irrelevant sein
 
 ### Dokumentation
 
-* nochmal mit DB-Einlesen abgleichen
 * profit beeinflusst Belohnung pro Spot - genauer beschreiben
 * infomercial-Profit genauer beschreiben
 * data-quality=nochmal Einfluss prüfen (nicht nur Infomercial)
 
 ### Generell
 
-* conditions:  pro_pressure_groups, contra_pressure_groups, forbidden..., noch nicht ausgewertet
+* conditions:  pro_pressure_groups, contra_pressure_groups  noch nicht ausgewertet
 * der Quellcode unterstützt noch Effekte und Modifiers, welche in der aktuellen Datenbank nicht vorkommt und von der Grammatik nicht unterstützt werden
 * sollte allowed genre nicht eher eine Liste sein. Bei der großen Anzahl von Genres erscheint es nicht immer sinnvoll, nur ein einziges zu erlauben/verbieten. Verbotene aktuell komplett ausgebaut
+* Zahlreiche definierte Werbeverträge verlangen eine Zuschauerzahl, die im Spiel überhaupt nicht erreicht werden kann.
