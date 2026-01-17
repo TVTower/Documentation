@@ -64,6 +64,8 @@ Dafür muss der Textcursor auf dem referenzierenden Attributwert stehen.
 Mit `Strg-Shift-g` kann man prüfen welche Referenzen es (noch) auf das aktuelle Objekt gibt (z.B. wo wird die a).
 Dafür muss der Textcursor auf einem referenzierenden Attributwert stehen oder auf der Objekt-ID, die für die Referenzierung verwendet wird.
 
+Ab der Version 2.1 vom Januar 2026 kann man mit `F3` auch den Browsereintrag für IMDB, TMDB und Wikidata öffnen, wenn sich der Cursor auf der entsprechenden ID-Definition befindet und diese nicht leer ist.
+
 ## New-File-Wizard
 
 Wenn man eine neue Datenbankdatei erstellen möchte, kann man sich die Grundstruktur vorbereiten lassen.
