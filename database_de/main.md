@@ -102,6 +102,8 @@ Beispiel: `... created_by="Ronny" ...`
 `comment` ist die optionale, informative Eigenschaft, in der man einen Kommentar hinterlegen kann.
 Beispiel: `... comment="ist mir beim Duschen eingefallen" ...`
 
+Dieses Attribut ist informativ und wird von Programm selbst nicht genutzt/ausgewertet.
+
 #### fictional
 
 `fictional` ist ein Wahrheitswert und sagt aus, ob es sich um einen ausgedachten Eintrag handelt.
@@ -113,10 +115,17 @@ In manchen Fällen ist die Information eher informativ, in anderen hat sie Auswi
 #### tmdb_id
 
 `tmdb_id` ist die ID des Programms oder der Person in der Filmdatenbank [The Movie Database](https://www.themoviedb.org/).
+Dieses Attribut ist informativ und wird von Programm selbst nicht genutzt/ausgewertet.
 
 #### imdb_id
 
 `imdb_id` ist die ID des Programms oder der Person in der Filmdatenbank [IMDb](https://www.imdb.com/).
+Dieses Attribut ist informativ und wird von Programm selbst nicht genutzt/ausgewertet.
+
+#### wikidata_id
+
+`wikidata_id` ist die ID eines Eintrags bei [Wikipedia](https://www.wikidata.org/).
+Dieses Attribut ist informativ und wird von Programm selbst nicht genutzt/ausgewertet.
 
 ### Aufbau von "Sprache"-Einträgen
 
@@ -561,7 +570,9 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | AFG | Afghanistan |
 | AM | Armenien |
 | AUS | Australien |
+| AZ | Aserbaidschan |
 | B | Belgien |
+| BF | Burkina Faso |
 | BG | Bulgarien |
 | BIH | Bosnien und Herzegowina |
 | BM | Bermudas |
@@ -580,9 +591,12 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | DDR | DDR |
 | DK | Dänemark |
 | E | Spanien |
+| EST | Estland |
 | F | Frankreich |
 | FL | Liechtenstein |
+| G | Gabun |
 | GB | Vereinigtes Königreich |
+| GE | Georgien |
 | GH | Ghana |
 | GR | Griechenland
 | H | Ungarn |
@@ -591,15 +605,20 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | I | Italien |
 | IL | Israel |
 | IND | Indien |
+| IR | Iran |
 | IRL | Irland |
+| IS | Island |
 | J | Japan |
+| JOR | Jordanien |
 | KN | Grönland |
 | KSA | Saudi-Arabien |
 | L | Luxemburg |
 | LT | Litauen |
+| LV | Lettland |
 | M | Malta |
 | MA | Marocco |
 | MEX | Mexiko |
+| MNE | Montenegro |
 | N | Norwegen |
 | NL | Niederlande |
 | NZ | Neuseeland |
@@ -607,19 +626,24 @@ Achtung diese Werte sind nicht zu verwechseln mit den Sprachkürzeln.
 | PA | Panama |
 | PE | Peru |
 | PL | Polen |
+| Q | Katar |
 | RA | Argentinien |
 | RC | Taiwan |
+| RI | Indonesien |
 | RM | Republik Molvanien |
 | RO | Rumänien |
 | ROK | Südkorea |
 | RP | Philippinen |
 | RUS | Russland |
 | S | Schweden |
+| SRB | Serbien |
 | SCO | Schottland |
 | SU | UDSSR |
 | T | Thailand |
 | TN | Tunesien |
 | TR | Türkei |
+| UA | Ukraine |
+| UAE | Vereinigte Arabische Emirate |
 | USA | USA |
 | YU | Jugoslawien|
 | ZA | Südafrika |
