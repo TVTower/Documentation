@@ -114,6 +114,7 @@ Beispiele:
 
 In Titel und Beschreibung kann auf Besetzungsrollen verwiesen werden (z.B. `${.self:"role":1:"firstname"}`).
 Falls mit `role_guid` eine feste Rolle definiert ist, werden die entsprechenden Namen verwendet.
+(Seit Version 0.8.4 kann für `role_guid` auch die GUID einer [Person](persons.md) selbst verwendet werden - bitte [diese Hinweise](persons.md#Rollenreferenzen) beachten.)
 Mit dem Flag `random_role="1"` sichergestellt, dass für jedes Drehbuch konsistent eine neue Rolle erzeugt wird.
 Insbesondere bei Serien wird empfohlen, das Flag explizit zu setzen, wenn eine Rollenreferenz verwendet wird.
 Die Attribute `gender` und `country` werden dann für das Würfeln des Namens herangezogen.

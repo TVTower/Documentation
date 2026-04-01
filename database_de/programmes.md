@@ -70,6 +70,8 @@ Das Attribut `role_guid` kann verwendet werden, um eine Besetzung mit einer defi
 * `<member index="2" function="64" generator="es,0"></member>` - spanischer Gast männlich oder weiblich
 * `<member index="1" function="2" role_guid="role_hercules">person-4711</member>` - die [Rolle](persons.md#Filmrollen) Herkules war in dem Film mit dem Schauspieler mit der GUID `person-4711` besetzt.
 
+Seit Version 0.8.4 kann für `role_guid` auch die GUID einer [Person](persons.md) selbst verwendet werden - bitte [diese Hinweise](persons.md#Rollenreferenzen) beachten.
+
 ### Ziel- und Lobbygruppen (groups)
 
 | Name | Art | Beschreibung |

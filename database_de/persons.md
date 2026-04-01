@@ -133,7 +133,7 @@ Fiktive Nebenpersonen stehen als als Laien für Produktionen zur Verfügung, kö
 
 Die erste Person ist eine ausgedachte Schottin, die zweite eine deutsche Frau Mueller, deren Vorname zufällig ausgewählt wird.
 
-## Filmrollen
+# Filmrollen
 
 Filmrollen sind in Programmen dargestellte Personen.
 Sie sind als Liste von `programmerole`-Kindelementen in das `programmeroles`-Tag eingebettet.
@@ -159,9 +159,19 @@ Die folgendenen Felder sollten definiert werden
 | country | optional | [Herkunftsland](main.md#Länder) |
 | fictional | optional | [Standardeigenschaft](main.md#fictional) |
 
-## TODOs und Fragen
+# Rollenreferenzen
 
-### Generell
+Rollen werden insb. für Filmmitwirkende und für Personal in Drehbuchvorlagen verwendet.
+Vor der Version 0.8.4 mussten alle (bis auf Zufallsrollen) explizit als [Filmrollen](persons.md#Filmrollen) definiert werden.
+Um z.B. leichter Biographien umsetzen zu können, ohne Informationen doppeln zu müssen, ist es seit Version 0.8.4 möglich auch direkt GUIDs von Personen zu verwenden.
+Technisch wird in diesem Fall beim Einlesen der Datenbank automatisch eine Rolle mit den Werten der refernzierten Person unter derselben GUID angelegt.
+Zu beachten ist, dass das nur funktioniert, wenn die Person zum Zeitpunkt des Einlesens der Referenz "bekannt" ist.
+D.h. man sollte nur Personen referenzieren, die nicht in einer User-Datenbank-Datei sondern in den offiziellen Personendateien definiert sind.
+Für die ist nämlich garantiert, dass sie vor allen Programm- und Drehbuchdateien eingelesen werden.
+
+# TODOs und Fragen
+
+## Generell
 
 * data klären - werden diese Werte als Basis genommen und dann gewürfelt?
 * data beim Einlesen werden auch min/max-Werte (noch keine Grammatikunterstützung)
