@@ -217,8 +217,17 @@ im `children`-Knoten auch wieder als `programme` definiert werden. Beispiele sie
 | 1 | Kino |
 | 2 | Fernsehen |
 | 3 | Video (VHS/DVD etc.) |
+| 4 | Stream |
 
 (Quellcode: `TVTProgrammeDistributionChannel`)
+
+Eigenproduktionen werden automatisch auf `3` (Fernsehen) gesetzt.
+
+Ist in der Datenbank `outcome` nicht definiert, wird aufgrund der übrigen Qualitätsattribute eine Zuschauerbewertung ermittelt.
+Dabei wird bei der Berechnung zwischen Fernsehen und dem Rest unterschieden.
+Das ist aktuell die einzige, echte Auswirkung des Werts.
+
+Im Datenblatt einer Lizenz wird bei der Zuschauerbwertung für Kino "Kinokasse" ansonsten "Zuschauer" angezeigt.
 
 ## Wiederverwendung bestehender Programmdaten
 

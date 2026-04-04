@@ -476,12 +476,19 @@ Durch Setzen des Flags in der Datenbank kann das unterbunden werden, z.B. weil d
 
 (Quellcode: `TVTProgrammeLicenceType`)
 
-Sammlung: Lizenzpaket - allerdings nicht von sonstigen einzeln stehenden Programmlizenzen.
+Vorrangige Verwendung für das Einordnen von Lizenzen in der Filmagentur.
+Serie (`3`) wird unter Serien angezeigt, wobei die Kindelemente Episoden (`2`) sein sollten.
+
+Sammlungen (`4`) haben auch ein Hauptelement mit Kindern (`5`), werden in der Filmagentur aber wie normale Filme einsortiert.
+Im Spiel selbst werden die Ligaspiele als Sammlungen erstellt.
+In der Datenbank selbst gibt es noch keine Sammlungen.
+Anwendungsfall wäre der Vertrieb/Erwerb von mehreren sonst eher alleinstehenden Programmlizenzen.
 Ein Sammlung `die ultimative Betty-Sammlung` könnte als Kindelemente Einträge enthalten, welche Programme mit Betty als Hauptdarstellerin referenzieren.
 
-Franchise: Filme/Serien desselben "Zugpferds" ("Spa Wars")
+Für Drehbuchvorlagen werden Sammlungen noch nicht unterstützt.
 
-Die Typen 4, 5 und 6 sollten im Moment noch nicht verwendet werden, da sich hier noch Änderungen ergeben könnten.
+Franchise: Idee - Filme/Serien desselben "Zugpferds" ("Spa Wars"), aber aktuell ist das Definieren und Verwenden von Franchise noch gar nicht wirklich möglich und hätte im Spiel auch keine Auswirkungen.
+Der Lizenztyp `6` sollte aktuell also noch nicht verwendet werden.
 
 ### Lizenzflags
 
