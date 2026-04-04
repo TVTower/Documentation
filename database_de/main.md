@@ -420,6 +420,19 @@ Im Quellcode sind in `game.gameconstants.bmx` definiert.
 
 (Quellcode: `TVTProgrammeProductType`)
 
+Der Programmtyp wird im Spiel an folgenden Stellen ausgewertet.
+
+**Nachrichten**: Für Filme aus der Datenbank (nicht Eigenproduktionen) werden gelegentlich automatisch Ankündigungsnachrichten beim Erscheinen erzeugt.
+
+**Eigenproduktionen**: Selbstproduzierte Filme und Serien werden als fiktional eingestuft.
+
+**Preisberechnung**: Unterscheidung zwischen Film und Rest - der Basispreis für Lizenzen ist für Filme höher.
+
+**Datenblatt Drehbuch**: Je nach Programmtyp kann im Datenblatt ein Hinweis erscheinen (z.B. Reportage).
+In der finalen Lizenz wird er dann nicht mehr mit angezeigt.
+
+Für die Einstufung als Serie ist [Lizenztyp](main.md#Lizenztyp) wichtiger.
+
 ### Programmflags
 
 Die Programmflags sind ein Flagwert, d.h. in einer Zahl können mehrere Werte kodiert werden.
