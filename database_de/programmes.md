@@ -54,9 +54,10 @@ Die Einzellizenz (`licence_type`) ist preiswert zu haben (`price_mod`).
 
 Standardelemente für Titel [title](main.md#title) und Beschreibung [description](main.md#description) sind sindvollerweise zu definieren.
 Analog zum Titel kann der urspüngliche Titel unter `title_original` angegeben werden.
-Die aus Nachrichten oder Drehbüchern bekannten Variablen kommen bei Programmen aktuell nicht vor, aber der Spezialfall [Besetzungsvariablen](main.md#Besetzungsvariablen) um Namen direkt aus der Besetzung in Titel und Beschreibung zu übernehmen.
-
 Ebenfalls benötigt werden Daten (`data`) und die Bewertung des Programminhalts (`ratings`).
+
+Aktuell wird das Variablen-Element, wie es in Nachrichten oder Drehbüchern definiert werden kann, bei Programmen nicht unterstützt. Referenzen auf andere Programme, Rollen, Personen oder die [Besetzung](main.md#Besetzungsvariablen), um z.B. Namen direkt aus der Besetzung in Titel und Beschreibung zu übernehmen, können verwendet werden.
+
 
 ### Mitwirkende (staff)
 
