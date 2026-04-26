@@ -40,9 +40,10 @@ Die Lokalisierung von Personennamen oder Filmrollen ist in [separaten Dateien](l
 | created_by | Metadaten optional | [Standardeigenschaft](main.md#created_by) |
 | comment |  informativ  |[Standardeigenschaft](main.md#comment) |
 
-Der Standardwert für `castable` (bis Version 0.8.2 `bookable`) ist "1".
-Grundsätzlich sind aber nur fiktionale Personen in Eigenproduktionen einsetzbar.
 Das Programm unterscheidet für die Einsatzbarkeit zwischen `castable` (grundsätzlich) und `bookable` (zum jetzigen Zeitpunkt).
+Bis Version 0.8.5 waren ausschließlich fiktionale Personen überhaupt in Eigenproduktionen einsetzbar.
+Fiktionale Personen haben für `castable` (bis Version 0.8.2 `bookable`) den Standardwert "1", reale Personen (`fictional="0"`) den Standardwert "0".
+Mit einem explizit gesetzten Wert für `castable` kann man fiktionale Personen ausschließen oder reale Personen erlauben.
 
 `generator` wird nur selten benutzt, der Wert enthält kommasepariert ein Länderkürzel und das Geschlecht für die Bestimmung des Namens.
 Beispiel `generator="de,2"` für eine deutsche Frau.
