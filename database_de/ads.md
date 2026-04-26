@@ -54,6 +54,10 @@ Die Mindestzuschauerzahl `min_audience` bezieht sich auf die Gesamtreichweite im
 (Die Zuschauerquote hingegen wird aufgrund der zur jeweiligen Zeit möglichen Zuschauer ermittelt.)
 Ist die Reichweite also 10 Mio, bedeuten `minaudience="2.5"` 250000 Zuschauer, was je nach Sendezeit unterschiedlich hohe Zuschauerquoten verlangen würde.
 
+Falls Zielgruppen definiert sind, wird der Wert bezüglich der Reichweite der Zielgruppe interpretiert.
+Jugendliche machen ca. 10% der Gesamtzuschauer aus.
+Bei 10 Mio Zuschauer gibt es also 1 Mio Jugendliche, so dass der Wert 2.5 einer geforderten Zuschauerzahl von 25000 Jugendlichen entsprechen würde.
+
 ### Daten (data)
 
 | Name | Art | Beschreibung |
@@ -73,8 +77,14 @@ Ist die Reichweite also 10 Mio, bedeuten `minaudience="2.5"` 250000 Zuschauer, w
 | pro_pressure_groups | optional | angesprochene [Lobbygruppe](main.md#Lobbygruppe) |
 | contra_pressure_groups | optional | abgeschreckte [Lobbygruppe](main.md#Lobbygruppe) |
 
-Sofern die Werte nicht als unveränderlich markiert wurden (`fix_price`), wird der Wert für `profit` noch mit einem Faktor multipliziert, der sich aus Image, Reichweite, Qualität etc. berechnet.
-Deshalb kann auch bei einem hohen `profit`-Wert ein geringerer Erlös pro Spot resultieren als bei einem 
+`profit`/`penalty` ist der Basiswert für die Ermittlung des Erlöses bzw. der Vertragsstrafe pro Spot.
+Es ist der Betrag pro 1000 Zuschauer der Mindestzuschauerzahl.
+Ist also die Mindestzuschauerzahl 20000 und der Profit-Wert ist 350 ergeben sich als Einnahmen für einen Spot 20*350=700.
+Mit steigender Reichweite steigt aber der Abschlag.
+Geht zu Beginn des Spiels fast der volle Basiswert in de Rechnung ein, sind es bei vollem Senderausbau ca. 30% weniger.
+
+Sofern die Werte nicht als unveränderlich markiert wurden (`fix_infomercial_profit`), wird der Wert für `infomercial_profit` noch mit einem Faktor multipliziert, der sich aus Image, Reichweite, Qualität etc. berechnet.
+Deshalb kann auch bei einem hohen `infomercial_profit`-Wert ein geringerer Erlös pro Spot resultieren als bei einem 
 niedrigen.
 
 ### Modifier
